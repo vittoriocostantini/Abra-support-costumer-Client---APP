@@ -1,0 +1,7 @@
+{
+  "name": "abra",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
