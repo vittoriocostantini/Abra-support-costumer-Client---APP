@@ -1,0 +1,29 @@
+.ionToolbar_status {
+    border-bottom: 1px solid #c3c2c2;
+}
+
+.menu-icon {
+    color: #71a0e6;
+    font-size: 35px;
+}
+
+.ionHeader_status {
+    --background: rgb(255, 255, 255);
+    z-index: 1; /* Asegúrate de que este valor no sea mayor que el del action sheet */
+}
+
+.ionToolbar_status {
+    --background: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Asegúrate de que el action sheet tenga un z-index mayor */
+.action-sheet {
+    z-index: 10; /* Ajusta este valor según sea necesario */
+    display: block; /* Asegúrate de que esté visible */
+    position: fixed; /* O absolute, según tu diseño */
+    /* Otros estilos necesarios para el action sheet */
+}
+

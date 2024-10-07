@@ -1,0 +1,39 @@
+.icon-normal {
+    transform: rotate(0deg); /* Asegúrate de que esta línea esté presente */
+    transition: transform 0.3s ease;
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+.icon-rotated {
+    transition: transform 0.3s ease;
+}
+
+.icon-rotated.open {
+    transform: rotate(180deg);
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #716f6f;
+}
+
+.block {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  ion-modal {
+    --height: 20%;
+  }
+
+.ion-item ion-label {
+    text-align: center;
+    width: 100%;
+}

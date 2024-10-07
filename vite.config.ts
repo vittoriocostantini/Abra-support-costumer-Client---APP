@@ -14,5 +14,15 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/setupTests.ts',
+  },
+  resolve: {
+    alias: {
+      'react-native': 'react-native-web'
+    }
+  },
+  esbuild: {
+    jsxInject: `import React from 'react'`,
+    jsxFactory: 'React.createElement',
+    jsxFragment: 'React.Fragment',
   }
 })
