@@ -3,11 +3,11 @@ import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Page from './pages/Page';
 import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
-import { homeOutline, ticketOutline, personOutline, settingsOutline } from 'ionicons/icons';
-import HomePage from './pages/HomePage';
-import RadioPage from './pages/TicketPage';
-import LibraryPage from './pages/SearchPage';
-import SearchPage from './pages/SettingsPage';
+import { peopleOutline, ticketOutline, personOutline, settingsOutline } from 'ionicons/icons';
+import ContactPage from './pages/ContactPage';
+import TicketPage from './pages/TicketPage';
+import SearchPage from './pages/SearchPage';
+import SettingsPage from './pages/SettingsPage';
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -47,25 +47,25 @@ const App: React.FC = () => {
         <IonTabs>
           <IonRouterOutlet>
             <Redirect exact path="/" to="/home" />
-            <Route path="/home" render={() => <HomePage />} exact={true} />
-            <Route path="/tickets" render={() => <RadioPage />} exact={true} />
-            <Route path="/account" render={() => <LibraryPage />} exact={true} />
-            <Route path="/settings" render={() => <SearchPage />} exact={true} />
+            <Route path="/Tickets" render={() => <TicketPage />} exact={true} />
+            <Route path="/Contact" render={() => <ContactPage />} exact={true} />
+            <Route path="/SearchPage" render={() => <SearchPage />} exact={true} />
+            <Route path="/SettingsPage" render={() => <SettingsPage />} exact={true} />
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
-            <IonTabButton tab="home" href="/home">
-              <IonIcon icon={homeOutline} />
-              <IonLabel>Home</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="tickets" href="/tickets">
+          <IonTabButton tab="tickets" href="/tickets">
               <IonIcon icon={ticketOutline} />
               <IonLabel>Tickets</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="account" href="/account">
+            <IonTabButton tab="contact" href="/contact">
+              <IonIcon icon={peopleOutline} />
+              <IonLabel>Contacts</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="SearchPage" href="/SearchPage">
               <IonIcon icon={personOutline} />
               <IonLabel>Account</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="settings" href="/settings">
+            <IonTabButton tab="SettingsPage" href="/SettingsPage">
               <IonIcon icon={settingsOutline} />
               <IonLabel>Settings</IonLabel>
             </IonTabButton>

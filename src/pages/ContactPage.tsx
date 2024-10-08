@@ -1,8 +1,8 @@
 import React from 'react';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/react';
-import '../theme/HomePage.css';
+import '../theme/ContactPage.css';
 
-const HomePage = () => (
+const ContactPage = () => (
   <>
     <IonHeader className='header-home'>
       <IonToolbar className='toolbar-home'>
@@ -13,4 +13,4 @@ const HomePage = () => (
   </>
 );
 
-export default HomePage;
+export default ContactPage;
