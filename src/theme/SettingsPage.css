@@ -12,7 +12,9 @@
 .title-settings {   
     font-size: 20px;
     color: #414040;
-    justify-content: center !important;
+    text-align: left;
+    margin-left: 16px; /* Ajusta este valor según sea necesario */
+    padding-left: 0;
 }
 
 .content-settings ion-icon{
