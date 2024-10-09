@@ -1,21 +1,36 @@
 import React, { useState } from 'react';
-import { IonButtons, IonButton, IonIcon, IonModal, IonContent, IonHeader, IonToolbar, IonTitle, IonInput } from '@ionic/react';
+import { IonButtons, IonButton, IonIcon, IonSearchbar, IonModal, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/react';
 import { searchOutline, addOutline } from 'ionicons/icons';
-import '../theme/AddForm.css';
+import '../theme/AgentHistory.css';
 
-const IconButtons: React.FC = () => {
+interface AgentHistoryProps {
+  onToggleSearchBar: (isVisible: boolean) => void; // Nueva prop
+}
+
+const AgentHistory: React.FC<AgentHistoryProps> = ({ onToggleSearchBar }) => {
   const [showModal, setShowModal] = useState(false);
+  const [showSearchBar, setShowSearchBar] = useState(false);
+
+  const handleSearchBarToggle = () => {
+    const newVisibility = !showSearchBar;
+    setShowSearchBar(newVisibility);
+    onToggleSearchBar(newVisibility); // Llamar a la función de callback
+  };
 
   return (
     <>
       <IonButtons slot="end">
-        <IonButton>
+        <IonButton onClick={handleSearchBarToggle}>
           <IonIcon icon={searchOutline}></IonIcon>
         </IonButton>
         <IonButton onClick={() => setShowModal(true)}>
           <IonIcon icon={addOutline}></IonIcon>
         </IonButton>
       </IonButtons>
+
+      {showSearchBar && (
+        <IonSearchbar placeholder="Buscar..." className="search-bar" />
+      )}
 
       <IonModal 
       isOpen={showModal} 
@@ -41,4 +56,4 @@ const IconButtons: React.FC = () => {
   );
 };
 
-export default IconButtons;
+export default AgentHistory;

@@ -1,19 +1,25 @@
-import React from 'react';
-import { IonContent, IonHeader, IonTitle, IonToolbar} from '@ionic/react'; // Añadir IonIcon
+import React, { useState } from 'react';
+import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/react'; // Añadir IonIcon
 import '../theme/ContactPage.css';
-import AddForm from '../components/AddForm';
+import AgentHistory from '../components/AgentHistory';
 
-const ContactPage = () => (
-  <>
-    <IonHeader className='header-home'>
-      <IonToolbar className='toolbar-home'>
-        <IonTitle className='title-contact'>Contacta a un agente</IonTitle>
-        <AddForm />
-      </IonToolbar>
-    </IonHeader>
-    <IonContent>
-    </IonContent>
-  </>
-);
+const ContactPage = () => {
+  const [isSearchBarVisible, setIsSearchBarVisible] = useState(false); // Nuevo estado
+
+  return (
+    <>
+      <IonHeader className='header-home'>
+        <IonToolbar className='toolbar-home'>
+          {!isSearchBarVisible && ( // Mostrar IonTitle solo si la barra de búsqueda no está visible
+            <IonTitle className='title-contact'>Contacta a un agente</IonTitle>
+          )}
+          <AgentHistory onToggleSearchBar={setIsSearchBarVisible} /> {/* Pasar la función de callback */}
+        </IonToolbar>
+      </IonHeader>
+      <IonContent>
+      </IonContent>
+    </>
+  );
+};
 
 export default ContactPage;
