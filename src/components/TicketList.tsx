@@ -13,19 +13,19 @@ function TicketList() {
       client: 'María López',
       imageUrl: 'src/Assets/AssistancesProfile/Assistance2.jpg',
       status: 'Resuelto'
-    },
-    // Añade más tickets según sea necesario
+    }
   ];
 
   return (
     <div>
-      {tickets.map((ticket, index) => (
+      {tickets.map((ticket) => (
         <TicketCard
-          key={index}
+          key={ticket.title} // Usar el título como clave
           title={ticket.title}
           client={ticket.client}
           imageUrl={ticket.imageUrl}
           status={ticket.status}
+          onClick={() => {}}
         />
       ))}
     </div>

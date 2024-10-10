@@ -1,74 +1,71 @@
 import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
-import Page from './pages/Page';
 import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
 import { peopleOutline, ticketOutline, personOutline, settingsOutline } from 'ionicons/icons';
+
+// Importación de las páginas que se usarán en las rutas
+import Page from './pages/Page';
 import ContactPage from './pages/ContactPage';
 import TicketPage from './pages/TicketPage';
 import SearchPage from './pages/SearchPage';
 import SettingsPage from './pages/SettingsPage';
 
-
-/* Core CSS required for Ionic components to work properly */
+// Importación de estilos CSS de Ionic y personalizados
 import '@ionic/react/css/core.css';
-
-/* Basic CSS for apps built with Ionic */
 import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
 import '@ionic/react/css/typography.css';
-
-/* Optional CSS utils that can be commented out */
 import '@ionic/react/css/padding.css';
 import '@ionic/react/css/float-elements.css';
 import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
-
-/* Dark mode */
 import '@ionic/react/css/palettes/dark.css';
-
-/* Theme variables */
 import './theme/variables.css';
 
+// Configuración inicial de Ionic React
 setupIonicReact();
 
 const App: React.FC = () => {
+  // Definición de las rutas y sus propiedades
+  const routes = [
+    { path: '/Tickets', component: TicketPage, icon: ticketOutline, label: 'Tickets' },
+    { path: '/Contact', component: ContactPage, icon: peopleOutline, label: 'Contacts' },
+    { path: '/SearchPage', component: SearchPage, icon: personOutline, label: 'Account' },
+    { path: '/SettingsPage', component: SettingsPage, icon: settingsOutline, label: 'Settings' }
+  ];
+
   return (
     <IonApp>
       <IonReactRouter>
+        {/* Configuración del panel dividido de Ionic */}
         <IonSplitPane contentId="main">
           <IonRouterOutlet id="main">
+            {/* Ruta para la página genérica con un parámetro de nombre */}
             <Route path="/page/:name" component={Page} exact={true} />
+            {/* Redirección inicial a la página de inicio */}
             <Redirect from="/" to="/page/Inicio" exact={true} />
           </IonRouterOutlet>
         </IonSplitPane>
         <IonTabs>
           <IonRouterOutlet>
+            {/* Redirección inicial a la pestaña de Tickets */}
             <Redirect exact path="/" to="/Tickets" />
-            <Route path="/Tickets" render={() => <TicketPage />} exact={true} />
-            <Route path="/Contact" render={() => <ContactPage />} exact={true} />
-            <Route path="/SearchPage" render={() => <SearchPage />} exact={true} />
-            <Route path="/SettingsPage" render={() => <SettingsPage />} exact={true} />
+            {/* Mapeo de las rutas definidas en el array */}
+            {routes.map(({ path, component }) => (
+              <Route key={path} path={path} component={component} exact={true} />
+            ))}
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
-          <IonTabButton tab="tickets" href="/tickets">
-              <IonIcon icon={ticketOutline} />
-              <IonLabel>Tickets</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="contact" href="/contact">
-              <IonIcon icon={peopleOutline} />
-              <IonLabel>Contacts</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="SearchPage" href="/SearchPage">
-              <IonIcon icon={personOutline} />
-              <IonLabel>Account</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="SettingsPage" href="/SettingsPage">
-              <IonIcon icon={settingsOutline} />
-              <IonLabel>Settings</IonLabel>
-            </IonTabButton>
+            {/* Mapeo de los botones de las pestañas */}
+            {routes.map(({ path, icon, label }) => (
+              <IonTabButton key={path} tab={path.slice(1).toLowerCase()} href={path}>
+                <IonIcon icon={icon} />
+                <IonLabel>{label}</IonLabel>
+              </IonTabButton>
+            ))}
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>

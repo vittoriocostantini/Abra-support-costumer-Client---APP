@@ -13,7 +13,6 @@ const TicketsPage = () => (
     </IonHeader>
     <IonContent className='content-tickets'>
       <TicketList />
-      
     </IonContent>
   </>
 );

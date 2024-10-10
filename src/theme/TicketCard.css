@@ -66,3 +66,11 @@
   width: 50px; /* Ajusta el tamaño de la imagen */
   height: 50px; /* Ajusta el tamaño de la imagen */
 }
+
+.clickable-card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.clickable-card:active {
+  transform: scale(1.05);
+}
