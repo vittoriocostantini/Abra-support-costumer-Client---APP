@@ -6,15 +6,18 @@ function TicketList() {
       title: 'Instagram Bloqueado',
       client: 'Juan Pérez',
       imageUrl: 'src/Assets/AssistancesProfile/Assistance1.jpg',
-      status: 'En Proceso'
+      status: 'En Proceso',
+      onClick: () => {}
     },
     {
       title: 'Problema con el correo',
       client: 'María López',
       imageUrl: 'src/Assets/AssistancesProfile/Assistance2.jpg',
-      status: 'Resuelto'
+      status: 'Resuelto',
+      onClick: () => {}
     }
   ];
+
 
   return (
     <div>
@@ -25,7 +28,7 @@ function TicketList() {
           client={ticket.client}
           imageUrl={ticket.imageUrl}
           status={ticket.status}
-          onClick={() => {}}
+          onClick={ticket.onClick}
         />
       ))}
     </div>

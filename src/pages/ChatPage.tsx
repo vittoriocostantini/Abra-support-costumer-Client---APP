@@ -1,37 +1,12 @@
-import React, { useState } from 'react';
-import { IonContent, IonHeader, IonToolbar, IonTitle, IonList, IonItem, IonInput, IonButton } from '@ionic/react';
+import React from 'react';
+import { IonContent } from '@ionic/react';
 
-const ChatPage: React.FC = () => {
-  const [messages, setMessages] = useState<string[]>([]);
-  const [newMessage, setNewMessage] = useState<string>('');
-
-  const sendMessage = () => {
-    if (newMessage.trim()) {
-      setMessages([...messages, newMessage]);
-      setNewMessage('');
-    }
-  };
-
+function ChatPage({ nav }: { nav: HTMLIonNavElement }) {
   return (
     <IonContent>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Chat</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonList>
-        {messages.map((message, index) => (
-          <IonItem key={index}>{message}</IonItem>
-        ))}
-      </IonList>
-      <IonItem>
-        <IonInput
-          value={newMessage}
-          placeholder="Escribe un mensaje..."
-          onIonChange={e => setNewMessage(e.detail.value!)}
-        />
-        <IonButton onClick={sendMessage}>Enviar</IonButton>
-      </IonItem>
+      <h1>Chat para z</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+      <h2>Hola</h2>
     </IonContent>
   );
 };

@@ -74,3 +74,8 @@
 .clickable-card:active {
   transform: scale(1.05);
 }
+
+ .icon-back {
+  transform: rotate(-90deg);
+}
+

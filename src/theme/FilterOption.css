@@ -29,7 +29,7 @@
     justify-content: center;
   }
   
-  ion-modal {
+  .ion-modal-height {
     --height: 20%;
   }
 

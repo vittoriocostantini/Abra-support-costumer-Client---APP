@@ -1,25 +1,87 @@
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonAvatar, IonIcon } from '@ionic/react';
-import '../theme/TicketCard.css'; // Importa el archivo CSS
+import React, { useRef, useState } from 'react';
+import { 
+  IonCard, 
+  IonCardContent, 
+  IonCardHeader, 
+  IonCardSubtitle, 
+  IonCardTitle, 
+  IonAvatar, 
+  IonIcon, 
+  IonModal, 
+  IonNav, 
+  IonHeader, 
+  IonToolbar, 
+  IonTitle, 
+  IonButtons, 
+  IonButton, 
+  IonContent 
+} from '@ionic/react';
+import { star, chevronDownOutline } from 'ionicons/icons';
+import '../theme/TicketCard.css';
+import ChatPage from '../pages/ChatPage';
+import { createAnimation } from '@ionic/react';
 
-// Importa el componente de avatar y el icono de persona
-import { star } from 'ionicons/icons'; // Importa el nuevo icono sin outline
+// Animación de entrada para el IonModal
+const enterAnimation = (baseEl: HTMLElement) => {
+  const root = baseEl.shadowRoot || baseEl;
+  const wrapperAnimation = createAnimation()
+    .addElement(root.querySelector('.modal-wrapper')!)
+    .keyframes([
+      { offset: 0, transform: 'translateX(100%)' },
+      { offset: 1, transform: 'translateX(0)' }
+    ]);
 
-interface TicketCardProps {
-  title: string;
-  client: string;
-  imageUrl: string;
-  status: string;
-  onClick: () => void; // Añadido onClick prop
-}
+  return createAnimation()
+    .addElement(baseEl)
+    .easing('ease-out')
+    .duration(300)
+    .addAnimation(wrapperAnimation);
+};
 
-function TicketCard({ title, client, imageUrl, status, onClick }: TicketCardProps) {
-  const currentDate = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit' });
+// Animación de salida para el IonModal
+const leaveAnimation = (baseEl: HTMLElement) => {
+  const root = baseEl.shadowRoot || baseEl;
+  const wrapperAnimation = createAnimation()
+    .addElement(root.querySelector('.modal-wrapper')!)
+    .keyframes([
+      { offset: 0, transform: 'translateX(0)' },
+      { offset: 1, transform: 'translateX(100%)' }
+    ]);
 
+  return createAnimation()
+    .addElement(baseEl)
+    .easing('ease-in')
+    .duration(300)
+    .addAnimation(wrapperAnimation);
+};
+
+// Componente funcional TicketCard
+function TicketCard({ id, title, client, imageUrl, status, onClick }: { id?: string; title: string; client: string; imageUrl: string; status: string; onClick: () => void; }) {
+  const nav = useRef<HTMLIonNavElement>(null); // Referencia para el componente IonNav
+  const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar la apertura del modal
+
+  // Maneja el clic en la tarjeta
+  const handleCardClick = () => {
+    setIsModalOpen(true); // Abre el modal
+    onClick(); // Llama a la función onClick pasada como prop
+  };
+
+  // Cierra el modal
+  const closeModal = () => setIsModalOpen(false);
+
+  // Se ejecuta cuando el modal se presenta
+  const didPresent = () => {
+    nav.current?.setRoot(ChatPage, { nav: nav.current }); // Establece la raíz del IonNav al componente ChatPage
+  };
+
+  // Formatea la fecha actual
+  const formattedDate = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit' });
+  // Determina la clase CSS basada en el estado del ticket
   const statusClass = status === 'Resuelto' ? 'resolved' : status === 'En Proceso' ? 'in-process' : '';
 
   return (
-    <div onClick={onClick}> {/* Usa el onClick prop */}
-      <IonCard className="wide-card clickable-card"> {/* Añadido clickable-card */}
+    <div id={id} style={{ cursor: 'pointer' }}>
+      <IonCard className="wide-card clickable-card" onClick={handleCardClick}>
         <IonCardHeader>
           <div className="header-content">
             <div className="avatar-title">
@@ -35,7 +97,7 @@ function TicketCard({ title, client, imageUrl, status, onClick }: TicketCardProp
               </div>
             </div>
             <div>
-              <IonCardSubtitle className='card_date'><b>{currentDate}</b></IonCardSubtitle>
+              <IonCardSubtitle className='card_date'><b>{formattedDate}</b></IonCardSubtitle>
               <div className={`status-box ${statusClass}`}>
                 {status}
               </div>
@@ -49,6 +111,32 @@ function TicketCard({ title, client, imageUrl, status, onClick }: TicketCardProp
           Si tiene alguna pregunta, no dude en contactarnos.
         </IonCardContent>
       </IonCard>
+
+      <IonModal 
+        className='ion-modal-ticket ion-modal-ticketcard'
+        isOpen={isModalOpen} 
+        onWillPresent={didPresent} // Cambiar de onDidPresent a onWillPresent
+        onDidDismiss={closeModal} 
+        enterAnimation={enterAnimation}
+        leaveAnimation={leaveAnimation}
+      >
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>Chat</IonTitle>
+            <IonButtons slot="end">
+              <IonButton onClick={closeModal}>
+                <IonIcon 
+                icon={chevronDownOutline} 
+                className='icon-back'
+                />
+              </IonButton>
+            </IonButtons>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          <IonNav ref={nav} />
+        </IonContent>
+      </IonModal>
     </div>
   );
 }

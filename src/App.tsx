@@ -10,7 +10,6 @@ import ContactPage from './pages/ContactPage';
 import TicketPage from './pages/TicketPage';
 import SearchPage from './pages/SearchPage';
 import SettingsPage from './pages/SettingsPage';
-
 // Importación de estilos CSS de Ionic y personalizados
 import '@ionic/react/css/core.css';
 import '@ionic/react/css/normalize.css';
@@ -34,7 +33,7 @@ const App: React.FC = () => {
     { path: '/Tickets', component: TicketPage, icon: ticketOutline, label: 'Tickets' },
     { path: '/Contact', component: ContactPage, icon: peopleOutline, label: 'Contacts' },
     { path: '/SearchPage', component: SearchPage, icon: personOutline, label: 'Account' },
-    { path: '/SettingsPage', component: SettingsPage, icon: settingsOutline, label: 'Settings' }
+    { path: '/SettingsPage', component: SettingsPage, icon: settingsOutline, label: 'Settings' },
   ];
 
   return (

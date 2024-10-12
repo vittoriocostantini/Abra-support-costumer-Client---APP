@@ -38,6 +38,7 @@ const FilterOption: React.FC = () => {
                 initialBreakpoint={1} 
                 breakpoints={[0, 1]}
                 onDidDismiss={handleModalClose} // Asegúrate de cerrar el modal
+                className='ion-modal-height'
                 >
             
             <IonList className='ion-item'>
