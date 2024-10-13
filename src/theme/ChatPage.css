@@ -1,0 +1,36 @@
+.input-container {
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease-in-out; /* Añade una transición suave */
+  will-change: transform; /* Sugerencia al navegador para optimizar el rendimiento */
+}
+
+.ion-chat-input-message {
+  flex: 1;
+  margin-right: 8px; /* Espacio entre el input y el botón */
+  border: 1px solid #000000;
+  border-radius: 2px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  font-size: 15px;
+  outline: none; /* Elimina la línea azul al enfocar */
+}
+
+
+
+.ion-chat-icon{
+  position: relative;
+  left: -5px;
+  font-size: 25px;
+  padding: 15px
+}
+
+.ion-chat-icon:active {
+  transform: scale(1.5); /* Aumenta el tamaño del botón al 110% */
+  transition: transform 0.5s; /* Añade una transición suave */
+}
+
+.ion-chat-icon ion-icon {
+  color: #93e9be;
+  font-size: 30px;
+}
