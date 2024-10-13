@@ -122,8 +122,7 @@ function TicketCard({ id, title, client, imageUrl, status, onClick }: { id?: str
       >
         <IonHeader>
           <IonToolbar>
-            <IonTitle>Chat</IonTitle>
-            <IonButtons slot="end">
+            <IonButtons slot="start">
               <IonButton onClick={closeModal}>
                 <IonIcon 
                 icon={chevronDownOutline} 
@@ -131,6 +130,7 @@ function TicketCard({ id, title, client, imageUrl, status, onClick }: { id?: str
                 />
               </IonButton>
             </IonButtons>
+            <IonTitle>Chat</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonContent>
