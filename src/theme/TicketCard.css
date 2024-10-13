@@ -76,6 +76,10 @@
 }
 
  .icon-back {
-  transform: rotate(-90deg);
+  font-size: 30px;
+  transform: rotate(90deg);
+  position: relative;
+  left: -10px;
+  font-weight: bold;
 }
 
