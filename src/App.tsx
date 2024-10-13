@@ -24,6 +24,7 @@ import '@ionic/react/css/display.css';
 import '@ionic/react/css/palettes/dark.css';
 import './theme/variables.css';
 
+//commit nuevo
 // Configuración inicial de Ionic React
 setupIonicReact();
 
