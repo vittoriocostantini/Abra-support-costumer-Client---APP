@@ -1,0 +1,7 @@
+.modal-add { 
+    --background: #f8f9fa; /* Fondo más claro y elegante */
+    --border-radius: 8px; /* Esquinas ligeramente menos redondeadas */
+    --width: 100%;
+    --box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más suave */
+    --height: 50%;
+} /*  Propiedades de la modal !no borrar!*/

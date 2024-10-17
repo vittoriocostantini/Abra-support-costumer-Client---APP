@@ -1,0 +1,85 @@
+.wide-card {
+  /* Estilos existentes */
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.avatar-title {
+  display: flex;
+  align-items: center;
+  position: relative; /* Añadido para permitir el uso de position en .badge-icon */
+}
+
+.avatar-icon {
+  font-size: 40px;
+}
+
+.title-subtitle {
+  font-size: 20px; /* Tamaño de fuente reducido */
+  margin-bottom: 5px; /* Añade espacio a la izquierda */
+}
+
+.badge-icon {
+  font-size: 20px; /* Tamaño de la insignia */
+  margin-left: 5px; /* Añade espacio a la izquierda */
+  color: #ffd700; /* Cambia el color a amarillo */
+  position: absolute; /* Añadido para posicionar la insignia */
+  top: 50%; /* Centra verticalmente */
+  transform: translateY(-50%); /* Ajusta para centrar exactamente */
+}
+
+.status-box {
+  /* No tiene color de fondo por defecto */
+  color: white;
+  padding: 3px 7px; /* Tamaño reducido */
+  border-radius: 5px;
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 10px;
+}
+
+.status-box.resolved {
+  background-color: rgb(49, 216, 116); /* Verde */
+  font-weight: bold;
+  
+}
+
+.status-box.in-process {
+  background-color: rgb(52, 167, 255); /* Azul */
+  font-weight: bold;
+}
+
+.card_date {
+  margin-left: 1px;
+}
+
+.avatar-icon {
+  width: 50px; /* Ajusta el tamaño de la imagen */
+  height: 50px; /* Ajusta el tamaño de la imagen */
+}
+
+.clickable-card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.clickable-card:active {
+  transform: scale(1.05);
+}
+
+ .icon-back {
+  font-size: 30px;
+  transform: rotate(90deg);
+  position: relative;
+  left: -10px;
+  font-weight: bold;
+}
+
