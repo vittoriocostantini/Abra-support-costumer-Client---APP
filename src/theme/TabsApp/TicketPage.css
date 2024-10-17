@@ -1,0 +1,14 @@
+.toolbar-tickets {
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  --background: radial-gradient(ellipse at center, #e3e3e3, #faf8f8, #ffffff);
+
+}
+
+.header-tickets {
+  background: linear-gradient(to top, #000, #fff);
+
+}
+
