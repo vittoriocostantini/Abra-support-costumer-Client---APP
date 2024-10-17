@@ -1,10 +1,11 @@
 import React from 'react';
 import { IonContent, IonHeader, IonToolbar } from '@ionic/react';
-import '../theme/TicketPage.css';
-import FilterOption from '../components/FilterOption';
-import TicketList from '../components/TicketList';
+import '../theme/TabsApp/TicketPage.css';
+import FilterOption from '../components/stateful/FilterOption';
+import TicketList from '../components/stateless/TicketList';
 
-const TicketsPage = () => (
+function TicketsPage() {
+  return (
   <>
     <IonHeader className='header-tickets'>
       <IonToolbar className='toolbar-tickets'>
@@ -16,5 +17,6 @@ const TicketsPage = () => (
     </IonContent>
   </>
 );
+}
 
 export default TicketsPage;

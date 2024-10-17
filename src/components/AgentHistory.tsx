@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { IonButtons, IonButton, IonIcon, IonSearchbar, IonModal, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/react';
 import { searchOutline, addOutline } from 'ionicons/icons';
-import '../theme/AgentHistory.css';
+import '../theme/ComponentsTheme/AgentHistory.css';
 
 interface AgentHistoryProps {
   onToggleSearchBar: (isVisible: boolean) => void; // Nueva prop

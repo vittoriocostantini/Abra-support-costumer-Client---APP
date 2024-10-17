@@ -1,6 +1,6 @@
 import React from 'react';
 import { IonContent, IonHeader, IonToolbar, IonTitle, IonItem, IonLabel } from '@ionic/react';
-import '../theme/SettingsPage.css';
+import '../theme/TabsApp/SettingsPage.css';
 const SettingsPage = () => (
   <>
     <IonHeader className='header-settings'>

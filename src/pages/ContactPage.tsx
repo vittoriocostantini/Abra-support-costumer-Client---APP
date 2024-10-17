@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/react'; // Añadir IonIcon
-import '../theme/ContactPage.css';
+import '../theme/TabsApp/ContactPage.css';
 import AgentHistory from '../components/AgentHistory';
 
 const ContactPage = () => {

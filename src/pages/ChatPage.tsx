@@ -1,32 +1,27 @@
-import React from 'react';
-import { IonContent, IonFooter, IonToolbar, IonIcon } from '@ionic/react';
-import { send } from 'ionicons/icons';
-import '../theme/ChatPage.css';
+import React, { useState } from 'react';
+import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/react';
+import '../theme/ComponentsTheme/ChatPage.css';
 
-function ChatPage({ nav }: { nav: HTMLIonNavElement }) {
+const ChatPage = () => {
+  const [buttonText, setButtonText] = useState('Click me');
+
+  const handleClick = () => {
+    setButtonText('Clicked!');
+  };
+
   return (
     <>
-      <IonContent>
-        <h1>Chat para z</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
-        <h2>Hola</h2>
-      </IonContent>
-      <IonFooter>
+      <IonHeader>
         <IonToolbar>
-          <div className="input-container">
-            <input 
-              className="ion-chat-input-message"
-            />
-            <IonIcon 
-              icon={send} 
-                onClick={() => {
-                // Lógica para manejar el clic en el icono
-              }}
-              className="ion-chat-icon"
-            />
-          </div>
+          <IonTitle>Chat</IonTitle>
         </IonToolbar>
-      </IonFooter>
+      </IonHeader>
+      <IonContent>
+        <div>
+          <h1>Chat</h1>
+          <button onClick={handleClick}>{buttonText}</button>
+        </div>
+      </IonContent>
     </>
   );
 };

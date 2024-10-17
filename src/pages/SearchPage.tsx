@@ -1,6 +1,6 @@
 import React from 'react';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonSearchbar } from '@ionic/react';
-import '../theme/SearchPage.css';
+import '../theme/TabsApp/SearchPage.css';
 
 const AccountPage = () => (
   <>
