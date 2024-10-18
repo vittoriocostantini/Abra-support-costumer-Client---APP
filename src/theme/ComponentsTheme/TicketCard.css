@@ -1,5 +1,5 @@
-.wide-card {
-  /* Estilos existentes */
+/* .wide-card {
+  /* Estilos existentes 
   width: 100%;
   max-width: 600px;
   margin: 20px auto;
@@ -83,3 +83,9 @@
   font-weight: bold;
 }
 
+.animate-card {
+  transition: transform 0.3s ease-in-out;
+  transform: scale(0.95);
+} 
+
+*/
