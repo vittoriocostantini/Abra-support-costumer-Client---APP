@@ -1,8 +1,9 @@
 import React from 'react';
-import { IonContent, IonHeader, IonToolbar, IonTitle, IonItem, IonLabel } from '@ionic/react';
+import { IonContent, IonHeader, IonToolbar, IonTitle, IonItem, IonLabel, IonPage } from '@ionic/react';
 import '../theme/TabsApp/SettingsPage.css';
-const SettingsPage = () => (
-  <>
+
+const SettingsPage: React.FC = () => (
+  <IonPage>
     <IonHeader className='header-settings'>
       <IonToolbar className='toolbar-settings'>
         <IonTitle className='title-settings'>Ajustes</IonTitle>
@@ -31,7 +32,7 @@ const SettingsPage = () => (
         
       </IonItem>
     </IonContent>
-  </>
+  </IonPage>
 );
 
 export default SettingsPage;
