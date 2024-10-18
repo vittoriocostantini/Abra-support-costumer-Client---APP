@@ -1,28 +1,38 @@
-import React, { useState } from 'react';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/react';
-import '../theme/ComponentsTheme/ChatPage.css';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFooter, IonInput } from '@ionic/react';
+import { Keyboard } from "@capacitor/keyboard";
+import "../theme/ComponentsTheme/ChatPage.css";
 
-const ChatPage = () => {
-  const [buttonText, setButtonText] = useState('Click me');
+Keyboard.addListener("keyboardWillShow", ({ keyboardHeight }) => {
+  document.querySelector("ion-app")!.style.height = `${window.outerHeight - keyboardHeight}px`;
+});
 
-  const handleClick = () => {
-    setButtonText('Clicked!');
-  };
+Keyboard.addListener("keyboardWillHide", () => {
+  document.querySelector("ion-app")!.style.height = "";
+});
+
+const ChatPage: React.FC = () => {
 
   return (
-    <>
+    <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonTitle>Chat</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
-        <div>
-          <h1>Chat</h1>
-          <button onClick={handleClick}>{buttonText}</button>
-        </div>
+      <IonContent fullscreen>
+        <IonHeader collapse="condense">
+          <IonToolbar>
+            <IonTitle size="large">Chat</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+        {/* Aquí puedes añadir el contenido principal de la página */}
       </IonContent>
-    </>
+      <IonFooter>
+        <IonToolbar>
+        <IonInput placeholder="Escribe tu mensaje aquí" />
+        </IonToolbar>
+      </IonFooter>
+    </IonPage>
   );
 };
 
