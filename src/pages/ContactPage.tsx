@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/react'; // Añadir IonIcon
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonPage } from '@ionic/react'; // Añadir IonIcon
 import '../theme/TabsApp/ContactPage.css';
 import AgentHistory from '../components/AgentHistory';
 
-const ContactPage = () => {
+const ContactPage: React.FC = () => {
   const [isSearchBarVisible, setIsSearchBarVisible] = useState(false); // Nuevo estado
 
   return (
-    <>
+    <IonPage>
       <IonHeader className='header-home'>
         <IonToolbar className='toolbar-home'>
           {!isSearchBarVisible && ( // Mostrar IonTitle solo si la barra de búsqueda no está visible
@@ -18,7 +18,7 @@ const ContactPage = () => {
       </IonHeader>
       <IonContent>
       </IonContent>
-    </>
+    </IonPage>
   );
 };
 
