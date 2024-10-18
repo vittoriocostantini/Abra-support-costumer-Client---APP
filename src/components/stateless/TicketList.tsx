@@ -11,7 +11,6 @@ function TicketList() {
       imageUrl: 'src/Assets/AssistancesProfile/Assistance1.jpg',
       status: 'En Proceso',
       onClick: () => {
-        router.push('/ChatPage', 'forward'); // Usar el router definido
       }
     },
     {
@@ -20,7 +19,6 @@ function TicketList() {
       imageUrl: 'src/Assets/AssistancesProfile/Assistance2.jpg',
       status: 'Resuelto',
       onClick: () => {
-        router.push('/ChatPage', 'forward'); // Usar el router definido
       }
     }
   ];
