@@ -1,8 +1,7 @@
-import { IonApp, IonRouterOutlet, IonSplitPane, IonTabs, IonContent, setupIonicReact } from '@ionic/react';
+import { IonApp, setupIonicReact } from '@ionic/react';
+import { IonReactRouter } from '@ionic/react-router';
+import TabBar from './tabs/TabBar';
 
-
-import MainApp from './components/stateless/MainApp';
-// Importación de estilos CSS de Ionic y personalizados
 import '@ionic/react/css/core.css';
 import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
@@ -17,15 +16,16 @@ import '@ionic/react/css/palettes/dark.css';
 import './theme/variables.css';
 
 
+
 // Configuración inicial de Ionic React
-setupIonicReact({ mode: 'ios' });
+setupIonicReact();
 
 const App: React.FC = () => {
   return (
     <IonApp>
-      <IonContent>
-        <MainApp />
-      </IonContent>
+      <IonReactRouter>
+        <TabBar />
+      </IonReactRouter>
     </IonApp>
   );
 };
