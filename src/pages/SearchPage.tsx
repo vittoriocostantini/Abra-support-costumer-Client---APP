@@ -1,10 +1,11 @@
 import React from 'react';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonSearchbar } from '@ionic/react';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonSearchbar, IonPage } from '@ionic/react';
 import '../theme/TabsApp/SearchPage.css';
 
-const AccountPage = () => (
-  <>
-    <IonHeader className='header-search'>
+const SearchPage: React.FC = () => {
+  return (
+    <IonPage>
+      <IonHeader className='header-search'>
       <IonToolbar className='toolbar-search'>
           <IonTitle className='title-search'>Busca tu caso</IonTitle>
           <IonSearchbar 
@@ -15,9 +16,9 @@ const AccountPage = () => (
           </IonToolbar>
     </IonHeader>
     <IonContent>
-
     </IonContent>
-  </>
-);
+  </IonPage>
+  );
+}
 
-export default AccountPage;
+export default SearchPage;
