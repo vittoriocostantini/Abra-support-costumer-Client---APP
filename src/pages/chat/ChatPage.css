@@ -1,0 +1,68 @@
+/* Definición de la animación del teclado */
+:root {
+	--keyboard-animation: 0.4s cubic-bezier(0.1,0.7,0.40,1); /* Duración y curva de animación */
+}
+
+/* Estilo para la aplicación de Ionic */
+ion-app {
+	height: 100%; /* Ocupa toda la altura disponible */
+	transition: height var(--keyboard-animation); /* Transición suave para cambios de altura */
+	will-change: height; /* Optimización para cambios de altura */
+	
+}
+
+/* Estilo para el último ion-toolbar dentro de ion-footer */
+ion-footer ion-toolbar:last-of-type {
+	transition: padding var(--keyboard-animation); /* Transición suave para cambios de padding */
+	will-change: padding; /* Optimización para cambios de padding */
+	will-change: height; /* Optimización para cambios de altura */
+	position: relative;
+
+}
+ion-content {
+	height: 100%; /* Ocupa toda la altura disponible */
+	transition: height var(--keyboard-animation); /* Transición suave para cambios de altura */
+	will-change: height; /* Optimización para cambios de altura */
+	
+}
+
+/* Estilo para el input de chat */
+.chat-input {
+	border: 1px solid #d0cece; /* Borde del input */
+	height: 35px; /* Altura del input */
+	width: 90%; /* Ancho del input */
+	background: #d0cece; /* Color de fondo */
+	outline: none; /* Sin borde al enfocar */
+	flex: 1; /* Flexibilidad en el contenedor flex */
+	margin-right: 10px; /* Espacio a la derecha */
+	z-index: 100; /* Nivel de apilamiento */
+}
+
+/* Estilo para el icono de enviar */
+.send-icon {
+	color: #000; /* Color del icono */
+	font-size: 25px; /* Tamaño de fuente del icono */
+	margin-left: -25px; /* Espacio a la izquierda */
+	margin-right: 10px; /* Espacio a la derecha */
+	cursor: pointer; /* Cambia el cursor al pasar por encima */
+	padding: 10px; /* Espaciado interno */
+	z-index: 1; /* Nivel de apilamiento */
+}
+
+/* Estilo para la animación de crecimiento del icono de enviar */
+.send-icon-grow {
+	transition: transform 0.2s ease-in-out; /* Transición suave para cambios de tamaño */
+	transform: scale(1.2); /* Escala el icono al 120% de su tamaño original */
+}
+
+.footer-chatpage ion-toolbar{
+	--background: #edebeb;
+}
+
+/* ver que hace que el height disminuya al teclado para arreglarlo al bajar y que no disminuya */
+
+.back-icon{
+	color: #000;
+	font-size: 25px;
+}
+

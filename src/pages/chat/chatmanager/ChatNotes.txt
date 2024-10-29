@@ -1,0 +1,2 @@
+1. renderizar el componente
+2.. separar constantes y funciones
