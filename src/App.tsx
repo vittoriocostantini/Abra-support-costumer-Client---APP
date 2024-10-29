@@ -22,7 +22,7 @@ setupIonicReact();
 
 const App: React.FC = () => {
   return (
-    <IonApp>
+    <IonApp >
       <IonReactRouter>
         <TabBar />
       </IonReactRouter>
