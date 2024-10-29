@@ -8,9 +8,7 @@ const config: CapacitorConfig = {
   webDir: 'dist',
   plugins: {
     Keyboard: {
-      resize: KeyboardResize.Body,
-      style: KeyboardStyle.Dark,
-      resizeOnFullScreen: true,
+      resize: KeyboardResize.None,
     },
   },
 };
