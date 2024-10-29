@@ -2,19 +2,21 @@
 http://ionicframework.com/docs/theming/ */
 
 :root {
-  --ion-color-primary: #3880ff;
-  --ion-color-primary-rgb: 56, 128, 255;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+  /* Colores primarios */
+  --ion-color-primary: #3880ff; /* Color principal */
+  --ion-color-primary-rgb: 56, 128, 255; /* Color principal en formato RGB */
+  --ion-color-primary-contrast: #ffffff; /* Color de contraste para el color principal */
+  --ion-color-primary-contrast-rgb: 255, 255, 255; /* Contraste en formato RGB */
+  --ion-color-primary-shade: #3171e0; /* Sombra del color principal */
+  --ion-color-primary-tint: #4c8dff; /* Tinte del color principal */
 
-  --ion-color-secondary: #3dc2ff;
-  --ion-color-secondary-rgb: 61, 194, 255;
-  --ion-color-secondary-contrast: #ffffff;
-  --ion-color-secondary-contrast-rgb: 255, 255, 255;
-  --ion-color-secondary-shade: #36abe0;
-  --ion-color-secondary-tint: #50c8ff;
+  /* Colores secundarios */
+  --ion-color-secondary: #3dc2ff; /* Color secundario */
+  --ion-color-secondary-rgb: 61, 194, 255; /* Color secundario en formato RGB */
+  --ion-color-secondary-contrast: #ffffff; /* Color de contraste para el color secundario */
+  --ion-color-secondary-contrast-rgb: 255, 255, 255; /* Contraste en formato RGB */
+  --ion-color-secondary-shade: #36abe0; /* Sombra del color secundario */
+  --ion-color-secondary-tint: #50c8ff; /* Tinte del color secundario */
 
   /* Añade más variables de tema aquí */
 }
@@ -23,15 +25,15 @@ http://ionicframework.com/docs/theming/ */
 /* Animaciones  de iontabbar*/
 @keyframes fadeIn {
   from {
-    opacity: 0;
-    transform: translateY(10px);
+    opacity: 0; /* Comienza completamente transparente */
+    transform: translateY(10px); /* Comienza desplazado hacia abajo */
   }
   to {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1; /* Termina completamente opaco */
+    transform: translateY(0); /* Termina en su posición original */
   }
 }
 
 .fade-in {
-  animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 0.3s ease-in-out; /* Aplica la animación fadeIn con duración y suavizado */
 }
