@@ -22,18 +22,7 @@ http://ionicframework.com/docs/theming/ */
 }
 
 
-/* Animaciones  de iontabbar*/
-@keyframes fadeIn {
-  from {
-    opacity: 0; /* Comienza completamente transparente */
-    transform: translateY(10px); /* Comienza desplazado hacia abajo */
-  }
-  to {
-    opacity: 1; /* Termina completamente opaco */
-    transform: translateY(0); /* Termina en su posición original */
-  }
-}
 
-.fade-in {
-  animation: fadeIn 0.3s ease-in-out; /* Aplica la animación fadeIn con duración y suavizado */
-}
+
+
+
