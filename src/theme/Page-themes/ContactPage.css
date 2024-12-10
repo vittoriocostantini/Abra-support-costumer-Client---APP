@@ -1,0 +1,17 @@
+.toolbar-home {
+  --background: rgb(255, 255, 255);
+}
+
+.header-home {
+  --background: rgb(255, 255, 255);
+}
+
+.title-contact {
+  font-size: 20px;
+  color: #414040;
+  text-align: center;
+  margin: 5px !important; /* Elimina todos los márgenes */
+  padding: 10px !important; /* Elimina todos los paddings */
+}
+
+
