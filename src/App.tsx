@@ -1,7 +1,9 @@
 import { IonApp, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import TabBar from './tabs/TabBar';
-
+import MenuApp from './services/Menu-app/Menu-App';
+import { IonSplitPane, IonRouterOutlet } from '@ionic/react';
+import AppRoutes from './services/routes/AppRoutes';
+import { Route, Redirect } from 'react-router-dom';
 import '@ionic/react/css/core.css';
 import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
@@ -24,7 +26,15 @@ const App: React.FC = () => {
   return (
     <IonApp >
       <IonReactRouter>
-        <TabBar />
+        <IonSplitPane contentId="main">
+          <MenuApp />
+          <IonRouterOutlet id="main">
+            <Route path="/" exact={true}>
+              <Redirect to="/pages/Tickets" />
+            </Route>
+            <AppRoutes />
+          </IonRouterOutlet>
+        </IonSplitPane>
       </IonReactRouter>
     </IonApp>
   );
