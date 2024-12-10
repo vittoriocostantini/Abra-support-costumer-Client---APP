@@ -41,14 +41,14 @@ const FilterOption: React.FC = () => {
                 className='ion-modal-height'
                 >
             
-            <IonList className='ion-item'>
-                <IonItem button detail={false} onClick={() => console.log('Enviados seleccionados')}>
+            <IonList className='ion-item' lines="none">
+                <IonItem button detail={false} onClick={() => {/* Acción para 'Enviados' */}}>
                     <IonLabel>Enviados</IonLabel>
                 </IonItem>
-                <IonItem button detail={false} onClick={() => console.log('En progreso seleccionado')}>
+                <IonItem button detail={false} onClick={() => {/* Acción para 'En progreso' */}}>
                     <IonLabel>En progreso</IonLabel>
                 </IonItem>
-                <IonItem button detail={false} onClick={() => console.log('Resueltos seleccionados')}>
+                <IonItem button detail={false} onClick={() => {/* Acción para 'Resueltos' */}}>
                     <IonLabel>Resueltos</IonLabel>
                 </IonItem>
             </IonList>
