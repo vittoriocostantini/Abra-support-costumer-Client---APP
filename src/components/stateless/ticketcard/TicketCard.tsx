@@ -1,27 +1,48 @@
 import React from 'react';
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonButton } from '@ionic/react';
+import { IonAvatar,
+  IonChip,
+  IonLabel } from '@ionic/react';
+import './TicketCard.css';
 import { useHistory } from 'react-router-dom';
+import '../../../theme/variables.css';
 
-const TicketCard: React.FC = () => {
+
+
+
+// Define the type for the props
+interface TicketsProduct {
+  title: string;
+  subtitle: string;
+  description: string;
+  path: string;
+  avatarUrl: string;
+  imageAlt: string;
+}
+
+const TicketCard: React.FC<TicketsProduct> = ({ title, subtitle, description, path, avatarUrl, imageAlt }) => {
   const history = useHistory();
 
+
   const handleCardClick = () => {
-    history.push('/Tickets/chat', { direction: 'forward' });
+    history.push(path, { direction: 'forward' });
   };
 
-
-
   return (
-    <IonCard onClick={handleCardClick}>
-      <IonCardHeader>
-        <IonCardTitle>Card Title</IonCardTitle>
-        <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
-      </IonCardHeader>
-
-      <IonCardContent>
-        Here's a small text description for the card content. Nothing more, nothing less.
-      </IonCardContent>
-    </IonCard>
+    <div className="ticket-card" onClick={handleCardClick} id="ticketCard">
+    <div className="ticket-card-header">
+      <IonAvatar>
+        <img alt={imageAlt} src={avatarUrl} />
+      </IonAvatar>
+      <IonLabel>Chip Avatar</IonLabel>
+      <div>
+        <h2 className="ticket-card-title">{title}</h2>
+        <h3 className="ticket-card-subtitle">{subtitle}</h3>
+      </div>
+    </div>
+    <div className="ticket-card-content">
+      {description}
+    </div>
+  </div>
   );
 }
 
