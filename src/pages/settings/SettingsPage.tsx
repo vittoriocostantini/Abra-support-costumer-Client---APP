@@ -1,11 +1,14 @@
 import React from 'react';
-import { IonContent, IonHeader, IonToolbar, IonTitle, IonItem, IonLabel, IonPage } from '@ionic/react';
-import '../../theme/TabsApp/SettingsPage.css';
+import { IonContent, IonHeader, IonToolbar, IonTitle, IonItem, IonLabel, IonPage, IonButtons, IonMenuButton } from '@ionic/react';
+import '../../theme/Page-themes/SettingsPage.css';
 
 const SettingsPage: React.FC = () => (
   <IonPage>
     <IonHeader className='header-settings' translucent>
       <IonToolbar className='toolbar-settings'>
+        <IonButtons slot="start">
+          <IonMenuButton></IonMenuButton>
+        </IonButtons>
         <IonTitle className='title-settings'>Ajustes</IonTitle>
       </IonToolbar>
     </IonHeader>
@@ -17,22 +20,22 @@ const SettingsPage: React.FC = () => (
 
       </IonHeader>
       
-      <IonItem button onClick={() => console.log('Notificaciones clickeado')}>
+      <IonItem button lines="none" detail={false}>
         <IonLabel>Notificaciones</IonLabel>
       </IonItem>
-      <IonItem button onClick={() => console.log('Privacidad clickeado')}>
+      <IonItem button lines="none" detail={false}>
         <IonLabel>Privacidad</IonLabel>
       </IonItem>
-      <IonItem button onClick={() => console.log('Idioma clickeado')}>
+      <IonItem button lines="none" detail={false}>
         <IonLabel>Idioma</IonLabel>
       </IonItem>
-      <IonItem button onClick={() => console.log('Acerca de clickeado')}>
+      <IonItem button lines="none" detail={false}>
         <IonLabel>Acerca de</IonLabel>
       </IonItem>
-      <IonItem button onClick={() => console.log('Cerrar sesión clickeado')}>
+      <IonItem button lines="none" detail={false}>
         <IonLabel>Cerrar sesión</IonLabel>
       </IonItem>
-      <IonItem>
+      <IonItem lines="none" detail={false}>
         <IonLabel>Abra Support
         <h2>Version 1.0.0</h2>
         </IonLabel>
