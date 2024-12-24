@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IonButtons, IonButton, IonIcon } from '@ionic/react';
-import { addOutline } from 'ionicons/icons';
+import { peopleCircleOutline } from 'ionicons/icons';
 import '../../../theme/ComponentsTheme/AgentHistory.css';
 import ModalHistory from './modalhistory/ModalHistory';
 
@@ -14,10 +14,9 @@ const AgentHistory: React.FC<AgentHistoryProps> = () => {
     <>
       <IonButtons slot="end">
         <IonButton onClick={() => setShowModal(true)}>
-          <IonIcon icon={addOutline}></IonIcon>
+          <IonIcon icon={peopleCircleOutline} size="large"></IonIcon>
         </IonButton>
       </IonButtons>
-
       <ModalHistory 
         isOpen={showModal} 
         onDidDismiss={() => setShowModal(false)}

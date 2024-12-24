@@ -14,6 +14,7 @@ const ModalHistory: React.FC<ModalHistoryProps> = ({ isOpen, onDidDismiss }) => 
       className='modal-add'
       initialBreakpoint={1} 
       breakpoints={[0, 1]}
+      backdropDismiss={false}
     >
       <IonHeader>
         <IonToolbar>

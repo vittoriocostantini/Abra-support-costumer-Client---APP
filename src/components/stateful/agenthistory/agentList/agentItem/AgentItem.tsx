@@ -5,13 +5,14 @@ import { pin, share, trash } from 'ionicons/icons';
 interface AgentItemProps {
   name: string;
   avatarUrl: string;
+  
 }
 
 const AgentItem: React.FC<AgentItemProps> = ({ name, avatarUrl }) => {
   return (
     <>
       <IonItemSliding>
-        <IonItem button={true}>
+        <IonItem button={true} detail={false}>
           <IonAvatar aria-hidden="true" slot="start">
           <img alt="" src={avatarUrl} />
         </IonAvatar>
