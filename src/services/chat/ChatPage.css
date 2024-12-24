@@ -1,4 +1,18 @@
-.toolbar-chat {
-    height: 90px;
-
+.chat-avatar {
+    background-color: #e0dede;
+    padding: 8px;
+    margin-left: 35px;
 }
+
+.chat-icon-add {
+    position: absolute;
+    bottom: -5px;
+    left: 5px;
+}
+
+.chat-button-send {
+    position: absolute;
+    bottom: -5px;
+    right: 5px;
+}
+
