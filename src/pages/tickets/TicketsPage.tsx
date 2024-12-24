@@ -8,16 +8,11 @@ import TicketsProduct from '../../services/ticketsproduct/TicketsProduct';
 const TicketsPage: React.FC = () => {
   return (
     <IonPage>
-    <IonHeader className='header-tickets' translucent>
+    <IonHeader className='header-tickets' translucent >
       <IonToolbar className='toolbar-tickets'>
-      <IonButtons slot="start">
-          <IonMenuButton></IonMenuButton>
-        </IonButtons>
       <FilterOption />
       </IonToolbar>
     </IonHeader>
-    
-    
     <IonContent fullscreen>
     <IonHeader collapse='condense'>
       <IonToolbar>
