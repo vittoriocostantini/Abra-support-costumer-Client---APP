@@ -1,0 +1,22 @@
+.label-file {
+  font-size: 40px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.badge-file {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #80a6ff;
+  z-index: 10;
+}
+
+.button-submit{
+  border-radius: 20px;
+  width: 95%;
+  margin-right: 10px;
+  margin-left: 10px;
+}
