@@ -1,6 +1,23 @@
 import React from 'react';
-import { IonContent, IonHeader, IonToolbar, IonTitle, IonItem, IonLabel, IonPage, IonButtons, IonMenuButton } from '@ionic/react';
+import { IonContent, IonHeader, IonToolbar, IonTitle, IonItem, IonLabel, IonPage, IonButtons, IonMenuButton, IonIcon } from '@ionic/react';
 import '../../theme/Page-themes/SettingsPage.css';
+import { notifications, lockClosed, language, informationCircle, logOut } from 'ionicons/icons';
+
+// Definición de la interfaz IonItemButton
+interface IonItemButton {
+  label: string;
+  icon: string;
+  onClick: () => void;
+}
+
+// Array de objetos que siguen la estructura de la interfaz IonItemButton
+const itemButtons: IonItemButton[] = [
+  { label: 'Notificaciones', icon: notifications, onClick: () => console.log('Notificaciones clicked') },
+  { label: 'Privacidad', icon: lockClosed, onClick: () => console.log('Privacidad clicked') },
+  { label: 'Idioma', icon: language, onClick: () => console.log('Idioma clicked') },
+  { label: 'Acerca de', icon: informationCircle, onClick: () => console.log('Acerca de clicked') },
+  { label: 'Cerrar sesión', icon: logOut, onClick: () => console.log('Cerrar sesión clicked') },
+];
 
 const SettingsPage: React.FC = () => (
   <IonPage>
@@ -15,31 +32,19 @@ const SettingsPage: React.FC = () => (
     <IonContent className='content-settings' fullscreen>
       <IonHeader collapse='condense'>
         <IonToolbar>
-        <IonTitle size='large'>Ajustes</IonTitle>
+          <IonTitle size='large'>Ajustes</IonTitle>
         </IonToolbar>
-
       </IonHeader>
-      
-      <IonItem button lines="none" detail={false}>
-        <IonLabel>Notificaciones</IonLabel>
-      </IonItem>
-      <IonItem button lines="none" detail={false}>
-        <IonLabel>Privacidad</IonLabel>
-      </IonItem>
-      <IonItem button lines="none" detail={false}>
-        <IonLabel>Idioma</IonLabel>
-      </IonItem>
-      <IonItem button lines="none" detail={false}>
-        <IonLabel>Acerca de</IonLabel>
-      </IonItem>
-      <IonItem button lines="none" detail={false}>
-        <IonLabel>Cerrar sesión</IonLabel>
-      </IonItem>
-      <IonItem lines="none" detail={false}>
+      {itemButtons.map((item, index) => (
+        <IonItem button lines="none" detail={false} key={index} onClick={item.onClick}>
+          <IonLabel>{item.label}</IonLabel>
+          <IonIcon size="large" slot="start" icon={item.icon}></IonIcon>
+        </IonItem>
+      ))}
+      <IonItem lines="none" detail={false}> 
         <IonLabel>Abra Support
         <h2>Version 1.0.0</h2>
         </IonLabel>
-        
       </IonItem>
     </IonContent>
   </IonPage>
