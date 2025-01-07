@@ -1,18 +1,52 @@
 .chat-avatar {
     background-color: #e0dede;
     padding: 8px;
-    margin-left: 35px;
+    position: relative;
+    margin-bottom: 5px;
 }
 
-.chat-icon-add {
-    position: absolute;
-    bottom: -5px;
-    left: 5px;
-}
 
 .chat-button-send {
     position: absolute;
-    bottom: -5px;
-    right: 5px;
+    bottom: 20px;
+    right: -0px;
 }
 
+
+.agent-title {
+    font-size: 16px;
+    font-weight: bold;
+    left: 1%;
+    top: 60%;
+    padding: 10px;
+}
+
+.agent-info {
+    display: flex;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    margin-left: -15%;
+    max-width: 90%;
+    margin-bottom: 15px;
+}
+
+.header-chat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.chat-footer {
+    width: 100%;
+    display: flex;
+    height: 12%;
+    position: absolute;
+    bottom: 0;
+}
+.toolbar-footer {
+    position: absolute;
+    display: flex;
+    bottom: 0;
+}
