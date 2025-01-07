@@ -1,0 +1,51 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Comienza invisible */
+        transform: translateY(10px); /* Se desplaza hacia abajo */
+    }
+    to {
+        opacity: 1; /* Termina visible */
+        transform: translateY(0); /* Regresa a su posición original */
+    }
+}
+
+.message-bubble {
+    padding: 10px;
+    min-width: 25%;
+    max-width: 70%;
+    height: auto;
+    display: block;
+    background: #f5f5f5;
+    border-radius: 10px;
+    position: relative;
+    margin: 0 5px 5px;
+    transition: transform 0.3s ease;
+    animation: fadeIn 0.3s ease;
+}
+
+
+
+.sent {
+    background-color: #cbffa3; /* Color de fondo para mensajes enviados */
+    align-self: flex-end; /* Alinear a la derecha */
+}
+
+.received {
+    background-color: #a0e2ff; /* Color de fondo para mensajes recibidos */
+}
+
+.timestamp {
+    font-size: 11px;
+        position: absolute;
+        bottom: 0px;
+        right: 18px;
+        display: block;
+        color: #999;
+}
+
+.message-text {
+    padding: 0;
+    padding-top: 15px;
+    white-space: pre-wrap; /* Permite que los saltos de línea se respeten */
+}
+

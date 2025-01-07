@@ -1,0 +1,35 @@
+.ticket-card {
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .ticket-card:active {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+
+
+  .ticket-card-header {
+    margin-bottom: 12px;
+  }
+  
+  .ticket-card-title {
+    font-size: 1.5em;
+    margin: 0;
+  }
+  
+  .ticket-card-subtitle {
+    font-size: 1.2em;
+    color: #666;
+    margin: 0;
+  }
+  
+  .ticket-card-content {
+    font-size: 1em;
+    color: #333;
+  } 
