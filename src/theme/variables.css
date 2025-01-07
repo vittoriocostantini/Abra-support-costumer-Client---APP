@@ -34,7 +34,7 @@ ion-app {
 	will-change: height;
 }
 
-  ion-footer ion-toolbar:last-of-type {
+   ion-footer ion-toolbar:last-of-type {
     transition: padding var(--keyboard-animation);
     will-change: padding;
   }
