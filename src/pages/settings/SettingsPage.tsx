@@ -2,6 +2,8 @@ import React from 'react';
 import { IonContent, IonHeader, IonToolbar, IonTitle, IonItem, IonLabel, IonPage, IonButtons, IonMenuButton, IonIcon } from '@ionic/react';
 import '../../theme/Page-themes/SettingsPage.css';
 import { notifications, lockClosed, language, informationCircle, logOut } from 'ionicons/icons';
+import { useIonViewDidEnter } from '@ionic/react';
+import { showTabBar } from '../../services/tabs/tabbarview/Tab-Bar-View';
 
 // Definición de la interfaz IonItemButton
 interface IonItemButton {
@@ -19,7 +21,13 @@ const itemButtons: IonItemButton[] = [
   { label: 'Cerrar sesión', icon: logOut, onClick: () => console.log('Cerrar sesión clicked') },
 ];
 
-const SettingsPage: React.FC = () => (
+
+const SettingsPage: React.FC = () => {
+  useIonViewDidEnter(() => {
+    showTabBar();
+  });
+  
+  return (
   <IonPage>
     <IonHeader className='header-settings' translucent>
       <IonToolbar className='toolbar-settings'>
@@ -49,5 +57,6 @@ const SettingsPage: React.FC = () => (
     </IonContent>
   </IonPage>
 );
+}
 
 export default SettingsPage;

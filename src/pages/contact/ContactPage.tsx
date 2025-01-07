@@ -1,12 +1,16 @@
 import React from 'react';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonPage, IonButtons, IonMenuButton } from '@ionic/react'; // Añadir IonIcon
 import '../../theme/Page-themes/ContactPage.css';
-import AgentHistory from '../../components/stateful/agenthistory/AgentHistory';
-import AgentList from '../../components/stateful/agenthistory/agentList/AgentList';
+import AgentHistory from '../../components/agent-history/AgentHistory';
+import AgentList from '../../components/agent-history/agentList/AgentList';
+import { useIonViewDidEnter } from '@ionic/react';
+import { showTabBar } from '../../services/tabs/tabbarview/Tab-Bar-View';
 
 
 const ContactPage: React.FC = () => {
-  
+  useIonViewDidEnter(() => {
+    showTabBar();
+  });
   return (
     <IonPage>
       <IonHeader className='header-home' translucent >

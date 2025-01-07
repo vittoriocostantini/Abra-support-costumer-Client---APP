@@ -1,10 +1,17 @@
 import React from 'react';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonPage, IonButtons, IonMenuButton, IonItem, IonLabel, IonInput, IonTextarea, IonButton, IonIcon, IonBadge } from '@ionic/react';
 import '../../theme/Page-themes/SubmitCase.css';
-import PlatformScrollSubmit from '../../components/stateless/platform-scroll-platform/Platform-scroll-submit';
+import PlatformScrollSubmit from '../../components/platform-scroll-apps/Platform-scroll-submit';
 import { attachOutline } from 'ionicons/icons';
+import { showTabBar } from '../../services/tabs/tabbarview/Tab-Bar-View';
+import { useIonViewDidEnter } from '@ionic/react';
+
+
 
 const SubmitCase: React.FC = () => {
+  useIonViewDidEnter(() => {
+    showTabBar();
+  });
   
   return (
     <IonPage>
