@@ -9,6 +9,7 @@ import { sendMessage, scrollToBottom } from '../../hooks/chat/utils/chatUtils';
 import MessagesList from '../../components/chat-utils/Message-Container/MessageList';
 import  '../../theme/variables.css';
 import { hideTabBar } from '../../services/tabs/tabbarview/Tab-Bar-View';
+import { useKeyboardListeners } from '../../hooks/chat/keyboard/keyboardHandler';
 // Componente funcional de React para la página de chat
 const ChatPage: React.FC = () => {
     const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -21,7 +22,10 @@ const ChatPage: React.FC = () => {
 
     // Oculta el tab bar
     hideTabBar();
+
+    //importa logica de teclado para ajustar la altura de la aplicacion
     
+    useKeyboardListeners();
 
     // Usa el hook para manejar los listeners del teclado
 
@@ -102,7 +106,7 @@ const ChatPage: React.FC = () => {
                     keyboardHeight={keyboardHeight.current}
                 />
             </IonContent>
-            <IonFooter className="chat-footer" class='ion-no-border' id='chat-footer'>
+            <IonFooter className="chat-footer"  id='chat-footer'>
                 <IonToolbar className="toolbar-footer">
                     <FileUploadButton 
                         onFilesSelected={handleFilesSelected} 
