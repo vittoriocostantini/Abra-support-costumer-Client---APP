@@ -15,7 +15,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/pages/Contact" component={ContactPage} exact={true} />
       <Route path="/pages/SubmitCase" component={SubmitCase} exact={true} />
       <Route path="/pages/SettingsPage" component={SettingsPage} exact={true} />
-      <Route path="/Tickets/chat" component={ChatPage} exact={true} />
+      <Route path="/Tickets/chat/:id" component={ChatPage} exact={true} />
     </IonRouterOutlet>
   );
 };
