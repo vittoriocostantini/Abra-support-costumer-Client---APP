@@ -18,16 +18,18 @@ const MessagesList: React.FC<MessagesListProps> = ({ messages, messagesEndRef, k
     
     useMessageListScroll(footerRef, messagesEndRef, keyboardHeight);
 
-    const scrollToBottom = () => {
-        if (messagesEndRef.current) {
-            messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
-    // Llama a scrollToBottom cada vez que cambian los mensajes
     useEffect(() => {
-        scrollToBottom();
-    }, [messages]);
+        // Desplazar al final de la lista de mensajes al cargar
+        const timer = setTimeout(() => {
+            if (messagesEndRef.current) {
+                messagesEndRef.current.scrollIntoView({ behavior: 'auto' });
+            }
+        }, 100); // Espera 100 ms para asegurar que los mensajes se rendericen
+
+        return () => clearTimeout(timer); // Limpiar el timer al desmontar
+    }, []); // Se ejecuta solo una vez al montar el componente
+
+    // Usar el nuevo hook para desplazar al fondo
 
     return (
         <div className='message-container-chat' style={{ height: '100%' }}>
@@ -45,8 +47,9 @@ const MessagesList: React.FC<MessagesListProps> = ({ messages, messagesEndRef, k
                         timestamp={new Date().toLocaleTimeString()}
                     />
                 ))}
-                <div ref={messagesEndRef} style={{ paddingBottom: '100px' }} />
+                <div ref={messagesEndRef} style={{ paddingBottom: '100px' }} /> 
             </IonList>
+            
         </div>
     );
 };
