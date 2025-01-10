@@ -3,16 +3,16 @@
     outline: none;
     background-color: #e0dede;
     width: 70%;
-    min-height: 40px;
+    min-height: 30px;
     max-height: 120px;
     border: none;
     border-radius: 20px;
-    padding: 10px;
+    padding: 5px;
     position: relative;
-    margin-top: 10px;
+    margin-top: 2px;
     left: 60px;
     overflow-y: scroll;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .chat-input-message:focus {
