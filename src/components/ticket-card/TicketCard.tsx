@@ -11,6 +11,7 @@ import '../../theme/variables.css';
 
 // Define the type for the props
 interface TicketsProduct {
+  id: string;
   title: string;
   subtitle: string;
   description: string;
@@ -19,12 +20,12 @@ interface TicketsProduct {
   imageAlt: string;
 }
 
-const TicketCard: React.FC<TicketsProduct> = ({ title, subtitle, description, path, avatarUrl, imageAlt }) => {
+const TicketCard: React.FC<TicketsProduct> = ({ id, title, subtitle, description, path, avatarUrl, imageAlt }) => {
   const history = useHistory();
 
 
   const handleCardClick = () => {
-    history.push(path, { direction: 'forward' });
+    history.push(`${path}${id}`);
   };
 
   return (
@@ -33,7 +34,6 @@ const TicketCard: React.FC<TicketsProduct> = ({ title, subtitle, description, pa
       <IonAvatar>
         <img alt={imageAlt} src={avatarUrl} />
       </IonAvatar>
-      <IonLabel>Chip Avatar</IonLabel>
       <div>
         <h2 className="ticket-card-title">{title}</h2>
         <h3 className="ticket-card-subtitle">{subtitle}</h3>
