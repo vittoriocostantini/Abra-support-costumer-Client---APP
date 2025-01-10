@@ -1,12 +1,13 @@
 import React from 'react';
 import { IonModal, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/react';
-
+import AgentItem from '../agentList/agentItem/AgentItem';
+import { agentsData } from '../../../Agents/agentData';
 interface ModalHistoryProps {
   isOpen: boolean;
   onDidDismiss: () => void;
 }
 
-const ModalHistory: React.FC<ModalHistoryProps> = ({ isOpen, onDidDismiss }) => {
+const ModalHistory: React.FC<ModalHistoryProps> = ({ isOpen, onDidDismiss    }) => {
   return (
     <IonModal 
       isOpen={isOpen} 
@@ -22,11 +23,9 @@ const ModalHistory: React.FC<ModalHistoryProps> = ({ isOpen, onDidDismiss }) => 
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <div>
-          <h1>Aqui va el historial del ultimo agente que te ayudo
-            podras a;adirlo o revisar el chat de este
-          </h1>
-        </div>
+        {agentsData.map(agent => (
+          <AgentItem key={agent.id} name={agent.name} avatarUrl={agent.avatar}/>
+        ))}
       </IonContent>
     </IonModal>
   );
