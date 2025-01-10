@@ -2,7 +2,7 @@ import React from 'react';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonPage, IonButtons, IonMenuButton, IonItem, IonLabel, IonInput, IonTextarea, IonButton, IonIcon, IonBadge } from '@ionic/react';
 import '../../theme/Page-themes/SubmitCase.css';
 import PlatformScrollSubmit from '../../components/platform-scroll-apps/Platform-scroll-submit';
-import { attachOutline } from 'ionicons/icons';
+import { attachOutline, bulb } from 'ionicons/icons';
 import { showTabBar } from '../../services/tabs/tabbarview/Tab-Bar-View';
 import { useIonViewDidEnter } from '@ionic/react';
 
@@ -46,7 +46,7 @@ const SubmitCase: React.FC = () => {
           
           <IonItem>
             <IonBadge className='badge-file' >Tips</IonBadge>
-            <IonLabel className="label-file" style={{ position: 'relative' }}>
+           <IonLabel className="label-file" style={{ position: 'relative' }}> <IonIcon icon={bulb} size='small' />
               puedes abjuntar imagenes o archivos para la resolución del caso 
             </IonLabel>
             <input
