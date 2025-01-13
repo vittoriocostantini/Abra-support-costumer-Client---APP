@@ -7,6 +7,7 @@ const config: CapacitorConfig = {
   appId: 'com.costantini.abra',
   appName: 'abra',
   webDir: 'dist',
+  
   plugins: {
     Keyboard: {
       resize: KeyboardResize.None,
