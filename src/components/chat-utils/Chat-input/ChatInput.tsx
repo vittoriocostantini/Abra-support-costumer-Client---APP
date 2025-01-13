@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useRef } from 'react';
 import './ChatInput.css';
+import useResetTextarea from '../../../hooks/chat/chatinput/useResetTextarea';
+import useAdjustHeight from '../../../hooks/chat/chatinput/useAdjustHeight';
 
 interface ChatInputProps {
     inputRef: React.RefObject<HTMLTextAreaElement>;
@@ -8,32 +10,20 @@ interface ChatInputProps {
 }
 
 const ChatInput: React.FC<ChatInputProps> = ({ inputRef, value, onChange }) => {
-    const handleInput = () => {
-        if (inputRef.current) {
-            inputRef.current.style.height = 'auto'; // Restablecer altura antes de calcular
-            inputRef.current.style.height = `${inputRef.current.scrollHeight}px`; // Ajustar altura
-        }
-    };
-
-    useEffect(() => {
-        handleInput(); // Ajustar altura al cambiar el valor
-    }, [value]);
-
-    // Función para restablecer el textarea
-    const resetTextarea = () => {
-        if (inputRef.current) {
-            inputRef.current.value = ''; // Limpiar el contenido
-            inputRef.current.style.height = 'auto'; // Restablecer la altura
-        }
-    };
+    const resetTextarea = useResetTextarea(inputRef);
+    useAdjustHeight(inputRef, value);
 
     return (
         <textarea
             ref={inputRef}
             value={value}
-            onChange={(e) => {
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                 onChange(e);
-                handleInput(); // Ajustar altura al cambiar el contenido
+                if (e.target.value.length > 0) {
+                    inputRef.current?.classList.add('typing');
+                } else {
+                    inputRef.current?.classList.remove('typing');
+                }
             }}
             className="chat-input-message"
             id="chat-input-message"

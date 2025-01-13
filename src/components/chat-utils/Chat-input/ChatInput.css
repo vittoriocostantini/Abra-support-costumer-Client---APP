@@ -7,17 +7,24 @@
     max-height: 120px;
     border: none;
     border-radius: 20px;
-    padding: 5px;
-    position: relative;
     margin-top: 2px;
-    left: 60px;
+    padding: 6px;
+    margin-bottom: 25px;
     overflow-y: scroll;
-    margin-bottom: 20px;
+    transition: width 0.3s ease;
+  
 }
 
-.chat-input-message:focus {
-    outline: none;
-    box-shadow: none;
+
+
+.chat-input-message.typing {
+    width: 90%;
+}
+
+.chat-input-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 50px;
 }
 
 
