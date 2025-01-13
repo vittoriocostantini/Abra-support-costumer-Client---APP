@@ -1,7 +1,7 @@
 import React from 'react';
 import { IonModal, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/react';
 import AgentItem from '../agentList/agentItem/AgentItem';
-import { agentsData } from '../../../Agents/agentData';
+import { agentsData } from '../../../Agents-data/agentData';
 interface ModalHistoryProps {
   isOpen: boolean;
   onDidDismiss: () => void;
