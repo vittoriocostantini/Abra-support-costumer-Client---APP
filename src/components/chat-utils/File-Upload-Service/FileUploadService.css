@@ -1,6 +1,12 @@
 .chat-icon-add {
     position: absolute;
     bottom: 10px;
-    left: 5px;
+    left: -5px;
+   
 }
 
+.chat-icon-add-container {
+    position: static;
+    bottom: 10px;
+    left: 0;
+}
