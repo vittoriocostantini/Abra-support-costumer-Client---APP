@@ -4,14 +4,6 @@
     margin-bottom: 5px;
 }
 
-
-.chat-button-send {
-    position: absolute;
-    bottom: 10px;
-    right: -0px;
-}
-
-
 .agent-title {
     font-size: 16px;
     font-weight: bold;
@@ -49,11 +41,58 @@
 }
 
 .toolbar-footer {
+    height: auto;
     position: absolute;
     display: flex;
-    bottom: 0;
+    bottom: 0px;
     width: 100%;
     align-items: center;
-    --background: #ffffff;
+}
+
+
+
+.chat-input-container {
+    
+    position: static;
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px 0px 0px 0px;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-button-send {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    right:0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    bottom: 22px;
+    padding: 5px;
+    --border-radius: 90%;
+    height: 40px;
+    width: 40px;
+
+
+}
+
+.chat-button-send.visible {
+    opacity: 1;
+    bottom: 22px;
+    position: absolute;
+    display: flex;
+    --border-radius: 90%;
+    margin: 0;
+
+}
+
+
+.chat-button-send ion-icon {
+    position: absolute;
 }
 
