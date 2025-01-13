@@ -1,8 +1,6 @@
 
   .ion-modal {
     --height: 25%;
-  
-  
   }
 
  
@@ -12,9 +10,14 @@
   }
 
   .ticket-list  ion-item {
-    text-align: center;
+      text-align: center;
+
   }
 
  .filter-option {
   margin-left: 17%;
  }
+
+.filter-menu {
+  margin-left: 17%;
+}

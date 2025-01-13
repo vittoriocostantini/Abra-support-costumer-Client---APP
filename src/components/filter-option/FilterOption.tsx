@@ -14,7 +14,7 @@ const FilterOption: React.FC = () => {
                 interface="action-sheet" 
                 placeholder="Filtrar tus tickets"
                 onIonChange={(e) => console.log('Selected:', e.detail.value)}
-                className='filter-option'
+                className='filter-menu'
                 
             >
                 <IonSelectOption value="completado">Completado</IonSelectOption>
