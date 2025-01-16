@@ -23,3 +23,4 @@ export const hideTabBar = (): void => {
     }
   };
   
+  /* tabbar-view.ts */

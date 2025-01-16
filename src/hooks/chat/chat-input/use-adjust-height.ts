@@ -27,3 +27,5 @@ const useAdjustHeight = (inputRef: React.RefObject<HTMLTextAreaElement>, value: 
 };
 
 export default useAdjustHeight; 
+
+/* use-adjust-height.ts */

@@ -13,3 +13,5 @@ const useResetTextarea = (inputRef: React.RefObject<HTMLTextAreaElement>) => {
 };
 
 export default useResetTextarea; 
+
+/* use-reset-textarea.ts */

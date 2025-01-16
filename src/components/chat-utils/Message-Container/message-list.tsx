@@ -55,3 +55,5 @@ const MessagesList: React.FC<MessagesListProps> = ({ messages, messagesEndRef, k
 };
 
 export default MessagesList;
+
+/* message-list.tsx */

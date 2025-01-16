@@ -33,4 +33,5 @@ const ChatInput: React.FC<ChatInputProps> = ({ inputRef, value, onChange }) => {
 };
 
 export default ChatInput;
- 
+
+/* chat-input.tsx */

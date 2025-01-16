@@ -40,3 +40,5 @@ function TabBar() {
   );
 }
 export default TabBar;
+
+/* tab-bar.tsx */

@@ -2,7 +2,7 @@ import React from 'react';
 import TicketCard from '../components/ticket-card/ticket-card';
 
 const TicketsProduct: React.FC = () => {
-  // Define an array of ticket data
+  // Define an array of ticket dataa
   const tickets = [
     {
       id: '1',

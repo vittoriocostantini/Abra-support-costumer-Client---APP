@@ -68,3 +68,5 @@ const SubmitCase: React.FC = () => {
 }
 
 export default SubmitCase;
+
+/* submit-case.tsx */

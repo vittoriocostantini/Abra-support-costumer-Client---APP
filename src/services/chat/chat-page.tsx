@@ -146,3 +146,4 @@ const ChatPage: React.FC = () => {
 
 export default ChatPage;
 
+/* chat-page.tsx */

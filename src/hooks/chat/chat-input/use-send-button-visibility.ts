@@ -11,3 +11,5 @@ const useSendButtonVisibility = (message: string) => {
 };
 
 export default useSendButtonVisibility; 
+
+/* use-send-button-visibility.ts */

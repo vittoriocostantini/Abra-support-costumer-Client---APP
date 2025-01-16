@@ -35,3 +35,5 @@ const AgentItem: React.FC<AgentItemProps> = ({ name, avatarUrl }) => {
 };
 
 export default AgentItem;
+
+/* agent-item.tsx */

@@ -32,3 +32,5 @@ const ContactPage: React.FC = () => {
 };
 
 export default ContactPage;
+
+/* contact-page.tsx */

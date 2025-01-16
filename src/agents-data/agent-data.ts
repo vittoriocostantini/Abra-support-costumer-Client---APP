@@ -15,3 +15,5 @@ export const getAgentById = (chatId: string) => {
         avatar: agent ? agent.avatar : 'https://ionicframework.com/docs/img/demos/avatar.svg'
     };
 };
+
+/* agent-data.ts */

@@ -30,3 +30,5 @@ const TicketsPage: React.FC = () => {
 }
 
 export default TicketsPage;
+
+/* tickets-page.tsx */

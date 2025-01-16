@@ -22,3 +22,5 @@ const AppRoutes: React.FC = () => {
 };
 
 export default AppRoutes;
+
+/* app-routes.tsx */

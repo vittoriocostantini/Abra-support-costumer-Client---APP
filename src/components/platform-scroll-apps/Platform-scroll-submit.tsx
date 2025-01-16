@@ -28,3 +28,5 @@ const PlatformScrollSubmit: React.FC = () => {
 };
 
 export default PlatformScrollSubmit;
+
+/* platform-scroll-submit.tsx */

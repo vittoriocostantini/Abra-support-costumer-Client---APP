@@ -54,3 +54,5 @@ const ModalApps: React.FC<ModalAppsProps> = ({ isOpen, onDidDismiss, onSelectApp
 };
 
 export default ModalApps;
+
+/* modal-apps.tsx */

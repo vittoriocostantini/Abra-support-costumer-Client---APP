@@ -52,3 +52,4 @@ export interface AppItem {
     { label: 'Appstore', icon: logoAppleAppstore },
   ];
 
+/* app-models.ts */
