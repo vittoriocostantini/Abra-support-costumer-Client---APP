@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { IonItem, IonLabel, IonSelect, IonSelectOption, IonIcon, IonButton, IonButtons } from '@ionic/react';
 import { apps } from 'ionicons/icons';
-import ModalApps from './modal-apps/ModalApps';
-import './Platform-scroll-submit.css';
+import ModalApps from './modal-apps/modal-apps';
+import './platform-scroll-submit.css';
 
 const PlatformScrollSubmit: React.FC = () => {
     const [showModal, setShowModal] = useState(false);
