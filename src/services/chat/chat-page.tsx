@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonFooter, IonButtons, IonButton, IonIcon, IonAvatar, IonBackButton } from '@ionic/react';
-import { send, personAddOutline, arrowBack, chevronBack } from 'ionicons/icons';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonFooter, IonButtons, IonButton, IonIcon, IonAvatar } from '@ionic/react';
+import { send, personAddOutline, chevronBack } from 'ionicons/icons';
 import './chat-page.css';
 import { handleFilesSelected } from '../../hooks/chat/file-upload/file-handlers';
 import ChatInput from '../../components/chat-utils/chat-input/chat-input';
