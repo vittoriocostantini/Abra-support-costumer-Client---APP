@@ -102,9 +102,6 @@ const ChatPage: React.FC = () => {
                         <IonTitle className='agent-title'>{agentName}</IonTitle>
                         
                     </div>
-                    <IonButton slot="end" fill="clear" onClick={handleButtonClick}>
-                        <IonIcon icon={personAddOutline} size="large"/>
-                    </IonButton>
                 </IonToolbar>
             </IonHeader>
             <IonContent id='chat-container' fullscreen scrollY={false}>
