@@ -18,7 +18,6 @@ const TicketsPage: React.FC = () => {
       </IonToolbar>
     </IonHeader>
     <IonContent fullscreen>
- 
       <TicketsProduct />
     </IonContent>
     </IonPage>
