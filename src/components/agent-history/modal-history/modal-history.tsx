@@ -1,6 +1,6 @@
 import React from 'react';
 import { IonModal, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/react';
-import AgentItem from '../agent-list/agentItem/agent-item';
+import AgentItem from '../agent-list/agent-item/agent-item';
 import { agentsData } from '../../../agents-data/agent-data';
 interface ModalHistoryProps {
   isOpen: boolean;
