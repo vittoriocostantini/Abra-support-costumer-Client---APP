@@ -1,0 +1,50 @@
+
+
+.list-feedback  { 
+    margin: 10px;
+    border-radius: 15px;
+ 
+}
+
+.header-feedback, .toolbar-feedback {
+    --background: #f0f0f0 !important;
+ 
+}
+
+.container-feedback {
+    background-color: #f2f2f7;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.container-feedback-textarea {
+    margin-top: 30px;
+    padding: 10px;
+}
+
+.textarea-feedback {
+    border-radius: 20px !important;
+    padding: 10px;
+    background: #ffffff !important;
+    width: 100%;
+    height: 320px !important;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    justify-content: center;
+    align-items: center;
+    word-wrap: break-word;
+}
+
+.feedback-item{
+    margin: 10px;
+    border-radius: 15px;
+}
+
+.feedback-label p{    
+    font-size: 13px;
+    text-align: center;
+    color: #000000;
+    font-weight: 500;
+}
