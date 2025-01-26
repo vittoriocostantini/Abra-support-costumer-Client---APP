@@ -17,9 +17,43 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-secondary-contrast-rgb: 255, 255, 255; /* Contraste en formato RGB */
   --ion-color-secondary-shade: #36abe0; /* Sombra del color secundario */
   --ion-color-secondary-tint: #50c8ff; /* Tinte del color secundario */
+  --ion-content: #f2f2f7 !important;
+  --ion-header: #f2f2f7 !important;
+  --ion-toolbar: #f2f2f7 !important;
+  /* colores de los botones de settings */
+  --ion-color-notification: #9ddba0;
+  --ion-color-privacy: #ffd700;
+  --ion-color-language: #68b2fc;
+  --ion-color-about: #000000;
+  --ion-color-logout: #ff7575;
+  --ion-color-feedback: #967139;
+  --ion-color-login: #65b5ff;
+  /* Colores de las apps */
+  --app-item-linkedin: #0077B5;
+  --app-item-facebook: #1877F2;
+  --app-item-twitter: #1DA1F2;
+  --app-item-instagram: #E4405F;
+  --app-item-pinterest: #E60023;
+  --app-item-snapchat: #FFFC00;
+  --app-item-tiktok: #69C9D0;
+  --app-item-youtube: #FF0000;
+  --app-item-reddit: #FF4500;
+  --app-item-whatsapp: #25D366;
+  --app-item-paypal: #00457C;
+  --app-item-amazon: #FF9900;
+  --app-item-apple: #A2AAAD;
+  --app-item-google: #4285F4;
+  --app-item-microsoft: #F25022; /* Puedes añadir más colores si es necesario */
+  --app-item-github: #181717;
+  --app-item-gitlab: #FC6D26;
+  --app-item-bitbucket: #0052CC;
+  --app-item-docker: #2496ED;
+  --app-item-appstore: #0D96F6;
 
-  /* Añade más variables de tema aquí */
+
 }
+
+
 
 
 /* variables para el teclado y estilos */
@@ -38,3 +72,18 @@ ion-app {
     transition: padding var(--keyboard-animation);
     will-change: padding;
   }
+
+  
+  ion-content{
+    --background: var(--ion-content) !important;
+  }
+  
+  ion-header{
+    --background: var(--ion-header) !important;
+  }
+  
+  ion-toolbar{
+    --background: var(--ion-toolbar) !important;
+  }
+  
+  
