@@ -11,11 +11,6 @@ export default defineConfig({
     legacy()
   ],
 
-  resolve: {
-    alias: {
-      'react-native': 'react-native-web'
-    }
-  },
   esbuild: {
     jsxInject: `import React from 'react'`,
     jsxFactory: 'React.createElement',
