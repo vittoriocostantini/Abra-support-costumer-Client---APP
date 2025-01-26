@@ -19,9 +19,9 @@ const ContactPage: React.FC = () => {
           <AgentHistory />
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen color="light">
+      <IonContent fullscreen >
         <IonHeader collapse="condense" >
-          <IonToolbar color="light">
+          <IonToolbar>
             <IonTitle size="large">Contacta a un agente</IonTitle>
           </IonToolbar>
         </IonHeader>
