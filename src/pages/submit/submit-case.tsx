@@ -1,5 +1,20 @@
 import React from 'react';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonPage, IonButtons, IonMenuButton, IonItem, IonLabel, IonInput, IonTextarea, IonButton, IonIcon, IonBadge } from '@ionic/react';
+import { IonContent, 
+  IonHeader, 
+  IonTitle, 
+  IonToolbar, 
+  IonPage, 
+  IonButtons, 
+  IonMenuButton, 
+  IonItem, 
+  IonLabel, 
+  IonInput, 
+  IonTextarea, 
+  IonButton, 
+  IonIcon, 
+  IonBadge, 
+  IonList,
+} from '@ionic/react';
 import '../../theme/page-themes/submit-case.css';
 import PlatformScrollSubmit from '../../components/platform-scroll-apps/platform-scroll-submit';
 import { attachOutline, bulb } from 'ionicons/icons';
@@ -30,6 +45,7 @@ const SubmitCase: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <form className='form-search'>
+          <IonList className='list-container'>
           <IonItem>
             <IonLabel position="stacked">Sujeto</IonLabel>
             <IonInput type="text" required></IonInput>
@@ -43,7 +59,6 @@ const SubmitCase: React.FC = () => {
             <IonLabel position="stacked">Notas</IonLabel>
             <IonTextarea></IonTextarea>
           </IonItem>
-          
           <IonItem>
             <IonBadge className='badge-file' >Tips</IonBadge>
            <IonLabel className="label-file" style={{ position: 'relative' }}> <IonIcon icon={bulb} size='small' />
@@ -60,6 +75,8 @@ const SubmitCase: React.FC = () => {
               <IonIcon icon={attachOutline} size='large' />
             </IonButton>
           </IonItem>
+          </IonList>
+
           <IonButton  type="submit" className='button-submit'>Enviar</IonButton>
         </form>
       </IonContent>
