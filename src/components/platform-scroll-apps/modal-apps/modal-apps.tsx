@@ -11,13 +11,13 @@ import { IonModal,
 
 // Importa la interfaz y la lista de aplicaciones
 import { AppItem, appItems } from './models/app-models';
-
+import './modal-apps.css';
 
 
 interface ModalAppsProps {
   isOpen: boolean;
   onDidDismiss: () => void;
-  onSelectApp: (appLabel: string, appIcon: string) => void;
+  onSelectApp: (appLabel: string, appIcon: string, appColor: string) => void;
 }
 
 const ModalApps: React.FC<ModalAppsProps> = ({ isOpen, onDidDismiss, onSelectApp }) => {
@@ -42,7 +42,8 @@ const ModalApps: React.FC<ModalAppsProps> = ({ isOpen, onDidDismiss, onSelectApp
             button 
             lines="none" 
             detail={false} 
-            onClick={() => onSelectApp(app.label, app.icon)}
+            onClick={() => onSelectApp(app.label, app.icon, app.color)}
+            className={`app-item-${app.label.toLowerCase()}`}
           >
             <IonLabel>{app.label}</IonLabel>
             <IonIcon size="large" slot="start" icon={app.icon}></IonIcon>
