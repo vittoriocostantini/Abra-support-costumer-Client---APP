@@ -11,7 +11,7 @@ import { hideTabBar } from './tab-bar-view/tabbar-view';
 function TabBar() {
   hideTabBar();
   return (
-    <IonRouterOutlet>
+    <IonRouterOutlet > 
       <IonTabs className='tab-bar-app' data-id='mi-tab-id'>
         <IonRouterOutlet>
           <AppRoutes />
@@ -31,7 +31,7 @@ function TabBar() {
           </IonTabButton>
           <IonTabButton tab="Settings" href="/pages/SettingsPage">
             <IonIcon icon={settingsOutline} />
-            <IonLabel>Settings</IonLabel>
+            <IonLabel>Configuración</IonLabel>
           </IonTabButton>
           
         </IonTabBar>
