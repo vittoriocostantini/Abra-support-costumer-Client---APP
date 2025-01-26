@@ -1,6 +1,15 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonFooter, IonButtons, IonButton, IonIcon, IonAvatar } from '@ionic/react';
-import { send, personAddOutline, chevronBack } from 'ionicons/icons';
+import { IonPage, 
+    IonHeader, 
+    IonToolbar, 
+    IonTitle, 
+    IonContent, 
+    IonFooter, 
+    IonButtons, 
+    IonButton, 
+    IonIcon, 
+    IonAvatar } from '@ionic/react';
+import { send,  chevronBack } from 'ionicons/icons';
 import './chat-page.css';
 import { handleFilesSelected } from '../../hooks/chat/file-upload/file-handlers';
 import ChatInput from '../../components/chat-utils/chat-input/chat-input';
@@ -16,6 +25,7 @@ import { loadMessages, useScrollToBottom } from '../../hooks/chat/utils/chat-uti
 import useResetTextarea from '../../hooks/chat/chat-input/use-reset-textarea';
 
 
+// ChatPage es el componente principal de la página de chat
 const ChatPage: React.FC = () => {
     const { id: chatId } = useParams<{ id: string }>();
     const { name: agentName, avatar: agentAvatar } = getAgentById(chatId);
@@ -88,7 +98,7 @@ const ChatPage: React.FC = () => {
     
     return (
         <IonPage className='chat-page'>
-            <IonHeader className='header-chat'>
+            <IonHeader className='header-chat' translucent>
                 <IonToolbar className='toolbar-header'>
                     <IonButtons slot="start">
                         <IonButton slot="start" onClick={() => window.history.back()} fill="clear">
