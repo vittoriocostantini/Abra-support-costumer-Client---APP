@@ -18,10 +18,7 @@ const TicketsPage: React.FC = () => {
       </IonToolbar>
     </IonHeader>
     <IonContent fullscreen>
-    <IonHeader collapse='condense'>
-      <IonToolbar>
-      </IonToolbar>
-      </IonHeader>
+ 
       <TicketsProduct />
     </IonContent>
     </IonPage>
