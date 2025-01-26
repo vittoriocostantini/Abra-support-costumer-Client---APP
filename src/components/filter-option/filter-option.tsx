@@ -11,6 +11,7 @@ const FilterOption: React.FC = () => {
     return (
         <div className="filter-option" >
             <IonSelect 
+            slot='end'
                 interface="action-sheet" 
                 placeholder="Filtrar tus tickets"
                 onIonChange={(e) => console.log('Selected:', e.detail.value)}

@@ -14,10 +14,13 @@
 
   }
 
- .filter-option {
-  margin-left: 17%;
- }
 
-.filter-menu {
-  margin-left: 17%;
+.filter-option {
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  justify-items: center;
+  display: flex;
+  position: relative;
 }
+
