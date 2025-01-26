@@ -1,0 +1,23 @@
+.about-us-content{
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000000;
+}
+
+.abra-logo{
+  font-size: 18px;
+  font-weight: 500;
+  color: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
