@@ -97,7 +97,7 @@ const Languaje: React.FC<LanguajeProps> = ({ initialLanguage = '' }) => { // Uso
           <IonTitle>Idioma</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen> 
+      <IonContent fullscreen className='content-languaje'> 
         <IonHeader collapse='condense' >
           <IonToolbar >
             <IonTitle size='large'>Idioma</IonTitle>

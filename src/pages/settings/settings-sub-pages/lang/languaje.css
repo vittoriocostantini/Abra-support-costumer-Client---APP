@@ -1,3 +1,6 @@
+.content-languaje{
+  --background: var(--ion-content) !important;
+}
 
 .list-languaje{
     margin: 10px;
