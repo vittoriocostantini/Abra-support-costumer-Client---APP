@@ -49,7 +49,7 @@ const SettingsPage: React.FC = () => {
   
   return (
   <IonPage>
-    <IonHeader className='header-settings' translucent>
+    <IonHeader className='header-settings' >
       <IonToolbar className='toolbar-settings'>
         <IonTitle className='title-settings'>Ajustes</IonTitle>
       </IonToolbar>
@@ -84,7 +84,7 @@ const SettingsPage: React.FC = () => {
           </IonRouterLink>
         ))}
       </IonList>
-      <IonItem button detail={false} className='item-login'>
+      <IonItem button detail={false} className='item-login' lines="none">
       <IonIcon icon={logIn} size='large' slot="start"></IonIcon>
         <IonLabel>Iniciar sesión</IonLabel>
         </IonItem>
