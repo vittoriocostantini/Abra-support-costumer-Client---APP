@@ -2,21 +2,22 @@
 http://ionicframework.com/docs/theming/ */
 
 :root {
-  /* Colores primarios */
-  --ion-color-primary: #3880ff; /* Color principal */
-  --ion-color-primary-rgb: 56, 128, 255; /* Color principal en formato RGB */
-  --ion-color-primary-contrast: #ffffff; /* Color de contraste para el color principal */
-  --ion-color-primary-contrast-rgb: 255, 255, 255; /* Contraste en formato RGB */
-  --ion-color-primary-shade: #3171e0; /* Sombra del color principal */
-  --ion-color-primary-tint: #4c8dff; /* Tinte del color principal */
+  /* Colores de botones */
+  --ion-color-boton-send-case: #9ddba0 !important; /* Color principal */
+  --ion-color-boton-send-case-active: #86b888 !important; /* Color secundario */
+  --ion-color-boton-file: #80a6ff !important; /* Color principal */
+  --ion-color-boton-file-active: #6688c4 !important; /* Color secundario */
 
-  /* Colores secundarios */
-  --ion-color-secondary: #3dc2ff; /* Color secundario */
-  --ion-color-secondary-rgb: 61, 194, 255; /* Color secundario en formato RGB */
-  --ion-color-secondary-contrast: #ffffff; /* Color de contraste para el color secundario */
-  --ion-color-secondary-contrast-rgb: 255, 255, 255; /* Contraste en formato RGB */
-  --ion-color-secondary-shade: #36abe0; /* Sombra del color secundario */
-  --ion-color-secondary-tint: #50c8ff; /* Tinte del color secundario */
+  /* Colores iconos de agent history */
+  --ion-color-icon-history: #328fec !important; /* Color principal */
+/* iconos de tabbar */
+  --ion-color-button-case: #68b2fc !important; /* Color principal */
+  --ion-color-button-contact: #68b2fc !important; /* Color principal */
+  --ion-color-button-tickets: #68b2fc !important; /* Color principal */
+  --ion-color-button-settings: #68b2fc !important; /* Color principal */
+
+
+  /* colores de interfaz */
   --ion-content: #f2f2f7 !important;
   --ion-header: #f2f2f7 !important;
   --ion-toolbar: #f2f2f7 !important;
@@ -73,11 +74,8 @@ ion-app {
     will-change: padding;
   }
 
-  
-  ion-content{
-    --background: var(--ion-content) !important;
-  }
-  
+  /* colores de la interfaz */
+
   ion-header{
     --background: var(--ion-header) !important;
   }
