@@ -12,11 +12,13 @@ const AgentHistory: React.FC<AgentHistoryProps> = () => {
 
   return (
     <>
-      <IonButtons slot="end" className='button-history'>
-        <IonButton onClick={() => setShowModal(true)}>
-          <IonIcon icon={peopleCircleOutline} size="large" ></IonIcon>
+        <IonButton 
+        onClick={() => setShowModal(true)} 
+        slot='end'
+        fill='clear'
+        className='button-history'>
+          <IonIcon icon={peopleCircleOutline} size="large" className='icon-history'></IonIcon>
         </IonButton>
-      </IonButtons>
       <ModalHistory 
         isOpen={showModal} 
         onDidDismiss={() => setShowModal(false)}
