@@ -4,7 +4,11 @@ import { apps } from 'ionicons/icons';
 import ModalApps from './modal-apps/modal-apps';
 import './platform-scroll-submit.css';
 
-const PlatformScrollSubmit: React.FC = () => {
+interface PlatformScrollSubmitProps {
+    onSelectIcon: (icon: string) => void;
+}
+
+const PlatformScrollSubmit: React.FC<PlatformScrollSubmitProps> = ({ onSelectIcon }) => {
     const [showModal, setShowModal] = useState(false);
     const [selectedApp, setSelectedApp] = useState<string>('Selecciona una app');
     const [selectedIcon, setSelectedIcon] = useState<string>(apps);
@@ -23,6 +27,7 @@ const PlatformScrollSubmit: React.FC = () => {
                     setSelectedApp(appLabel);
                     setSelectedIcon(appIcon);
                     setSelectedColor(appColor);
+                    onSelectIcon(appIcon);
                 }}
             />
         </IonItem>
