@@ -1,7 +1,9 @@
 
 
 
-
+.content-settings{
+  --background: var(--ion-content) !important;
+}
 
 .content-settings ion-icon{
     color: #414040;
@@ -31,6 +33,7 @@
 .item-login{
   border-radius: 10px;
   margin: 10px;
+  border:none;
 }
 
 

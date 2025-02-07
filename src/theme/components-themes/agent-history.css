@@ -7,3 +7,6 @@
 
 /* agent-history.css */
 
+.icon-history {
+  color: var(--ion-color-icon-history) !important;
+} 
