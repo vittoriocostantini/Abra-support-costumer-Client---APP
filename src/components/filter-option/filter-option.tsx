@@ -2,8 +2,10 @@ import React, { useState, useRef } from 'react';
 import './filter-option.css'; // Asegúrate de tener este archivo CSS
 import { 
     IonSelect, 
-    IonSelectOption 
+    IonSelectOption,
+    IonIcon
 } from '@ionic/react';
+import { archive } from 'ionicons/icons';
 
 const FilterOption: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +20,7 @@ const FilterOption: React.FC = () => {
                 className='filter-menu'
                 
             >
-                <IonSelectOption value="completado">Completado</IonSelectOption>
+                <IonSelectOption value="completado" >Completado</IonSelectOption>
                 <IonSelectOption value="en_proceso">En proceso</IonSelectOption>
                 <IonSelectOption value="pendiente">Pendiente</IonSelectOption>
             </IonSelect>

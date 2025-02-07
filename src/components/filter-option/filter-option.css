@@ -24,3 +24,6 @@
   position: relative;
 }
 
+.action-sheet-button span {
+  color: #000;
+}
