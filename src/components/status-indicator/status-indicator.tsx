@@ -1,7 +1,7 @@
 import React from 'react';
 import { IonIcon } from '@ionic/react';
 import { ellipse } from 'ionicons/icons';
-import './StatusIndicator.css';
+import './status-indicator.css';
 
 interface StatusIndicatorProps {
   status: string;
