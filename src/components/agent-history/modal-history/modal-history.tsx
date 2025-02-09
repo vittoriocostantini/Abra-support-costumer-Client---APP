@@ -24,7 +24,7 @@ const ModalHistory: React.FC<ModalHistoryProps> = ({ isOpen, onDidDismiss    }) 
       </IonHeader>
       <IonContent>
         {agentsData.map(agent => (
-          <AgentItem key={agent.id} name={agent.name} avatarUrl={agent.avatar}/>
+          <AgentItem key={agent.name} name={agent.name} avatarUrl={agent.avatar}/>
         ))}
       </IonContent>
     </IonModal>
