@@ -62,9 +62,11 @@ const TicketCard: React.FC<TicketsProduct> = ({
         <div className="app-select-card">
           {icon}
         </div>
-        <IonBadge slot="end" className="badge-ticket">
-          <p>{messageCount}</p>
-        </IonBadge>
+        {messageCount > 0 && (
+          <IonBadge slot="end" className="badge-ticket">
+            <p>{messageCount}</p>
+          </IonBadge>
+        )}
         <IonLabel className="ticket-card-label">
           <h4 className="ticket-date"><IonIcon icon={ellipse}/>{date}</h4>
           <h1 className="ticket-title">{title}</h1>
