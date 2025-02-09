@@ -37,8 +37,8 @@ const TicketsPage: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen className='content-tickets'>
         <IonList>
-          {updatedTickets.map((ticket, index) => {
-            console.log('Ticket Props:', ticket);
+          {tickets.map((ticket, index) => {
+            const messageCount = countMessages(ticket.id);
             return (
               <TicketCard
                 key={index}
@@ -52,7 +52,7 @@ const TicketsPage: React.FC = () => {
                 date={ticket.date || ''}
                 agentName={ticket.agentName || ''}
                 icon={ticket.icon}
-                messageCount={countMessages(ticket.id)}
+                messageCount={messageCount}
               />
             );
           })}
