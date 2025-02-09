@@ -44,7 +44,7 @@ export const loadMessages = (chatId: string): { text: string; sender: string; ch
     // Borrar los mensajes después de 10 segundos
     setTimeout(() => {
         localStorage.removeItem(`chatMessages_${chatId}`);
-    }, 10000);
+    }, 100000);
 
     return savedMessages ? JSON.parse(savedMessages) : [];
 };

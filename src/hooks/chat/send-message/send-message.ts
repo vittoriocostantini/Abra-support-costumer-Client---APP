@@ -19,7 +19,7 @@ export const sendMessage = (
                 localStorage.setItem(`chatMessages_${message.chatId}`, JSON.stringify(updatedMessages)); // Guardar en localStorage con chatId
                 return updatedMessages;
             });
-        }, 1000);
+        }, 10000);
     }
 };
 
