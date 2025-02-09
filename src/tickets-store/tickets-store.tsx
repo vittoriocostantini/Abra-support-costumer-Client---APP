@@ -21,12 +21,15 @@ export const tickets: Ticket[] = [];
 // Función para agregar un nuevo ticket
 export const addTicket = (title: string, icon: string) => {
   const randomAgent = getRandomAgent(); // Obtener un agente aleatorio
+  const date = new Date(); // Obtener la fecha actual
+  const formattedDate = `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}`; // Formato "Mes Día"
+  
   const newTicket: Ticket = {
     id: (tickets.length + 1).toString(),
     title,
     number: `#${tickets.length + 1}`,
     status: 'Pendiente', // Cambiado a "Pendiente"
-    date: 'Enero 15', // O el día que desees
+    date: formattedDate, // Usar la fecha formateada
     path: '/Tickets/chat/',
     avatarUrl: randomAgent.avatar, // Usar el avatar del agente aleatorio
     agentName: randomAgent.name,   // Usar el nombre del agente aleatorio
