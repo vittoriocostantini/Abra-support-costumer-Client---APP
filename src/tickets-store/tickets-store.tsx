@@ -25,7 +25,7 @@ export const addTicket = (title: string, icon: string) => {
     id: (tickets.length + 1).toString(),
     title,
     number: `#${tickets.length + 1}`,
-    status: 'Completado', // Puedes cambiar el estado según sea necesario // anadir logica de asignacion de estado
+    status: 'Pendiente', // Cambiado a "Pendiente"
     date: 'Enero 15', // O el día que desees
     path: '/Tickets/chat/',
     avatarUrl: randomAgent.avatar, // Usar el avatar del agente aleatorio
