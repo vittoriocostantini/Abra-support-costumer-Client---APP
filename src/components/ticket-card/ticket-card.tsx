@@ -93,3 +93,5 @@ const TicketCard: React.FC<TicketsProduct> = ({
 }
 
 export default TicketCard;
+
+
