@@ -8,12 +8,16 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [
     react(),
-    legacy()
+    legacy(),
   ],
 
   esbuild: {
     jsxInject: `import React from 'react'`,
     jsxFactory: 'React.createElement',
     jsxFragment: 'React.Fragment',
+  },
+
+  build: {
+    // ... otras configuraciones de construcción ...
   }
 })
