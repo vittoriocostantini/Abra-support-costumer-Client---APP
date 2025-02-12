@@ -7,7 +7,7 @@ import TicketCard from '../../components/ticket-card/ticket-card';
 import { showTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
 import { useIonViewDidEnter } from '@ionic/react';
 import { tickets } from '../../tickets-store/tickets-store';
-import { countMessages } from '../../hooks/chat/utils/chat-utils';
+import { loadMessages } from '../../hooks/chat/utils/chat-utils';
 
 // Componente principal de la página de tickets
 const TicketsPage: React.FC = () => {
@@ -21,14 +21,19 @@ const TicketsPage: React.FC = () => {
     setUpdatedTickets(tickets);
   });
 
-  // Efecto para contar los mensajes en los tickets actualizados
   useEffect(() => {
-    const newTickets = updatedTickets.map(ticket => ({
-      ...ticket,
-      messageCount: countMessages(ticket.id),
-    }));
-    setUpdatedTickets(newTickets);
-  }, [updatedTickets]);
+    const interval = setInterval(() => {
+      // Actualizar los tickets con los mensajes más recientes
+      setUpdatedTickets(prevTickets => 
+        prevTickets.map(ticket => ({
+          ...ticket,
+          messages: loadMessages(ticket.id) // Cargar mensajes actualizados
+        }))
+      );
+    }, 3000); // Verificar cada 3 segundos
+
+    return () => clearInterval(interval); // Limpiar el intervalo al desmontar
+  }, []);
 
   // Renderizado del componente
   return (
@@ -41,7 +46,6 @@ const TicketsPage: React.FC = () => {
       <IonContent fullscreen className='content-tickets'>
         <IonList>
           {updatedTickets.map((ticket, index) => {
-            const messageCount = countMessages(ticket.id);
             return (
               <TicketCard
                 key={index}
@@ -55,7 +59,7 @@ const TicketsPage: React.FC = () => {
                 date={ticket.date || ''}
                 agentName={ticket.agentName || ''}
                 icon={ticket.icon}
-                messageCount={messageCount}
+                messages={loadMessages(ticket.id)}
               />
             );
           })}
