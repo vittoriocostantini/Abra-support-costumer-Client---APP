@@ -38,19 +38,13 @@ export const useScrollToBottom = (messagesEndRef: React.RefObject<HTMLDivElement
 };
 
 // Este hook se encarga de cargar los mensajes guardados en localStorage
-export const loadMessages = (chatId: string): { text: string; sender: string; chatId: string }[] => {
+export const loadMessages = (chatId: string): { text: string; sender: string; chatId: string; unread?: number }[] => {
     const savedMessages = localStorage.getItem(`chatMessages_${chatId}`);
     
     // Borrar los mensajes después de 10 segundos
-    setTimeout(() => {
-        localStorage.removeItem(`chatMessages_${chatId}`);
-    }, 100000);
+    // setTimeout(() => {
+    //     localStorage.removeItem(`chatMessages_${chatId}`);
+    // }, 10000);
 
     return savedMessages ? JSON.parse(savedMessages) : [];
-};
-
-// Nueva función para contar los mensajes
-export const countMessages = (chatId: string): number => {
-    const savedMessages = localStorage.getItem(`chatMessages_${chatId}`);
-    return savedMessages ? JSON.parse(savedMessages).length : 0;
 };
