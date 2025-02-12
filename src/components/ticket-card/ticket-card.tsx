@@ -15,21 +15,8 @@ import { useHistory } from 'react-router-dom';
 import '../../theme/variables.css';
 import { share, trash, archive, ellipse } from 'ionicons/icons';
 import StatusIndicator from '../status-indicator/status-indicator';
-
-// Define the type for the props
-interface TicketsProduct {
-  id: string;
-  title: string;
-  number: string;
-  path: string;
-  avatarUrl: string;
-  imageAlt: string;
-  status: string;
-  date: string;
-  agentName: string;
-  icon?: JSX.Element;
-  messageCount: number;
-}
+import { countUnreadMessages } from '../../hooks/chat/message-notification/message-count';
+import { TicketsProduct } from './models/ticket-model'; // Importar el modelo TicketsProduct
 
 const TicketCard: React.FC<TicketsProduct> = ({
   id,
@@ -42,9 +29,13 @@ const TicketCard: React.FC<TicketsProduct> = ({
   date,
   agentName,
   icon,
-  messageCount,
+  messages,
 }) => {
+  
   const history = useHistory();
+
+  // Contar los mensajes no leídos para este ticket
+  const unreadCount = countUnreadMessages(messages, id);
 
   const handleCardClick = () => {
     history.push({
@@ -62,11 +53,19 @@ const TicketCard: React.FC<TicketsProduct> = ({
         <div className="app-select-card">
           {icon}
         </div>
-        {messageCount > 0 && (
-          <IonBadge slot="end" className="badge-ticket">
-            <p>{messageCount}</p>
+      
+        {unreadCount > 0 ? (
+          <IonBadge
+            slot="end"
+            className="badge-ticket"
+            style={{
+              animation: unreadCount > 0 ? 'appear 0.3s forwards' : 'disappear 0.3s forwards',
+              opacity: unreadCount > 0 ? 1 : 0,
+            }}
+          >
+            {unreadCount}
           </IonBadge>
-        )}
+        ) : null}
         <IonLabel className="ticket-card-label">
           <h4 className="ticket-date"><IonIcon icon={ellipse}/>{date}</h4>
           <h1 className="ticket-title">{title}</h1>
