@@ -1,3 +1,4 @@
+import { Ticket as TicketModel } from './models/ticket-model'; // Importar la interfaz Ticket como TicketModel
 import { getAgentByName, getRandomAgent } from '../agents-data/agent-data';
 import { IonIcon } from '@ionic/react';
 import { share } from 'ionicons/icons';
@@ -16,7 +17,7 @@ interface Ticket {
   icon: JSX.Element;
 }
 
-export const tickets: Ticket[] = [];
+export const tickets: TicketModel[] = [];
 
 // Función para agregar un nuevo ticket
 export const addTicket = (title: string, icon: string) => {
@@ -24,7 +25,7 @@ export const addTicket = (title: string, icon: string) => {
   const date = new Date(); // Obtener la fecha actual
   const formattedDate = `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}`; // Formato "Mes Día"
   
-  const newTicket: Ticket = {
+  const newTicket: TicketModel = {
     id: (tickets.length + 1).toString(),
     title,
     number: `#${tickets.length + 1}`,
