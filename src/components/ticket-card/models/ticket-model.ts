@@ -10,5 +10,5 @@ export interface TicketsProduct {
   date: string;
   agentName: string;
   icon?: JSX.Element;
-  messages: { text: string; sender: string; chatId: string }[];
+  messages: { text: string; sender: string; chatId: string; unread?: number }[];
 } 

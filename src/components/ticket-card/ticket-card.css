@@ -14,6 +14,7 @@
 .ticket-card-label h1 {
   color: #000000;
   font-size: 14px;
+  margin-left: 5px;
 }
 
 .ticket-card-label h2 {
@@ -33,7 +34,12 @@
   position: relative;
   top: 0px;
   right: 0px;
-  font-size: 11px;
+  font-size: 12px;
+}
+
+.time-stamp {
+  color: #868686;
+  font-size: 12px;
 }
 
 
@@ -42,6 +48,8 @@
   margin: 0px 5px 0px 5px;
   color: #868686;
 }
+
+
 
 .ticket-card-status {
   display: flex;
@@ -53,11 +61,6 @@
   align-items: center;
 }
 
-.status-agent-ticket {
-  display: flex;
-  align-items: center;
-  margin-top: 15px;
-}
 
 .avatar {
   margin-right: 10px;
@@ -67,15 +70,13 @@
 }
 
 .avatar-agent {
-  position: absolute;
-  right: 25px;
-  margin: 5px;
-  bottom: 0px;
+  position: relative;
 }
 
 
 
-.option-start ion-item-option {
+
+ion-item-options.option-start {
   background: #6eb6f9;
 }
 
@@ -83,8 +84,16 @@
   background-color: #5b9dda;
 }
 
+.option-start ion-item-option {
+  background-color: #6eb6f9 ; 
+}
+
+ion-item-options.option-end {
+  background-color: #f96e6e !important; 
+}
+
 .option-end ion-item-option {
-  background: #f96e6e;
+  background-color: #f96e6e ; 
 }
 
 .option-end ion-item-option:active {
@@ -95,17 +104,26 @@
   display: flex !important;
   align-items: baseline !important;
   flex-direction: row !important;
+  margin-top: -5px;
 }
 
 .status-text h3 ion-icon {
-  font-size: 7px;
+  font-size: 6px;
   margin: 0px 5px 0px 5px;
   color: #868686;
 
 }
 
-.ticket-status h3:first-child {
-  font-size: 10px;
+.status-text h3 ion-icon:last-child {
+  font-size: 14px;
+}
+
+.status-text h2  {
+  margin-left: 5px;
+}
+
+.ticket-status h3 ion-icon:first-child {
+  font-size: 7px;
 }
 
 .ticket-card-label h3:last-child {
@@ -113,12 +131,15 @@
   font-size: 11px;
 }
 
+
 .app-select-card {
   position: relative;
   right: 0px;
-  bottom: 20px;
+  bottom: 12px;
   height: 30px;
-  width: 30px;
+  width: 20px;
+
+
 }
 
 .badge-ticket {
@@ -138,6 +159,7 @@
   animation: appear 0.3s forwards, disappear 0.3s forwards;
   opacity: 0;
 }
+
 
 @keyframes appear {
   0% {
