@@ -11,8 +11,8 @@ import { hideTabBar } from './tab-bar-view/tabbar-view';
 function TabBar() {
   hideTabBar();
   return (
-    <IonRouterOutlet > 
-      <IonTabs className='tab-bar-app' data-id='mi-tab-id' >
+    <IonRouterOutlet> 
+      <IonTabs className='tab-bar-app' data-id='app-tab-bar' >
         <IonRouterOutlet>
           <AppRoutes />
         </IonRouterOutlet>
