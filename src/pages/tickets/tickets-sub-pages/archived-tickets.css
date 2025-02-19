@@ -1,0 +1,8 @@
+.archived-header {
+    --border-width: 0;
+}
+
+.archived-content {
+    --background: var(--ion-content) !important;
+}
+
