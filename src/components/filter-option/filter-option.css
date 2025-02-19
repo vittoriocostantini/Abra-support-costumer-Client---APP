@@ -1,29 +1,15 @@
+.filter-button {
 
-  .ion-modal {
-    --height: 25%;
-  }
-
- 
-  .ion-text-center {
-    text-align: center;
-    color: #000;
-  }
-
-  .ticket-list  ion-item {
-      text-align: center;
-
-  }
-
-
-.filter-option {
-  justify-content: center;
-  align-self: center;
-  align-items: center;
-  justify-items: center;
-  display: flex;
-  position: relative;
+  --background: var(--ion-button-tickets) !important;
+  --background-activated: var(--ion-button-tickets) !important;
+  --background-focused: var(--ion-button-tickets) !important;
 }
 
+
 .action-sheet-button span {
+  color: #000;
+}
+
+.icon-button {
   color: #000;
 }

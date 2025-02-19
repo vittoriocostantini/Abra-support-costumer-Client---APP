@@ -2,11 +2,7 @@
     position: absolute;
     bottom: 10px;
     left: -5px;
+    --color: #000;
    
 }
 
-.chat-icon-add-container {
-    position: static;
-    bottom: 10px;
-    left: 0;
-}
