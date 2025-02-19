@@ -1,33 +1,48 @@
 import React, { useState, useRef } from 'react';
 import './filter-option.css'; // Asegúrate de tener este archivo CSS
 import { 
-    IonSelect, 
-    IonSelectOption,
-    IonIcon
-} from '@ionic/react';
-import { archive } from 'ionicons/icons';
 
+    IonIcon,
+    IonButton,
+    IonActionSheet
+} from '@ionic/react';
+import { ellipsisHorizontal } from 'ionicons/icons';
 const FilterOption: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
-
+  
     return (
-        <div className="filter-option" >
-            <IonSelect 
-            slot='end'
-                interface="action-sheet" 
-                placeholder="Filtrar tus tickets"
-                onIonChange={(e) => console.log('Selected:', e.detail.value)}
-                className='filter-menu'
-                
-            >
-                <IonSelectOption value="completado" >Completado</IonSelectOption>
-                <IonSelectOption value="en_proceso">En proceso</IonSelectOption>
-                <IonSelectOption value="pendiente">Pendiente</IonSelectOption>
-            </IonSelect>
-        </div>
+      <>
+        <IonButton  
+        shape="round"
+        onClick={() => setIsOpen(true)} 
+        className='filter-button'>
+          <IonIcon className='icon-button' icon={ellipsisHorizontal} slot='icon-only' />
+        </IonButton>
+        <IonActionSheet
+          isOpen={isOpen}
+          buttons={[
+            {
+              text: 'Completado',
+              data: {
+                action: 'completado',
+              },
+            },
+            {
+              text: 'En proceso',
+              data: {
+                action: 'en_proceso',
+              },
+            },
+            {
+              text: 'Pendiente',
+              data: {
+                action: 'pendiente',
+              },
+            },
+          ]}
+          onDidDismiss={() => setIsOpen(false)}
+        ></IonActionSheet>
+      </>
     );
-};
-
-export default FilterOption;
-
-/* filter-option.tsx */
+  }
+  export default FilterOption;
