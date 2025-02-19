@@ -67,26 +67,24 @@
     opacity: 0;
     transition: opacity 0.3s ease;
     position: absolute;
-    right:0px;
+    right:5px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0;
-    bottom: 22px;
-    padding: 5px;
-    --border-radius: 90%;
-    height: 40px;
-    width: 40px;
+    bottom: 27px;
+ 
+    --background: #000;
+    --background-activated: #3d3d3d;
 
 
 }
 
 .chat-button-send.visible {
     opacity: 1;
-    bottom: 22px;
+    bottom: 27px;
     position: absolute;
     display: flex;
-    --border-radius: 90%;
     margin: 0;
 
 }

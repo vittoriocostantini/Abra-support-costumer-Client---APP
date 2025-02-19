@@ -21,8 +21,9 @@ import { useKeyboardListeners } from '../../hooks/chat/keyboard/keyboard-handler
 import { useParams, useLocation } from 'react-router-dom';
 import { getAgentByName } from '../../agents-data/agent-data';
 import { sendMessageHandler } from '../../hooks/chat/send-message/send-message';
-import { loadMessages, useScrollToBottom } from '../../hooks/chat/utils/chat-utils';
+import { useScrollToBottom } from '../../hooks/chat/utils/chat-utils';
 import useResetTextarea from '../../hooks/chat/chat-input/use-reset-textarea';
+import { loadMessages } from '../../hooks/chat/storage-load-messages/storage-load-messages';
 
 
 // ChatPage es el componente principal de la página de chat
@@ -51,7 +52,6 @@ const ChatPage: React.FC = () => {
             setIsKeyboardVisible(true);
         };
 
-        
         const handleKeyboardHide = () => {
             keyboardHeight.current = 0;
             setIsKeyboardVisible(false);
@@ -96,8 +96,6 @@ const ChatPage: React.FC = () => {
     // Este hook se encarga de desplazar el contenedor de mensajes hacia abajo cuando se agrega un nuevo mensaje
     useScrollToBottom(messagesEndRef, messages);
 
-   
-    
     return (
         <IonPage className='chat-page'>
             <IonHeader className='header-chat' translucent>
@@ -112,7 +110,6 @@ const ChatPage: React.FC = () => {
                             <img src={avatarUrl} alt="Avatar del agente" />
                         </IonAvatar>
                         <IonTitle className='agent-title'>{agentName}</IonTitle>
-                        
                     </div>
                 </IonToolbar>
             </IonHeader>
@@ -123,7 +120,6 @@ const ChatPage: React.FC = () => {
                     keyboardHeight={keyboardHeight.current}
                 />
             </IonContent>
-            
             <IonFooter className="chat-footer" id='chat-footer' class='ion-no-border' translucent={true} >
                 <IonToolbar className="toolbar-footer" >
                     <div className='chat-input-container'>
@@ -136,15 +132,15 @@ const ChatPage: React.FC = () => {
                             value={message}
                             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
                         />
-                  
                         <IonButton
                             slot="end" 
+                            shape="round"
                             size="small"
                             className={`chat-button-send ${isSendButtonVisible ? 'visible' : ''}`}
                             onClick={handleButtonClick} 
                             style={{ opacity: isSendButtonVisible ? 1 : 0 }}
                         >
-                            <IonIcon icon={send} />
+                            <IonIcon icon={send} slot="icon-only"/>
                         </IonButton>
                     </div>
                 </IonToolbar>
