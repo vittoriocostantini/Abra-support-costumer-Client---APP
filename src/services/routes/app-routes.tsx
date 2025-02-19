@@ -9,6 +9,8 @@ import ChatPage from '../chat/chat-page';
 import Privacity from '../../pages/settings/settings-sub-pages/privacity/privacity';
 import Languaje from '../../pages/settings/settings-sub-pages/lang/languaje';
 import AboutUs from '../../pages/settings/settings-sub-pages/about/about-us';
+import ArchivedTickets from '../../pages/tickets/tickets-sub-pages/archived-tickets';
+
 
 const AppRoutes: React.FC = () => {
   return (
@@ -22,6 +24,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/sub-pages/Privacity" component={Privacity} exact={true} />
       <Route path="/sub-pages/Languaje" component={Languaje} exact={true} />
       <Route path="/sub-pages/AboutUs" component={AboutUs} exact={true} />
+      <Route path="/tickets/sub-pages/ArchivedTickets" component={ArchivedTickets} exact={true} />
     </IonRouterOutlet>
   );
 };
