@@ -31,7 +31,7 @@ export const addTicket = (title: string, icon: string) => {
     number: `#${tickets.length + 1}`,
     status: 'Pendiente', // Cambiado a "Pendiente"
     date: formattedDate, // Usar la fecha formateada
-    path: '/Tickets/chat/',
+    path: '/tickets/chat/',
     avatarUrl: randomAgent.avatar, // Usar el avatar del agente aleatorio
     agentName: randomAgent.name,   // Usar el nombre del agente aleatorio
     imageAlt: 'Avatar',

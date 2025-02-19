@@ -1,0 +1,24 @@
+.content-tickets  {
+    --background: var(--ion-content) !important;
+  }
+  
+ 
+  .archive-label {
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 20px;
+   
+  }
+
+  .archived-tickets {
+    --background: var(--ion-header) !important;
+    display: block;
+
+  }
+
+  .archived-tickets p {
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 20px;
+    color: #ff7474;
+  }
