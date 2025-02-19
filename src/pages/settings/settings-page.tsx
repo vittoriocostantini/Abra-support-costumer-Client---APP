@@ -54,7 +54,7 @@ const SettingsPage: React.FC = () => {
         <IonTitle className='title-settings'>Ajustes</IonTitle>
       </IonToolbar>
     </IonHeader>
-    <IonContent className='content-settings' fullscreen>
+    <IonContent className='content-settings' fullscreen scrollY={false}>
       <IonHeader collapse='condense' class='header-settings-condense'>
         <IonToolbar class='toolbar-settings-condense'> 
           <IonTitle size='large'>Ajustes</IonTitle>

@@ -40,14 +40,14 @@ const SubmitCase: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader className='header-search' translucent>
+      <IonHeader className='header-search' >
         <IonToolbar className='toolbar-search'>
           <IonButtons slot="start">
         </IonButtons>
           <IonTitle className='title-search'>Crea tu caso</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen className='content-submit'> 
+      <IonContent fullscreen className='content-submit' scrollY={false}> 
         <IonHeader collapse='condense' className='header-case'>
           <IonToolbar>
             <IonTitle size='large'>Crea tu caso</IonTitle>

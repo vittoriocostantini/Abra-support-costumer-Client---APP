@@ -7,15 +7,15 @@ const AboutUs: React.FC = () => {
   hideTabBar();
   return (
     <IonPage>
-      <IonHeader translucent >
+      <IonHeader class='ion-no-border' >
         <IonToolbar>
           <IonButtons slot="start"  >
-            <IonBackButton defaultHref="/settings" text="" />
+            <IonBackButton defaultHref="/settings" text="Ajustes" />
           </IonButtons>
           <IonTitle>Acerca de</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen className='content-about'> 
+      <IonContent fullscreen className='content-about' scrollY={false}> 
         <IonHeader collapse='condense'>
           <IonToolbar>
             <IonTitle size='large'>Acerca de</IonTitle>

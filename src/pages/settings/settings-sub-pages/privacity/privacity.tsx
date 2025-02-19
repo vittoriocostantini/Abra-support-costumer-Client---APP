@@ -12,12 +12,12 @@ const Privacity: React.FC = () => {
       <IonHeader  className='privacity-header' class='ion-no-border' >
         <IonToolbar className='privacity-toolbar' >
           <IonButtons slot="start"  >
-            <IonBackButton defaultHref="/settings" text="" />
+            <IonBackButton defaultHref="/settings" text="Ajustes" />
           </IonButtons>
           <IonTitle>Privacidad</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className='privacity-content'> 
+      <IonContent className='privacity-content' scrollY={false}> 
        <IonItem className='privacity-item' lines="none" detail={false} >
         <IonLabel className='privacity-label'>
           <p><IonIcon size='small'  icon={lockClosed} />Controla tu información personal y 
