@@ -4,6 +4,7 @@ import MessageBubble from '../message-bubble/message-bubble';
 import './message-list.css';
 import { lockClosed } from 'ionicons/icons';
 import useMessageListScroll from '../../../hooks/chat/container/use-message-chat-listeners';
+import { getCurrentTime } from '../../../services/time-service/time-service';
 
 // Este componente se encarga de renderizar la lista de mensajes y escuchar los eventos de teclado
 interface MessagesListProps {
@@ -44,7 +45,7 @@ const MessagesList: React.FC<MessagesListProps> = ({ messages, messagesEndRef, k
                         sender={msg.sender} 
                         key={index} 
                         isOwnMessage={msg.sender === 'Yo'}
-                        timestamp={new Date().toLocaleTimeString()}
+                        timestamp={getCurrentTime()}
                     />
                 ))}
                 <div ref={messagesEndRef} style={{ paddingBottom: '100px' }} /> 
