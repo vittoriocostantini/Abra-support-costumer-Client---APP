@@ -6,3 +6,8 @@
     --background: var(--ion-content) !important;
 }
 
+.archived-tickets-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
