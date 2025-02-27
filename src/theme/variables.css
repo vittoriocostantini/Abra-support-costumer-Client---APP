@@ -23,7 +23,14 @@ http://ionicframework.com/docs/theming/ */
   --ion-toolbar: #f2f2f7 !important;
   --ion-button-tickets: #e3e3e395 !important;
   --ion-button-tickets-active: #cdcbcb !important;
-  /* coloresdawdwadas de los botones de settings */
+  --ion-chat-bubble-sent: #cbffa3 !important;
+  --ion-chat-bubble-received: #a0e2ff !important;
+  --ion-color-toast: #abeaff !important;
+  --ion-color-block: #f96e6e !important;
+  --ion-color-prefer: #9ddba0 !important;
+  --ion-color-block-active: #e65b5b !important;
+  --ion-color-prefer-active: #86b888 !important;
+  /* colores de los botones de settings */
   --ion-color-notification: #9ddba0;
   --ion-color-privacy: #ffd700;
   --ion-color-language: #68b2fc;
@@ -52,6 +59,8 @@ http://ionicframework.com/docs/theming/ */
   --app-item-bitbucket: #0052CC;
   --app-item-docker: #2496ED;
   --app-item-appstore: #0D96F6;
+
+
 
 
 }

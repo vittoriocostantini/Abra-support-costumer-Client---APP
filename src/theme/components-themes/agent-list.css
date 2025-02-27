@@ -1,0 +1,15 @@
+.option-prefer {
+  background-color: var(--ion-color-prefer) !important;
+}
+
+.option-prefer:active {
+  background-color: var(--ion-color-prefer-active) !important;
+}
+
+.option-block {
+  background-color: var(--ion-color-block) !important;
+}
+
+.option-block:active {
+  background-color: var(--ion-color-block-active) !important;
+}
