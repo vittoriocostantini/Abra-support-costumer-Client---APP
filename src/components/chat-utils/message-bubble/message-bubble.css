@@ -26,12 +26,12 @@
 
 
 .sent {
-    background-color: #cbffa3; /* Color de fondo para mensajes enviados */
+    background-color:var(--ion-chat-bubble-sent); /* Color de fondo para mensajes enviados */
     align-self: flex-end; /* Alinear a la derecha */
 }
 
 .received {
-    background-color: #a0e2ff; /* Color de fondo para mensajes recibidos */
+    background-color: var(--ion-chat-bubble-received); /* Color de fondo para mensajes recibidos */
 }
 
 .timestamp {

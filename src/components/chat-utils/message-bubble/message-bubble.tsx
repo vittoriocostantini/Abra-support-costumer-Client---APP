@@ -17,6 +17,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, isOwnMessage, ti
         <div className={`message-bubble ${isOwnMessage ? 'sent' : 'received'}`}>
             <span className='message-text'>{message}</span>
             <span className='timestamp'>{displayedTimestamp}</span>
+            
         </div>
     );
 };
