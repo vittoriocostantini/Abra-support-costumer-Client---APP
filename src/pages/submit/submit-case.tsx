@@ -14,6 +14,8 @@ import { IonContent,
   IonIcon, 
   IonBadge, 
   IonList,
+  IonToast,
+  IonLoading
 } from '@ionic/react';
 import '../../theme/page-themes/submit-case.css';
 import PlatformScrollSubmit from '../../components/platform-scroll-apps/platform-scroll-submit';
@@ -26,16 +28,24 @@ import { updateTicketTitle, updateTicketIcon, addTicket } from '../../tickets-st
 
 const SubmitCase: React.FC = () => {
   const [title, setTitle] = useState('');
-  const [icon, setIcon] = useState<string>(share);
+  const [icon, setIcon] = useState<string>('');
+  const [showToast, setShowToast] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useIonViewDidEnter(() => {
     showTabBar();
   });
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    addTicket(title, icon);
+    if (!icon) {
+      setShowToast(true);
+      return;
+    }
+    setLoading(true);
+    await addTicket(title, icon);
     console.log('Nuevo ticket creado:', title, icon);
+    setLoading(false);
   };
 
   return (
@@ -56,7 +66,7 @@ const SubmitCase: React.FC = () => {
         <form className='form-search' onSubmit={handleSubmit}>
           <IonList className='list-container'>
           <IonItem>
-            <IonLabel position="stacked">Title</IonLabel>
+            <IonLabel position="stacked">Título</IonLabel>
             <IonInput
               type="text"
               required
@@ -95,6 +105,18 @@ const SubmitCase: React.FC = () => {
           <IonButton  type="submit" className='button-submit'>Enviar</IonButton>
         </form>
       </IonContent>
+      <IonToast
+        className='toast-submit'
+        position="top"
+        isOpen={showToast}
+        onDidDismiss={() => setShowToast(false)}
+        message="Por favor, selecciona una aplicación antes de enviar."
+        duration={2000}
+      />
+      <IonLoading
+        isOpen={loading}
+        message={'Enviando...'}
+      />
     </IonPage>
   );
 }
