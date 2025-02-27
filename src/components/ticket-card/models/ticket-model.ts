@@ -11,4 +11,8 @@ export interface TicketsProduct {
   agentName: string;
   icon?: JSX.Element;
   messages: { text: string; sender: string; chatId: string; unread?: number }[];
+  onArchive: (ticketId: string) => void;
+  archivedTickets: any[];
+  isArchived: boolean;
+  onUnarchive: (ticketId: string) => void;
 } 
