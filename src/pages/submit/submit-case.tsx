@@ -18,7 +18,7 @@ import { IonContent,
   IonLoading
 } from '@ionic/react';
 import '../../theme/page-themes/submit-case.css';
-import PlatformScrollSubmit from '../../components/platform-scroll-apps/platform-scroll-submit';
+import PlatformScrollSubmit from '../../components/platform-scroll-apps/platform-scroll-submit-app';
 import { attachOutline, bulb, share } from 'ionicons/icons';
 import { showTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
 import { useIonViewDidEnter } from '@ionic/react';
