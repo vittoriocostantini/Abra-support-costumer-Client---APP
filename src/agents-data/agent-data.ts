@@ -1,9 +1,9 @@
 // Base de datos de los agentes
 export const agentsData = [
-  { name: 'Stevan Smith', avatar: 'src/Assets/Agents/agent1.png' },
-  { name: 'John Doe', avatar: 'src/Assets/Agents/agent2.png' },
-  { name: 'Maria Feng', avatar: 'src/Assets/Agents/agent3.png' },
-  { name: 'Jane Doe', avatar: 'src/Assets/Agents/agent4.png' },
+  { id: 1, name: 'Stevan Smith', avatar: 'src/Assets/Agents/agent1.png' },
+  { id: 2, name: 'John Doe', avatar: 'src/Assets/Agents/agent2.png' },
+  { id: 3, name: 'Maria Feng', avatar: 'src/Assets/Agents/agent3.png' },
+  { id: 4, name: 'Jane Doe', avatar: 'src/Assets/Agents/agent4.png' },
 ];
 
 // Función para obtener los datos del agente por su nombre
