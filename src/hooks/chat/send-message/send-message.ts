@@ -1,6 +1,5 @@
 import { tickets } from '../../../tickets-store/tickets-store'; // Importar tickets
-import { updateTicketStatus } from '../../ticket-support/ticket-status'; // Importar la función para actualizar el estado
-import { loadMessages } from '../utils/chat-utils';
+import { updateTicketStatus } from '../../tickets/ticket-support/ticket-status'; // Importar la función para actualizar el estado
 import { simulateAutoResponse } from '../auto-response/auto-response'; // Importar la función de respuesta automática
 import { saveMessagesToLocalStorage, loadMessagesFromLocalStorage } from '../storage-utils/storage-utils';
 
