@@ -1,25 +1,18 @@
 import React from 'react';
-import { IonList, IonItem, IonAvatar, IonLabel, IonItemSliding } from '@ionic/react';
+import { IonList, IonItem, IonAvatar, IonLabel, IonItemSliding, IonItemOptions, IonItemOption, IonIcon } from '@ionic/react';
 import '../../../theme/components-themes/agent-list.css';
-
+import { star, happy, personRemove } from 'ionicons/icons';
 interface Agent {
   id: number;
   name: string;
-  role: string;
-  avatarUrl: string;
+  avatar: string;
 }
 
-const agents: Agent[] = [
-  { id: 1, name: 'Rick Astley', role: 'Agent', avatarUrl: 'https://ionicframework.com/docs/img/demos/avatar.svg' },
-  { id: 2, name: 'Leeroy Jenkins', role: 'Agent', avatarUrl: 'https://ionicframework.com/docs/img/demos/avatar.svg' },
-  { id: 3, name: 'Ionitron', role: 'Agent', avatarUrl: 'https://ionicframework.com/docs/img/demos/avatar.svg' },
-  { id: 4, name: 'Wall-E', role: 'Agent', avatarUrl: 'https://ionicframework.com/docs/img/demos/avatar.svg' },
-  { id: 5, name: 'Cortana', role: 'Agent', avatarUrl: 'https://ionicframework.com/docs/img/demos/avatar.svg' },
-  { id: 6, name: 'Bender', role: 'Agent', avatarUrl: 'https://ionicframework.com/docs/img/demos/avatar.svg' },
-  { id: 7, name: 'BB-8', role: 'Agent', avatarUrl: 'https://ionicframework.com/docs/img/demos/avatar.svg' },
-];
+interface AgentListProps {
+  agents: Agent[];
+}
 
-function AgentList() {
+function AgentList({ agents }: AgentListProps) {
   return (
     <>
       <IonList inset={true} className='agent-list'>
@@ -27,15 +20,26 @@ function AgentList() {
           <IonItemSliding key={agent.id}>
             <IonItem button detail={false}> 
               <IonAvatar slot="start">
-                <img src={agent.avatarUrl} alt="Avatar" />
+                <img src={agent.avatar} alt="Avatar" />
               </IonAvatar>
               <IonLabel>
                 <h2>{agent.name}</h2>
-                <p>{agent.role}</p>
+                <p>Agente</p>
               </IonLabel>
             </IonItem>
+            <IonItemOptions side="end" className='option-container'>
+              <IonItemOption className='option-prefer'>
+                <IonIcon slot="top" size="large" icon={happy}/>
+                Preferir
+              </IonItemOption>
+              <IonItemOption className='option-block'>
+                <IonIcon slot="top" size="large" icon={personRemove}/>
+                Bloquear
+              </IonItemOption>
+            </IonItemOptions>
           </IonItemSliding>
         ))}
+        
       </IonList>
     </>
   );
