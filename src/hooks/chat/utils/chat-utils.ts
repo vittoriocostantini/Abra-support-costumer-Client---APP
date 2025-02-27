@@ -46,3 +46,4 @@ export const useScrollToBottom = (messagesEndRef: React.RefObject<HTMLDivElement
 //
 //     return savedMessages ? JSON.parse(savedMessages) : [];
 // };
+
