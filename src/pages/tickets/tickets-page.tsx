@@ -73,11 +73,11 @@ const TicketsPage: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ul className='tickets-list'>
-          <IonRouterLink routerLink="/tickets/sub-pages/ArchivedTickets">
+          <IonRouterLink routerLink="/tickets/sub-pages/archived-tickets">
             <IonItem button detail={false} className='archived-tickets'>
               <IonIcon size='small' icon={archiveOutline} />
               <IonLabel className='archive-label'>Archivados</IonLabel>
-              <p>1</p>
+              <p>0</p>
             </IonItem>
           </IonRouterLink>
           <AnimatePresence mode={popLayout ? "popLayout" : "sync"}>

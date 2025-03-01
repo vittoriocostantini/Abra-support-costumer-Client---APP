@@ -17,19 +17,19 @@ function TabBar() {
           <AppRoutes />
         </IonRouterOutlet>
         <IonTabBar slot="bottom" className='tab-bar' id='app-tab-bar' translucent={true}>
-        <IonTabButton tab="SubmitCase" href="/pages/SubmitCase" aria-hidden={true} className='button-case'>
+        <IonTabButton tab="SubmitCase" href="/pages/submit-case" aria-hidden={true} className='button-case'>
             <IonIcon icon={addCircle} />
             <IonLabel>Caso</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="Contact" href="/pages/Contact" className='button-contact'>
+          <IonTabButton tab="Contact" href="/pages/contact" className='button-contact'>
             <IonIcon icon={person} />
             <IonLabel>Agentes</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="Tickets" href="/pages/Tickets" className='button-tickets'>
+          <IonTabButton tab="Tickets" href="/pages/tickets" className='button-tickets'>
             <IonIcon icon={ticket} />
             <IonLabel>Tickets</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="Settings" href="/pages/SettingsPage" className='button-settings' >
+          <IonTabButton tab="Settings" href="/pages/settings" className='button-settings' >
             <IonIcon icon={settings} />
             <IonLabel>Configuración</IonLabel>
           </IonTabButton>

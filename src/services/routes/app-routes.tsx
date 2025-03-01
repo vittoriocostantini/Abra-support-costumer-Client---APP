@@ -15,16 +15,16 @@ import ArchivedTickets from '../../pages/tickets/tickets-sub-pages/archived-tick
 const AppRoutes: React.FC = () => {
   return (
     <IonRouterOutlet>
-      <Redirect exact path="/" to="/pages/SubmitCase" />
-      <Route path="/pages/Tickets" component={TicketsPage} exact={true} />
-      <Route path="/pages/Contact" component={ContactPage} exact={true} />
-      <Route path="/pages/SubmitCase" component={SubmitCase} exact={true} />
-      <Route path="/pages/SettingsPage" component={SettingsPage} exact={true} />
-      <Route path="/Tickets/chat/:id" component={ChatPage} exact={true} />
-      <Route path="/sub-pages/Privacity" component={Privacity} exact={true} />
-      <Route path="/sub-pages/Languaje" component={Languaje} exact={true} />
-      <Route path="/sub-pages/AboutUs" component={AboutUs} exact={true} />
-      <Route path="/tickets/sub-pages/ArchivedTickets" component={ArchivedTickets} exact={true} />
+      <Redirect exact path="/" to="/pages/submit-case" />
+      <Route path="/pages/tickets" component={TicketsPage} exact={true} />
+      <Route path="/pages/contact" component={ContactPage} exact={true} />
+      <Route path="/pages/submit-case" component={SubmitCase} exact={true} />
+      <Route path="/pages/settings" component={SettingsPage} exact={true} />
+      <Route path="/tickets/chat/:id" component={ChatPage} exact={true} />
+      <Route path="/settings/sub-pages/privacity" component={Privacity} exact={true} />
+      <Route path="/settings/sub-pages/languaje" component={Languaje} exact={true} />
+      <Route path="/settings/sub-pages/about" component={AboutUs} exact={true} />
+      <Route path="/tickets/sub-pages/archived-tickets" component={ArchivedTickets} exact={true} />
     </IonRouterOutlet>
   );
 };
