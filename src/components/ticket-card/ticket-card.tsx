@@ -77,8 +77,19 @@ const TicketCard: React.FC<TicketsProduct> = ({
   }, [id]);
 
   useEffect(() => {
-    const isInChat = checkIsInChat(history.location.pathname, path, id);
-    console.log(`isInChat: ${isInChat}, currentPath: ${history.location.pathname}, expectedPath: ${path}${id}`);
+    const currentPath = history.location.pathname;
+    const expectedPath = `${path}${id}`;
+    
+    // Solo evaluar si estamos en la ruta de tickets
+
+
+    if (currentPath.includes('/tickets')) {
+      const isInChat = checkIsInChat(currentPath, path, id);
+      setIsInChat(isInChat);
+      console.log(`isInChat: ${isInChat}, currentPath: ${currentPath}, expectedPath: ${expectedPath}`);
+    } else {
+      setIsInChat(false); // No estamos en la ruta de tickets
+    }
   }, [history.location.pathname, path, id]);
 
   // Contar los mensajes no leídos para este ticket
