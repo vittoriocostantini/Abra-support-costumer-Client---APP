@@ -31,11 +31,11 @@ interface IonItemButton {
 // Array de objetos que siguen la estructura de la interfaz IonItemButton
 const itemButtons: IonItemButton[] = [
   { label: 'Notificaciones', icon: notifications, onClick: () => console.log('Notificaciones clicked'), className: 'item-notificaciones' },
-  { label: 'Privacidad & seguridad', icon: lockClosed, onClick: () => console.log('Privacidad clicked'), route: '/sub-pages/Privacity', className: 'item-privacidad' },
-  { label: 'Idioma', icon: language, onClick: () => console.log('Idioma clicked'), route: '/sub-pages/Languaje', className: 'item-idioma' },
-  { label: 'Acerca de', icon: informationCircle, onClick: () => console.log('Acerca de clicked'), route: '/sub-pages/AboutUs', className: 'item-acerca-de' },
+  { label: 'Privacidad & seguridad', icon: lockClosed, onClick: () => console.log('Privacidad clicked'), route: '/settings/sub-pages/privacity', className: 'item-privacidad' },
+  { label: 'Idioma', icon: language, onClick: () => console.log('Idioma clicked'), route: '/settings/sub-pages/languaje', className: 'item-idioma' },
+  { label: 'Acerca de', icon: informationCircle, onClick: () => console.log('Acerca de clicked'), route: '/settings/sub-pages/about', className: 'item-acerca-de' },
   { label: 'Cerrar sesión', icon: logOut, onClick: () => console.log('Cerrar sesión clicked'), className: 'item-cerrar-sesion' },
-  { label: 'Feedback', icon: documentText, onClick: () => console.log('Enviar feedback clicked'), route: '/sub-pages/Feedback', className: 'item-feedback' },
+  { label: 'Feedback', icon: documentText, onClick: () => console.log('Enviar feedback clicked'), route: '/settings/sub-pages/feedback', className: 'item-feedback' },
   
 ];
 
