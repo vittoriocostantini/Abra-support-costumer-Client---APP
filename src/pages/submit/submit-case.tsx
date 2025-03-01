@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { IonContent, 
   IonHeader, 
   IonTitle, 
@@ -31,6 +31,9 @@ const SubmitCase: React.FC = () => {
   const [icon, setIcon] = useState<string>('');
   const [showToast, setShowToast] = useState(false);
   const [loading, setLoading] = useState(false);
+  const platformScrollRef = useRef<{ resetState: () => void }>(null);
+  const [notes, setNotes] = useState('');
+  const [description, setDescription] = useState('');
 
   useIonViewDidEnter(() => {
     showTabBar();
@@ -45,7 +48,12 @@ const SubmitCase: React.FC = () => {
     setLoading(true);
     await addTicket(title, icon);
     console.log('Nuevo ticket creado:', title, icon);
-    setLoading(false);
+    setTitle(''); // Limpiar el título
+    setIcon(''); // Limpiar el icono
+    setNotes(''); // Limpiar las notas
+    setDescription(''); // Limpiar la descripción
+    setLoading(false); // Desactivar el loading
+    platformScrollRef.current?.resetState(); // Resetear el estado del componente PlatformScrollSubmit
   };
 
   return (
@@ -75,14 +83,14 @@ const SubmitCase: React.FC = () => {
               onIonChange={(e) => setTitle(e.detail.value!)}
             ></IonInput>
           </IonItem>
-          <PlatformScrollSubmit onSelectIcon={setIcon} />
+          <PlatformScrollSubmit ref={platformScrollRef} onSelectIcon={setIcon} reset={!icon} />
           <IonItem>
             <IonLabel position="stacked">Descripción</IonLabel>
-            <IonTextarea required></IonTextarea>
+            <IonTextarea required value={description} onIonChange={(e) => setDescription(e.detail.value!)}></IonTextarea>
           </IonItem>
           <IonItem>
             <IonLabel position="stacked">Notas</IonLabel>
-            <IonTextarea></IonTextarea>
+            <IonTextarea value={notes} onIonChange={(e) => setNotes(e.detail.value!)}></IonTextarea>
           </IonItem>
           <IonItem>
             <IonBadge className='badge-file' >Tips</IonBadge>
