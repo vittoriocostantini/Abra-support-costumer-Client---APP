@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef, useImperativeHandle } from 'react';
 import { IonItem, IonLabel, IonSelect, IonSelectOption, IonIcon, IonButton, IonButtons } from '@ionic/react';
 import { apps } from 'ionicons/icons';
 import ModalApps from './modal-apps/modal-apps';
@@ -6,13 +6,24 @@ import './platform-scroll-submit.css';
 
 interface PlatformScrollSubmitProps {
     onSelectIcon: (icon: string) => void;
+    reset: boolean;
 }
 
-const PlatformScrollSubmit: React.FC<PlatformScrollSubmitProps> = ({ onSelectIcon }) => {
+const PlatformScrollSubmit = forwardRef<{
+    resetState: () => void;
+}, PlatformScrollSubmitProps>(({ onSelectIcon, reset }, ref) => {
     const [showModal, setShowModal] = useState(false);
     const [selectedApp, setSelectedApp] = useState<string>('');
     const [selectedIcon, setSelectedIcon] = useState<string>(apps);
     const [selectedColor, setSelectedColor] = useState<string>('black');
+
+    useImperativeHandle(ref, () => ({
+        resetState: () => {
+            setSelectedApp('');
+            setSelectedIcon(apps);
+            setSelectedColor('black');
+        }
+    }));
 
     return (
         <IonItem>
@@ -32,7 +43,7 @@ const PlatformScrollSubmit: React.FC<PlatformScrollSubmitProps> = ({ onSelectIco
             />
         </IonItem>
     );
-};
+});
 
 export default PlatformScrollSubmit;
 
