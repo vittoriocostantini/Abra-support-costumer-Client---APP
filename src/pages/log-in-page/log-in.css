@@ -1,0 +1,70 @@
+*{
+    font-family:sans-serif;
+}
+
+
+.rounded-items-log-in {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 40%;
+    width: 100%;
+    position: absolute;
+    bottom: 5em;
+    background: var(--ion-content);
+    
+}
+
+/* Estilos para cada elemento redondo */
+.rounded-item-log {
+    width: 90%;
+    max-width: 300px;
+    margin: 10px 0;
+    border-radius: 25px !important; /* Bordes redondeados */
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid;
+    --background: var( --ion-content);
+}
+
+/* Cambiar el color de fondo al hacer hover */
+
+/* Estilos para el texto dentro de los elementos */
+.rounded-item-log ion-label {
+    font-size: 16px;
+  
+
+}
+
+.register-item-log {
+    --background: var(--register-color-background);
+      border:var(--register-color-background);
+
+}
+
+
+.google-logo { 
+    color: var(--app-item-google);
+}
+
+.apple-logo {
+    color: var(  --app-item-apple);
+}
+
+.content-login {
+    --background: var(  --ion-content);
+}
+
+.title-app {
+    text-align: center;
+    position: relative;
+}
+
+.log-in-account{
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    font-weight: bold;
+    height: 10px;    
+}
