@@ -84,7 +84,7 @@ const SettingsPage: React.FC = () => {
           </IonRouterLink>
         ))}
       </IonList>
-      <IonItem button detail={false} className='item-login' lines="none">
+      <IonItem button detail={false} className='item-login' lines="none" routerLink='/sign-up-page/'>
       <IonIcon icon={logIn} size='large' slot="start"></IonIcon>
         <IonLabel>Iniciar sesión</IonLabel>
         </IonItem>

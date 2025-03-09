@@ -7,6 +7,7 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-boton-send-case-active: #86b888 !important; /* Color secundario */
   --ion-color-boton-file: #80a6ff !important; /* Color principal */
   --ion-color-boton-file-active: #6688c4 !important; /* Color secundario */
+  --ion-color-boton-back: #000000 !important;
 
   /* Colores iconos de agent history */
   --ion-color-icon-history: #328fec !important; /* Color principal */
@@ -60,9 +61,14 @@ http://ionicframework.com/docs/theming/ */
   --app-item-docker: #2496ED;
   --app-item-appstore: #0D96F6;
 
+/* variables de log in */
+
+--register-color-background: #9ddba0;
 
 
+/* variables de sign in */
 
+--background-color-input: #d8d8d8;
 }
 
 
