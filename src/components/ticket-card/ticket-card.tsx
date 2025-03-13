@@ -45,6 +45,7 @@ const TicketCard: React.FC<TicketsProduct> = ({
   const [localIsArchived, setIsArchived] = useState(isArchived);
   const [isVisible, setIsVisible] = useState(true);
   const [isInChat, setIsInChat] = useState(false);
+  const [currentStatus, setCurrentStatus] = useState(status); // Añadir estado para el status
 
   // Referencias
   const history = useHistory();
@@ -80,17 +81,20 @@ const TicketCard: React.FC<TicketsProduct> = ({
     const currentPath = history.location.pathname;
     const expectedPath = `${path}${id}`;
     
-    // Solo evaluar si estamos en la ruta de tickets
-
-
     if (currentPath.includes('/tickets')) {
       const isInChat = checkIsInChat(currentPath, path, id);
       setIsInChat(isInChat);
       console.log(`isInChat: ${isInChat}, currentPath: ${currentPath}, expectedPath: ${expectedPath}`);
     } else {
-      setIsInChat(false); // No estamos en la ruta de tickets
+      setIsInChat(false);
     }
   }, [history.location.pathname, path, id]);
+
+  useEffect(() => {
+    if (messages.length > 0) {
+      setCurrentStatus('En Proceso'); // Actualizar el estado cuando hay mensajes
+    }
+  }, [messages]);
 
   // Contar los mensajes no leídos para este ticket
   const unreadCount = countUnreadMessages(messages, id, isInChat);
@@ -122,7 +126,7 @@ const TicketCard: React.FC<TicketsProduct> = ({
           <IonLabel className="ticket-status">
             <div className="status-text">
               <h3 className="ticket-number"><IonIcon icon={ellipse}/>{number}</h3>
-              <StatusIndicator status={status} />
+              <StatusIndicator status={currentStatus} /> {/* Usar currentStatus */}
               <h3 className="agent-name"><IonIcon icon={ellipse}/><IonIcon icon={headsetOutline}/>{agentName}</h3>
             </div>
           </IonLabel>
