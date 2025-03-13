@@ -30,3 +30,13 @@
     margin: 0;
 
   }
+
+  .archived-badge {
+    background-color: #ff7474;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 10px;
+  }
