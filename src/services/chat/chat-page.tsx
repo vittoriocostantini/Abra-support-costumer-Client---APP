@@ -24,7 +24,7 @@ import { sendMessageHandler } from '../../hooks/chat/send-message/send-message';
 import { useScrollToBottom } from '../../hooks/chat/utils/chat-utils';
 import useResetTextarea from '../../hooks/chat/chat-input/use-reset-textarea';
 import { loadMessages } from '../../hooks/chat/storage-load-messages/storage-load-messages';
-
+import { useMessageStatus } from '../../hooks/chat/message-status/message-status';
 
 // ChatPage es el componente principal de la página de chat
 const ChatPage: React.FC = () => {
@@ -96,12 +96,15 @@ const ChatPage: React.FC = () => {
     // Este hook se encarga de desplazar el contenedor de mensajes hacia abajo cuando se agrega un nuevo mensaje
     useScrollToBottom(messagesEndRef, messages);
 
+    // Use the new hook to update ticket status when a new message is detected
+    useMessageStatus(messages, chatId);
+
     return (
         <IonPage className='chat-page'>
             <IonHeader className='header-chat' translucent>
                 <IonToolbar className='toolbar-header'>
                     <IonButtons slot="start">
-                        <IonButton slot="start" onClick={() => window.history.back()} fill="clear">
+                        <IonButton className="back-button" slot="start" onClick={() => window.history.back()} fill="clear">
                             <IonIcon icon={chevronBack} size="large"/>
                         </IonButton>
                     </IonButtons>

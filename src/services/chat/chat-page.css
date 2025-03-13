@@ -94,4 +94,6 @@
     position: absolute;
 }
 
-/* chat-page.css */
+.back-button {
+    --color: #000;
+}
