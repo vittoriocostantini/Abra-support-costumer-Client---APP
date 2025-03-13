@@ -11,7 +11,6 @@ import {
     IonButton,
     IonText,
     IonList,
-    IonBackButton,
     IonCheckbox,
     IonBadge,
 } from '@ionic/react';
@@ -41,11 +40,13 @@ const SignUp: React.FC = () => {
 
     // Función para manejar cambios en los inputs
     const handleInputChange = (e: CustomEvent) => {
-        const target = e.target as HTMLInputElement;
-        const { name, value, type, checked } = target;
+        // Obtenemos el nombre y valor directamente del evento
+        const { name } = e.target as HTMLInputElement;
+        const value = 'checked' in e.detail ? e.detail.checked : e.detail.value;
+        
         setFormData((prevData) => ({
             ...prevData,
-            [name]: type === 'checkbox' ? checked : value,
+            [name]: value,
         }));
     };
 
@@ -74,6 +75,12 @@ const SignUp: React.FC = () => {
                 animationClass: animationIn,
             });
         }, 300); // Duración de la animación
+    };
+
+    // Add email validation function
+    const isValidEmail = (email: string) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
     };
 
     return (
@@ -108,7 +115,7 @@ const SignUp: React.FC = () => {
                                     shape="round"
                                     type="button"
                                     onClick={() => changeStep('next')}
-                                    disabled={!formData.email}
+                                    disabled={!formData.email || !isValidEmail(formData.email)}
                                 >
                                     Siguiente
                                 </IonButton>
