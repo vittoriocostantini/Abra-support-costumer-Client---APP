@@ -17,4 +17,4 @@
      }, [setUpdatedTickets, tickets]);
    };
 
-   export default useInterval;
+   export default useInterval; 
