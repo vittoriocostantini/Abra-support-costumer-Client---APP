@@ -1,7 +1,6 @@
 import { Ticket as TicketModel } from './models/ticket-model'; // Importar la interfaz Ticket como TicketModel
-import { getAgentByName, getRandomAgent } from '../agents-data/agent-data';
+import { getRandomAgent } from '../agents-data/agent-data';
 import { IonIcon } from '@ionic/react';
-import { share } from 'ionicons/icons';
 
 // Define la interfaz para un ticket
 interface Ticket {
@@ -57,3 +56,4 @@ export const updateTicketIcon = (id: string, newIcon: string) => {
 };
 
 // Aquí puedes agregar más funciones relacionadas con los tickets si es necesario
+
