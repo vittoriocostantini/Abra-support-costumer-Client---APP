@@ -1,39 +1,31 @@
-// Importaciones de React y componentes de Ionic
 import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonToolbar, IonPage, IonTitle, IonIcon, IonItem, IonLabel, IonRouterLink } from '@ionic/react';
-import { useIonViewDidEnter } from '@ionic/react';
+import { IonContent, IonHeader, IonToolbar, IonPage, IonTitle, IonIcon, IonItem, IonLabel, IonRouterLink, IonBadge, useIonViewDidEnter } from '@ionic/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { archiveOutline } from 'ionicons/icons';
 
-// Importaciones de componentes internos
 import FilterOption from '../../components/filter-option/filter-option';
 import TicketCard from '../../components/ticket-card/ticket-card';
 
-// Importaciones de servicios y utilidades
 import { showTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
 import { tickets } from '../../tickets-store/tickets-store';
 import { loadMessages } from '../../hooks/chat/storage-load-messages/storage-load-messages';
 import { getArchivedTickets } from '../../services/ticket-options/ticket-archive';
 import useInterval from '../../hooks/tickets/message-update-interval-badge/use-interval';
 
-// Importaciones de estilos
 import '../../theme/page-themes/ticket-page.css';
 
-// Componente principal de la página de tickets
 const TicketsPage: React.FC = () => {
-  // Estado para el título enviado y los tickets actualizados
   const [submittedTitle, setSubmittedTitle] = useState('');
   const [updatedTickets, setUpdatedTickets] = useState(tickets);
   const [archivedTickets, setArchivedTickets] = useState(getArchivedTickets());
   const [popLayout, setPopLayout] = useState(false);
+  const [filterStatus, setFilterStatus] = useState<string | null>(null);
 
-  // Efecto que se ejecuta cuando la vista se ha cargado
   useIonViewDidEnter(() => {
     showTabBar();
     setUpdatedTickets(tickets);
   });
 
-  // Intervalo para actualizar los mensajes de los tickets
   useInterval(setUpdatedTickets, tickets);
 
   const handleArchiveTicket = (ticketId: string) => {
@@ -57,13 +49,14 @@ const TicketsPage: React.FC = () => {
 
   const isTicketValid = (ticket: any) => ticket && ticket.id;
 
-  // Renderizado del componente
+  const filteredTickets = filterStatus ? updatedTickets.filter(ticket => ticket.status === filterStatus) : updatedTickets;
+
   return (
     <IonPage>
       <IonHeader className='header-tickets' class='ion-no-border'>
         <IonToolbar className='toolbar-tickets'>
           <IonTitle>Chats</IonTitle>
-          <FilterOption />
+          <FilterOption onFilterSelect={setFilterStatus} />
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen className='content-tickets'>
@@ -77,11 +70,11 @@ const TicketsPage: React.FC = () => {
             <IonItem button detail={false} className='archived-tickets'>
               <IonIcon size='small' icon={archiveOutline} />
               <IonLabel className='archive-label'>Archivados</IonLabel>
-              <p>0</p>
+                  <IonBadge className="archived-badge">Mensaje nuevo</IonBadge>
             </IonItem>
           </IonRouterLink>
           <AnimatePresence mode={popLayout ? "popLayout" : "sync"}>
-            {updatedTickets.map((ticket, index) => {
+            {filteredTickets.map((ticket, index) => {
               if (!isTicketValid(ticket)) return null;
               const isArchived = archivedTickets.some(archivedTicket => archivedTicket && archivedTicket.id === ticket.id);
               return (
@@ -125,7 +118,4 @@ const TicketsPage: React.FC = () => {
   );
 };
 
-// Exportación del componente
 export default TicketsPage;
-
-/* tickets-page.tsx */
