@@ -8,12 +8,13 @@ import { getCurrentTime } from '../../../services/time-service/time-service';
 
 // Este componente se encarga de renderizar la lista de mensajes y escuchar los eventos de teclado
 interface MessagesListProps {
-    messages: { text: string; sender: string }[];
+    messages: { text: string; sender: string; replyingTo?: string }[]; // Update to include replyingTo
     messagesEndRef: React.RefObject<HTMLDivElement>;
     keyboardHeight: number;
+    setReplyMessage: (msg: string) => void;
 }
 
-const MessagesList: React.FC<MessagesListProps> = ({ messages, messagesEndRef, keyboardHeight }) => {
+const MessagesList: React.FC<MessagesListProps> = ({ messages, messagesEndRef, keyboardHeight, setReplyMessage }) => {
     const containerRef = useRef<HTMLIonListElement | null>(null);
     const footerRef = useRef<HTMLIonFooterElement | null>(null);
     
@@ -33,7 +34,7 @@ const MessagesList: React.FC<MessagesListProps> = ({ messages, messagesEndRef, k
     // Usar el nuevo hook para desplazar al fondo
 
     return (
-        <div className='message-container-chat' style={{ height: '100%' }}>
+        <div className='message-container' style={{ height: '100%' }}>
             <IonList className="messages-list" ref={containerRef} id="message-list">
                 <div className='chat-letter'>
                     <p><IonIcon size='small' icon={lockClosed} />Los mensajes se cifran de extremo a extremo
@@ -46,15 +47,15 @@ const MessagesList: React.FC<MessagesListProps> = ({ messages, messagesEndRef, k
                         key={index} 
                         isOwnMessage={msg.sender === 'Yo'}
                         timestamp={getCurrentTime()}
+                        setReplyMessage={setReplyMessage}
+                        replyingTo={msg.replyingTo} // Pass the replyingTo property
                     />
                 ))}
-                <div ref={messagesEndRef} style={{ paddingBottom: '100px' }} /> 
+                <div ref={messagesEndRef} style={{ paddingBottom: '100px',width: '100%' }} ></div>
             </IonList>
-            
         </div>
     );
 };
 
 export default MessagesList;
 
-/* message-list.tsx */

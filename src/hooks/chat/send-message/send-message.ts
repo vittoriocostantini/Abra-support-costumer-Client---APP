@@ -3,7 +3,7 @@ import { saveMessagesToLocalStorage, loadMessagesFromLocalStorage } from '../sto
 
 // Este hook se encarga de enviar un mensaje y simular una respuesta automática
 // Define types for better readability and type safety
-type Message = { text: string; sender: string; chatId: string; unread?: number };
+type Message = { text: string; sender: string; chatId: string; unread?: number; replyingTo?: string }; // Add replyingTo
 
 // Utility function to check if a message is empty
 const isMessageEmpty = (message: string) => !message.trim();
@@ -30,12 +30,23 @@ export const sendMessageHandler = (
     chatId: string, // ID del chat
     setMessages: React.Dispatch<React.SetStateAction<Message[]>>, // Función para actualizar los mensajes
     setMessage: React.Dispatch<React.SetStateAction<string>>, // Función para actualizar el texto del mensaje
-    inputRef: React.RefObject<HTMLTextAreaElement> // Referencia al elemento de entrada de texto
-    
+    inputRef: React.RefObject<HTMLTextAreaElement>, // Referencia al elemento de entrada de texto
+    replyMessage: string | null = null // Add replyMessage parameter with default value
 ) => {
     if (isMessageEmpty(message)) return;
 
-    const newMessage: Message = { text: message, sender: 'currentUser', chatId: chatId };
+    const newMessage: Message = { 
+        text: message, 
+        sender: 'currentUser', 
+        chatId: chatId,
+        replyingTo: replyMessage || undefined // Convert null to undefined
+    
+    };
+    if (replyMessage) {
+        console.log('Sending reply to message:', replyMessage);
+        console.log('Reply content:', message);
+    }
+    
     sendMessage(newMessage, setMessages);
 
     setMessage('');
