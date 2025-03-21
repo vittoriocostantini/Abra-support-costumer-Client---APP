@@ -1,33 +1,20 @@
 
+.agent-info {
+    display: flex; /* Activa Flexbox */
+    align-items: center; /* Alinea verticalmente los elementos al centro */
+
+}
+
 .chat-avatar {
-    background-color: #e0dede;
-    position: relative;
-    margin-bottom: 5px;
+    margin-left: 50px; /* Elimina el margen derecho del avatar */
+    padding: 8px;
 }
 
 .agent-title {
-    font-size: 16px;
     font-weight: bold;
-    left: 1%;
-    top: 60%;
-    padding: 10px;
-}
-
-.agent-info {
-    display: flex;
-    align-items: center;
-    position: relative;
-    flex-direction: column;
-    margin-left: -15%;
-    max-width: 90%;
-    margin-bottom: 15px;
-}
-
-.header-chat {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    
+    margin-left: 0; /* Elimina el margen izquierdo del párrafo */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    font-size: 14px;
 }
 
 .chat-footer {

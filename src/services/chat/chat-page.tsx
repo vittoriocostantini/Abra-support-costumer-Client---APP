@@ -8,25 +8,27 @@ import { IonPage,
     IonButtons, 
     IonButton, 
     IonIcon, 
-    IonAvatar } from '@ionic/react';
+    IonAvatar, 
+    IonChip,
+    IonLabel} from '@ionic/react';
 import { send,  chevronBack, closeCircle, closeCircleOutline } from 'ionicons/icons';
 import './chat-page.css';
 // Import the animation CSS
-import '../../components/chat-utils/message-reply/reply-animation.css';
-import { handleFilesSelected } from '../../hooks/chat/file-upload/file-handlers';
-import ChatInput from '../../components/chat-utils/chat-input/chat-input';
-import FileUploadButton from '../../components/chat-utils/file-upload-service/file-upload-service';
-import MessagesList from '../../components/chat-utils/message-container/message-list';
+import '../../handlers/message-reply/reply-animation.css';
+import { handleFilesSelected } from '../../handlers/file-upload/file-handlers';
+import ChatInput from '../../components/chat-input/chat-input';
+import FileUploadButton from '../../functions/messages/file-upload/file-upload-service';
+import MessagesList from '../../components/message-container/message-list';
 import '../../theme/variables.css';
 import { hideTabBar } from '../tabs/tab-bar-view/tabbar-view';
-import { useKeyboardListeners } from '../../hooks/chat/keyboard/keyboard-handler';
+import { useKeyboardListeners } from '../../handlers/keyboard/keyboard-handler';
 import { useParams, useLocation } from 'react-router-dom';
-import { getAgentByName } from '../../agents-data/agent-data';
-import { sendMessageHandler } from '../../hooks/chat/send-message/send-message';
-import { useScrollToBottom } from '../../hooks/chat/utils/chat-utils';
+import { getAgentByName } from '../../data/agents-data/agent-data';
+import { sendMessageHandler } from '../../handlers/send-message/send-message';
+import { useScrollToBottom } from '../../utils/chat/scroll-to-bottom/scroll-to-bottom';
 import useResetTextarea from '../../hooks/chat/chat-input/use-reset-textarea';
-import { loadMessages } from '../../hooks/chat/storage-load-messages/storage-load-messages';
-import { useMessageStatus } from '../../hooks/chat/message-status/message-status';
+import { loadMessages } from '../../utils/chat/storage-load-messages/storage-load-messages';
+import { useMessageStatus } from '../../functions/messages/message-status/message-status';
 
 // ChatPage es el componente principal de la página de chat
 const ChatPage: React.FC = () => {
@@ -107,27 +109,28 @@ const ChatPage: React.FC = () => {
 
     return (
         <IonPage className='chat-page'>
-            <IonHeader className='header-chat' translucent>
+            <IonHeader className='header-chat' translucent={true} class='ion-no-border'>
                 <IonToolbar className='toolbar-header'>
                     <IonButtons slot="start">
                         <IonButton className="back-button" slot="start" onClick={() => window.history.back()} fill="clear">
                             <IonIcon icon={chevronBack} size="large"/>
                         </IonButton>
-                    </IonButtons>
+                    </IonButtons>   
                     <div className='agent-info'>
                         <IonAvatar slot="start" className="chat-avatar" >
                             <img src={avatarUrl} alt="Avatar del agente" />
                         </IonAvatar>
-                        <IonTitle className='agent-title'>{agentName}</IonTitle>
+                        <p className='agent-title'>{agentName}</p>
                     </div>
                 </IonToolbar>
             </IonHeader>
-              <IonContent id='chat-container' fullscreen scrollY={false}  >
+              <IonContent id='chat-container' fullscreen scrollY={false}>
                 <MessagesList 
                     messages={messages} 
                     messagesEndRef={messagesEndRef as React.RefObject<HTMLDivElement>} 
                     keyboardHeight={keyboardHeight.current}
-                    setReplyMessage={setReplyMessage} // Pass the setReplyMessage function
+                    setReplyMessage={setReplyMessage}
+                    agentName={agentName} // Pass the agent's name
                 />
               </IonContent>
             <IonFooter className="chat-footer" id='chat-footer' class='ion-no-border' translucent={true} >
