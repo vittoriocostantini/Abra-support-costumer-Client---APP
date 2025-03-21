@@ -1,0 +1,159 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Comienza invisible */
+        transform: translateY(10px); /* Se desplaza hacia abajo */
+    }
+    to {
+        opacity: 1; /* Termina visible */
+        transform: translateY(0); /* Regresa a su posición original */
+    }
+}
+
+.message-bubble {
+    padding: 5px; /* Aumentar el padding para mayor espacio */
+    min-width: 20%;
+    max-width: 75%; /* Ajustar el ancho máximo */
+    background: #f5f5f5;
+    border-radius: 10px; /* Cambiar el radio para que sea más redondeado */
+    position: relative;
+    margin: 5px; /* Ajustar el margen para separación */
+    transition: transform 0.1s ease; /* Reduced transition duration for faster swipe */
+    animation: fadeIn 0.3s ease;
+    font-size: 14px; /* Ajustar el tamaño de fuente */
+     /* Ajustar la altura máxima para permitir más espacio */
+}
+
+.message-text {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    width: 100%;
+    margin: 0px !important;
+}
+
+.message-text p {
+    font-weight: 500;
+    margin: 0;
+}
+
+
+.message-bubble.swiping {
+    transform: translateX(var(--swipe-distance, 0px));
+}
+
+.message-bubble.swiped {
+    transform: translateX(100px); /* Adjust the value as needed for the swipe effect */
+}
+
+.sent {
+    background-color:var(  --ion-chat-bubble-sent); /* Color de fondo para mensajes enviados */
+    align-self: flex-end; /* Alinear a la derecha */
+    margin-right: 10px;
+    border-bottom-right-radius: 0; /* Quitar redondeo en la esquina donde va el rabillo */
+}
+
+.sent::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: -12px; /* Adjusted for larger tail */
+    width: 20px; /* Increased width */
+    height: 22px; /* Increased height */
+    background: radial-gradient(circle at top right, transparent 18px, var(--ion-chat-bubble-sent) 0);
+    z-index: -1;
+}
+
+.received {
+    background-color: var(--ion-chat-bubble-received); /* Color de fondo para mensajes recibidos */
+    align-self: flex-start; /* Alinear a la izquierda */
+    margin-left: 10px;
+    border-bottom-left-radius: 0; /* Quitar redondeo en la esquina donde va el rabillo */
+}
+
+.received::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -12px; /* Adjusted for larger tail */
+    width: 20px; /* Increased width */
+    height: 22px; /* Increased height */
+    background: radial-gradient(circle at top left, transparent 18px, var(--ion-chat-bubble-received) 0);
+    z-index: -1;
+}
+
+.timestamp {
+    font-size: 10px; /* Tamaño de fuente para el timestamp */
+    color: #999; /* Color del timestamp */
+    margin-top: 2px; /* Espacio entre el mensaje y el timestamp */
+    text-align: right; /* Alinear el timestamp a la derecha */
+}
+
+.sent-timestamp {
+    align-self: flex-end; /* Alinear a la derecha */
+}
+
+.received-timestamp {
+    align-self: flex-start; /* Alinear a la izquierda */
+}
+
+
+.bubble-reply-badge {
+    padding: 5px;
+    border-radius: 5px;
+    margin: 0px;
+    height: auto;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+            line-clamp: 3; 
+    -webkit-box-orient: vertical;
+  
+}
+
+.bubble-reply-badge p {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+            line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    margin: 0px;
+    position: relative;
+    padding: 3px; /* Ajustar el padding si es necesario */
+    font-size: 13px;
+    color: #595858;
+   
+}
+
+.sent-badge {
+    background-color: #b5e393; /* Color de fondo para mensajes enviados */
+    border-right: 5px #5f8f39 solid;
+
+}
+
+.received-badge {
+    background-color: #83bbd3; /* Color de fondo para mensajes recibidos */
+    border-left: 5px #427287 solid;
+
+}
+
+.agent-name {
+    font-weight: bold;
+    color: #427287;
+    margin: 5px;
+}
+
+.button-expand-message {
+    position: absolute;
+    width: 80px;
+    bottom: -4px;
+    right: 60px;
+
+}
+
+
+.button-expand-message p {
+    margin: 0px;
+    padding: 0px;
+    font-weight: bold;
+    color: #427287;
+}
