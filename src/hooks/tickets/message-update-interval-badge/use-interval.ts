@@ -1,6 +1,6 @@
    // src/hooks/useInterval.ts
    import { useEffect } from 'react';
-   import { loadMessages } from '../../../hooks/chat/storage-load-messages/storage-load-messages';
+   import { loadMessages } from '../../../utils/chat/storage-load-messages/storage-load-messages';
 
    const useInterval = (setUpdatedTickets: React.Dispatch<React.SetStateAction<any[]>>, tickets: any[]) => {
      useEffect(() => {

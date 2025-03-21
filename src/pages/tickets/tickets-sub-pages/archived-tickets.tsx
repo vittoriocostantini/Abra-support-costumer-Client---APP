@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton } from '@ionic/react';
 import { hideTabBar } from '../../../services/tabs/tab-bar-view/tabbar-view';
 import './archived-tickets.css';
-import { getArchivedTickets, unarchiveTicket } from '../../../services/ticket-options/ticket-archive';
+import { getArchivedTickets, unarchiveTicket } from '../../../functions/tickets/ticket-options/ticket-archive';
 import TicketCard from '../../../components/ticket-card/ticket-card';
-import { loadMessages } from '../../../hooks/chat/storage-load-messages/storage-load-messages';
+import { loadMessages } from '../../../utils/chat/storage-load-messages/storage-load-messages';
 import { AnimatePresence, motion } from 'framer-motion';
 import useInterval from '../../../hooks/tickets/message-update-interval-badge/use-interval'; // Import the useInterval hook
-import { useMessageStatus } from '../../../hooks/chat/message-status/message-status'; // Import the hook
+import { useMessageStatus } from '../../../functions/messages/message-status/message-status';
 
 const ArchivedTickets: React.FC = () => {
     hideTabBar();

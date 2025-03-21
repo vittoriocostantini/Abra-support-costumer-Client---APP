@@ -1,4 +1,4 @@
-import { tickets } from '../../../tickets-store/tickets-store'; // Importar tickets
+import { tickets } from "../../../stores/tickets-store/tickets-store";
 
 // Función para actualizar el estado de un ticket
 export const updateTicketStatus = (chatId: string, newStatus: string) => {

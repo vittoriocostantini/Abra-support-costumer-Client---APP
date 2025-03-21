@@ -5,7 +5,7 @@ import AgentHistory from '../../components/agent-history/agent-history';
 import AgentList from '../../components/agent-history/agent-list/agent-list';
 import { useIonViewDidEnter } from '@ionic/react';
 import { showTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
-import { agentsData } from '../../agents-data/agent-data';
+import { agentsData } from '../../data/agents-data/agent-data';
 
 
 const ContactPage: React.FC = () => {

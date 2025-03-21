@@ -7,9 +7,9 @@ import FilterOption from '../../components/filter-option/filter-option';
 import TicketCard from '../../components/ticket-card/ticket-card';
 
 import { showTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
-import { tickets } from '../../tickets-store/tickets-store';
-import { loadMessages } from '../../hooks/chat/storage-load-messages/storage-load-messages';
-import { getArchivedTickets } from '../../services/ticket-options/ticket-archive';
+import { tickets } from '../../stores/tickets-store/tickets-store';
+import { loadMessages } from '../../utils/chat/storage-load-messages/storage-load-messages';
+import { getArchivedTickets } from '../../functions/tickets/ticket-options/ticket-archive';
 import useInterval from '../../hooks/tickets/message-update-interval-badge/use-interval';
 
 import '../../theme/page-themes/ticket-page.css';
@@ -70,7 +70,6 @@ const TicketsPage: React.FC = () => {
             <IonItem button detail={false} className='archived-tickets'>
               <IonIcon size='small' icon={archiveOutline} />
               <IonLabel className='archive-label'>Archivados</IonLabel>
-                  <IonBadge className="archived-badge">Mensaje nuevo</IonBadge>
             </IonItem>
           </IonRouterLink>
           <AnimatePresence mode={popLayout ? "popLayout" : "sync"}>

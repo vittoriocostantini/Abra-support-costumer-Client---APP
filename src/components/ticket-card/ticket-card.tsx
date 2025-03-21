@@ -18,12 +18,12 @@ import { trash, archive, ellipse, headsetOutline, reader } from 'ionicons/icons'
 import './ticket-card.css';
 import '../../theme/variables.css';
 import StatusIndicator from '../status-indicator/status-indicator';
-import { countUnreadMessages } from '../../hooks/chat/message-notification/message-count';
-import { TicketsProduct } from './models/ticket-model';
-import { resetUnreadMessages } from '../../hooks/chat/reset-service-messages/reset-unread-messages';
+import { countUnreadMessages } from '../../functions/messages/message-notification/message-count';
+import { TicketsProduct } from '../../models/ticket-store/ticket-model-store';
+import { resetUnreadMessages } from '../../functions/messages/reset-service-messages/reset-unread-messages';
 import { getCurrentTime } from '../../services/time-service/time-service';
 import { handleArchiveClick } from '../../hooks/tickets/archive-option/archive-click-handler';
-import { checkIsInChat } from '../../hooks/chat/route-chat-check/route-check-chat';
+import { checkIsInChat } from '../../functions/tickets/route-chat-check/route-check-chat';
 
 const TicketCard: React.FC<TicketsProduct> = ({
   id,

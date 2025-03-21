@@ -30,7 +30,7 @@ const ModalApps: React.FC<ModalAppsProps> = ({ isOpen, onDidDismiss, onSelectApp
       className='modal-add'
       initialBreakpoint={1} 
       breakpoints={[0, 1]}
-      backdropDismiss={false}
+      backdropDismiss={true}
     >
       <IonHeader>
         <IonToolbar>
