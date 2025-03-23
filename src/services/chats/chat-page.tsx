@@ -2,39 +2,35 @@ import React, { useRef, useState, useEffect } from 'react';
 import { IonPage, 
     IonHeader, 
     IonToolbar, 
-    IonTitle, 
     IonContent, 
     IonFooter, 
     IonButtons, 
     IonButton, 
     IonIcon, 
     IonAvatar, 
-    IonChip,
-    IonLabel} from '@ionic/react';
-import { send,  chevronBack, closeCircle, closeCircleOutline } from 'ionicons/icons';
+    } from '@ionic/react';
+import { send,  chevronBack, closeCircleOutline } from 'ionicons/icons';
 import './chat-page.css';
-// Import the animation CSS
-import '../../handlers/message-reply/reply-animation.css';
-import { handleFilesSelected } from '../../handlers/file-upload/file-handlers';
-import ChatInput from '../../components/chat-input/chat-input';
-import FileUploadButton from '../../functions/messages/file-upload/file-upload-service';
-import MessagesList from '../../components/message-container/message-list';
 import '../../theme/variables.css';
+import '../../handlers/message-reply/reply-animation.css';
+import { handleFilesSelected } from '../../handlers/file-upload-button/file-handlers';
+import ChatInput from '../../components/chat-input/chat-input';
+import FileUploadButton from '../../functions/chats/file-upload/file-upload-service';
+import MessagesList from '../../components/message-container/message-list';
 import { hideTabBar } from '../tabs/tab-bar-view/tabbar-view';
 import { useKeyboardListeners } from '../../handlers/keyboard/keyboard-handler';
 import { useParams, useLocation } from 'react-router-dom';
-import { getAgentByName } from '../../data/agents-data/agent-data';
 import { sendMessageHandler } from '../../handlers/send-message/send-message';
 import { useScrollToBottom } from '../../utils/chat/scroll-to-bottom/scroll-to-bottom';
 import useResetTextarea from '../../hooks/chat/chat-input/use-reset-textarea';
 import { loadMessages } from '../../utils/chat/storage-load-messages/storage-load-messages';
 import { useMessageStatus } from '../../functions/messages/message-status/message-status';
+import { handleChatIconAddClick } from '../../functions/chats/button-add-event-handler/button-add-event';
 
 // ChatPage es el componente principal de la página de chat
 const ChatPage: React.FC = () => {
     const location = useLocation<{ agentName: string; avatarUrl: string }>();
     const { agentName, avatarUrl } = location.state || { agentName: 'Nombre del agente', avatarUrl: 'https://ionicframework.com/docs/img/demos/avatar.svg' };
-    const { name: agentNameFromData, avatar: agentAvatar } = getAgentByName(agentName);
     const { id: chatId } = useParams<{ id: string }>();
     const inputRef = useRef<HTMLTextAreaElement>(null!);
     const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
@@ -45,7 +41,6 @@ const ChatPage: React.FC = () => {
     const [isSendButtonVisible, setSendButtonVisible] = useState(false);
     const resetTextarea = useResetTextarea(inputRef);
     const [replyMessage, setReplyMessage] = useState<string | null>(null);
-    // Add this new state for controlling animation
     const [isReplyExiting, setIsReplyExiting] = useState(false);
     
     // Este hook se encarga de ocultar la barra de pestañas
@@ -80,16 +75,11 @@ const ChatPage: React.FC = () => {
     const handleButtonClick = (event: React.MouseEvent<HTMLIonButtonElement>) => {
         event.preventDefault();
         
-        // Verificar si el botón de carga de archivos fue el que se hizo clic
-        if (event.currentTarget.classList.contains('chat-icon-add')) {
-            // Si es el botón de carga de archivos, solo enfocar el textarea
-            if (isKeyboardVisible && inputRef.current) {
-                inputRef.current.focus();
-            }
-            document.getElementById('fileInput')?.click(); // Abre el selector de archivos
+        // Use the new function to handle chat-icon-add click
+        if (handleChatIconAddClick(event, isKeyboardVisible, inputRef)) {
             return; // Salir de la función para evitar el envío del mensaje
         }
-    
+        
         // Lógica para enviar el mensaje
         sendMessageHandler(message, chatId, setMessages, setMessage, inputRef, replyMessage);
         resetTextarea();
