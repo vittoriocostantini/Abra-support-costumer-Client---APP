@@ -11,7 +11,8 @@ interface MessageBubbleProps {
     sender: string;
     setReplyMessage: (msg: string) => void;
     replyingTo?: string;
-    agentName: string; // Add this prop for the agent's name
+    agentName: string;
+    isLastInGroup?: boolean; // Añadir esta nueva prop
 }
 
 const MessageBubble: React.FC<MessageBubbleProps> = ({ 
@@ -21,7 +22,8 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
     sender, 
     setReplyMessage,
     replyingTo,
-    agentName
+    agentName,
+    isLastInGroup = false // Valor por defecto false
 }) => {
     const { swipeDistance, handleTouchStart, handleTouchMove, handleTouchEnd } = useSwipeToReply(isOwnMessage, message, setReplyMessage);
     const [displayedTimestamp] = useState(getCurrentTime());
@@ -37,7 +39,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
 
     return (
         <div 
-            className={`message-bubble ${isOwnMessage ? 'sent' : 'received'} ${swipeDistance !== 0 ? 'swiping' : ''}`}
+            className={`message-bubble ${isOwnMessage ? 'sent' : 'received'} ${swipeDistance !== 0 ? 'swiping' : ''} ${isLastInGroup ? 'last-message' : ''}`}
             style={{ '--swipe-distance': `${swipeDistance}px` } as React.CSSProperties}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}

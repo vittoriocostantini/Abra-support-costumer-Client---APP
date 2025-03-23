@@ -16,10 +16,10 @@
     background: #f5f5f5;
     border-radius: 10px; /* Cambiar el radio para que sea más redondeado */
     position: relative;
-    margin: 5px; /* Ajustar el margen para separación */
     transition: transform 0.1s ease; /* Reduced transition duration for faster swipe */
     animation: fadeIn 0.3s ease;
     font-size: 14px; /* Ajustar el tamaño de fuente */
+    margin: 2px;
      /* Ajustar la altura máxima para permitir más espacio */
 }
 
@@ -46,38 +46,58 @@
 }
 
 .sent {
-    background-color:var(  --ion-chat-bubble-sent); /* Color de fondo para mensajes enviados */
-    align-self: flex-end; /* Alinear a la derecha */
+    background-color: var(--ion-chat-bubble-sent);
+    align-self: flex-end;
     margin-right: 10px;
-    border-bottom-right-radius: 0; /* Quitar redondeo en la esquina donde va el rabillo */
+    border-bottom-right-radius: 10px;
 }
 
 .sent::after {
+    display: none;
+}
+
+.sent.last-message {
+    border-bottom-right-radius: 0;
+}
+
+.sent.last-message::after {
+    display: block;
     content: "";
     position: absolute;
     bottom: 0;
-    right: -12px; /* Adjusted for larger tail */
-    width: 20px; /* Increased width */
-    height: 22px; /* Increased height */
-    background: radial-gradient(circle at top right, transparent 18px, var(--ion-chat-bubble-sent) 0);
+    right: -10px;
+    width: 10px;
+    height: 30px;
+    border-bottom-right-radius: 12px;
+    background: radial-gradient(circle at top right, transparent 25px, var(--ion-chat-bubble-sent) 0);
     z-index: -1;
 }
 
 .received {
-    background-color: var(--ion-chat-bubble-received); /* Color de fondo para mensajes recibidos */
-    align-self: flex-start; /* Alinear a la izquierda */
+    background-color: var(--ion-chat-bubble-received);
+    align-self: flex-start;
     margin-left: 10px;
-    border-bottom-left-radius: 0; /* Quitar redondeo en la esquina donde va el rabillo */
+    border-bottom-left-radius: 10px;
 }
 
 .received::after {
+    display: none;
+}
+
+.received.last-message {
+    border-bottom-left-radius: 0;
+}
+
+.received.last-message::after {
+    display: block;
     content: "";
     position: absolute;
     bottom: 0;
-    left: -12px; /* Adjusted for larger tail */
-    width: 20px; /* Increased width */
-    height: 22px; /* Increased height */
-    background: radial-gradient(circle at top left, transparent 18px, var(--ion-chat-bubble-received) 0);
+    left: -10px;
+    width: 10px;
+    height: 30px;
+    border-bottom-left-radius: 12px;
+    background: radial-gradient(circle at top left, transparent 25px, var(--ion-chat-bubble-received) 0);
     z-index: -1;
 }
 

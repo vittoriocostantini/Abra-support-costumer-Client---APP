@@ -2,9 +2,9 @@
     height: 100%;
     overflow-y: auto; /* Ensure only vertical scrolling */
     overflow-x: hidden; /* Prevent horizontal scrolling */
-    margin: 0;
-    padding: 0;
-    background: url('../../assets/Chats/ChatsBackground.png');
+    margin: 0px;
+    padding: 0px;
+    background: url('../../assets/chats/chats-background.png');
     display: flex; /* Usar flexbox para organizar las burbujas */
     flex-direction: column; /* Alinear las burbujas en columna */
     align-items: flex-start; /* Alinear a la izquierda por defecto */
@@ -33,5 +33,7 @@
     flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
     height: 100%; /* Ocupa el 100% de la altura del contenedor padre */
     overflow: hidden; /* Oculta cualquier desbordamiento */
+    margin: 0px;
+    padding: 0px;
 }
 

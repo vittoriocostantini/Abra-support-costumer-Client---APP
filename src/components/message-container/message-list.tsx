@@ -12,7 +12,7 @@ interface MessagesListProps {
     messagesEndRef: React.RefObject<HTMLDivElement>;
     keyboardHeight: number;
     setReplyMessage: (msg: string) => void;
-    agentName: string; // Add this prop for the agent's name
+    agentName: string;
 }
 
 const MessagesList: React.FC<MessagesListProps> = ({ messages, messagesEndRef, keyboardHeight, setReplyMessage, agentName }) => {
@@ -32,7 +32,6 @@ const MessagesList: React.FC<MessagesListProps> = ({ messages, messagesEndRef, k
         return () => clearTimeout(timer); // Limpiar el timer al desmontar
     }, []); // Se ejecuta solo una vez al montar el componente
 
-    // Usar el nuevo hook para desplazar al fondo
 
     return (
         <div className='message-container' style={{ height: '100%' }}>
@@ -41,19 +40,25 @@ const MessagesList: React.FC<MessagesListProps> = ({ messages, messagesEndRef, k
                     <p><IonIcon size='small' icon={lockClosed} />Los mensajes se cifran de extremo a extremo
                     para garantizar la privacidad y la seguridad de la conversación.</p>
                 </div>
-                {messages.map((msg, index) => (
-                    <MessageBubble 
-                        message={msg.text} 
-                        sender={msg.sender} 
-                        key={index} 
-                        isOwnMessage={msg.sender === 'Yo'}
-                        timestamp={getCurrentTime()}
-                        setReplyMessage={setReplyMessage}
-                        replyingTo={msg.replyingTo}
-                        agentName={agentName} // Pass the agent's name
-                    />
-                ))}
-                <div ref={messagesEndRef} style={{ paddingBottom: '100px',width: '100%' }} ></div>
+                {messages.map((msg, index) => {
+                    const isLastInGroup = index === messages.length - 1 || 
+                                        messages[index + 1].sender !== msg.sender;
+                    
+                    return (
+                        <MessageBubble 
+                            message={msg.text} 
+                            sender={msg.sender} 
+                            key={index} 
+                            isOwnMessage={msg.sender === 'Yo'}
+                            timestamp={getCurrentTime()}
+                            setReplyMessage={setReplyMessage}
+                            replyingTo={msg.replyingTo}
+                            agentName={agentName}
+                            isLastInGroup={isLastInGroup}
+                        />
+                    );
+                })}
+                <div ref={messagesEndRef} style={{ paddingBottom: '60px',width: '100%' }} ></div>
             </IonList>
         </div>
     );
