@@ -1,5 +1,5 @@
-import React, { useState, forwardRef, useImperativeHandle } from 'react';
-import { IonItem, IonLabel, IonSelect, IonSelectOption, IonIcon, IonButton, IonButtons } from '@ionic/react';
+import React, { useState, forwardRef, useImperativeHandle, useRef } from 'react';
+import { IonItem, IonLabel, IonIcon } from '@ionic/react';
 import { apps } from 'ionicons/icons';
 import ModalApps from './modal-apps/modal-apps';
 import './platform-scroll-submit.css';
@@ -12,10 +12,10 @@ interface PlatformScrollSubmitProps {
 const PlatformScrollSubmit = forwardRef<{
     resetState: () => void;
 }, PlatformScrollSubmitProps>(({ onSelectIcon, reset }, ref) => {
-    const [showModal, setShowModal] = useState(false);
     const [selectedApp, setSelectedApp] = useState<string>('');
     const [selectedIcon, setSelectedIcon] = useState<string>(apps);
     const [selectedColor, setSelectedColor] = useState<string>('black');
+    const modalRef = useRef<HTMLIonModalElement>(null);
 
     useImperativeHandle(ref, () => ({
         resetState: () => {
@@ -28,17 +28,17 @@ const PlatformScrollSubmit = forwardRef<{
     return (
         <IonItem>
             <IonLabel id='label-apps'>{selectedApp || 'Selecciona una app'}</IonLabel>
-            <IonItem button lines="none" detail={false} onClick={() => setShowModal(true)}>
+            <IonItem button lines="none" detail={false} id="open-apps-modal">
                 <IonIcon size="large" slot="" icon={selectedIcon} className='icon-apps' id='icon-apps' style={{ color: selectedColor }}></IonIcon>
             </IonItem>
             <ModalApps 
-                isOpen={showModal} 
-                onDidDismiss={() => setShowModal(false)}
+                modalRef={modalRef}
                 onSelectApp={(appLabel, appIcon, appColor) => {
                     setSelectedApp(appLabel);
                     setSelectedIcon(appIcon);
                     setSelectedColor(appColor);
                     onSelectIcon(appIcon);
+                    modalRef.current?.dismiss();
                 }}
             />
         </IonItem>

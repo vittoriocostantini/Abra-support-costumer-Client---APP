@@ -83,4 +83,10 @@
 
 .app-item-appstore ion-icon{
   color: var(--app-item-appstore) !important;
-}       
+}
+
+
+/* Añade esto a tu archivo CSS existente */
+.hide-backdrop::part(backdrop) {
+  display: none;
+}

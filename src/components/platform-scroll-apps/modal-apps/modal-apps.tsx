@@ -1,36 +1,42 @@
-import React from 'react';
-import { IonModal, 
+import React, { RefObject, useState } from 'react';
+import { 
+  IonModal, 
   IonHeader, 
   IonToolbar, 
   IonTitle, 
   IonContent, 
   IonItem, 
   IonLabel, 
-  IonIcon,
-  IonPage
+  IonIcon
 } from '@ionic/react';
 
 // Importa la interfaz y la lista de aplicaciones
-import { AppItem, appItems } from './models/app-models';
+import { AppItem, appItems } from '../../../models/submit-modal-apps/app-models';
 import './modal-apps.css';
 
-
 interface ModalAppsProps {
-  isOpen: boolean;
-  onDidDismiss: () => void;
+  modalRef: RefObject<HTMLIonModalElement>;
   onSelectApp: (appLabel: string, appIcon: string, appColor: string) => void;
 }
 
-const ModalApps: React.FC<ModalAppsProps> = ({ isOpen, onDidDismiss, onSelectApp }) => {
+const ModalApps: React.FC<ModalAppsProps> = ({ modalRef, onSelectApp }) => {
+  const [isHideBackdrop, setIsHideBackdrop] = useState(false);
+  
+  // Función para manejar la selección de app y cerrar el modal
+  const handleAppSelection = (app: AppItem) => {
+    onSelectApp(app.label, app.icon, app.color);
+  };
+
   return (
-    <IonPage>
     <IonModal 
-      isOpen={isOpen} 
-      onDidDismiss={onDidDismiss}
-      className='modal-add'
+      ref={modalRef}
+      trigger="open-apps-modal"
+      className={`modal-add ${isHideBackdrop ? 'hide-backdrop' : ''}`}
       initialBreakpoint={1} 
       breakpoints={[0, 1]}
       backdropDismiss={true}
+      onWillDismiss={() => setIsHideBackdrop(true)}
+      onDidDismiss={() => setIsHideBackdrop(false)}
     >
       <IonHeader>
         <IonToolbar>
@@ -44,7 +50,7 @@ const ModalApps: React.FC<ModalAppsProps> = ({ isOpen, onDidDismiss, onSelectApp
             button 
             lines="none" 
             detail={false} 
-            onClick={() => onSelectApp(app.label, app.icon, app.color)}
+            onClick={() => handleAppSelection(app)}
             className={`app-item-${app.label.toLowerCase()}`}
           >
             <IonLabel>{app.label}</IonLabel>
@@ -53,10 +59,8 @@ const ModalApps: React.FC<ModalAppsProps> = ({ isOpen, onDidDismiss, onSelectApp
         ))}
       </IonContent>
     </IonModal>
-    </IonPage>
   );
 };
 
 export default ModalApps;
-
 /* modal-apps.tsx */
