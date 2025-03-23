@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton } from '@ionic/react';
 import { hideTabBar } from '../../../services/tabs/tab-bar-view/tabbar-view';
 import './archived-tickets.css';
-import { getArchivedTickets, unarchiveTicket } from '../../../functions/tickets/ticket-options/ticket-archive';
+import { getArchivedTickets, unarchiveTicket } from '../../../functions/tickets/archive-unarchive-options/ticket-archive-unarchive-functions';
 import TicketCard from '../../../components/ticket-card/ticket-card';
 import { loadMessages } from '../../../utils/chat/storage-load-messages/storage-load-messages';
 import { AnimatePresence, motion } from 'framer-motion';

@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { IonContent, IonHeader, IonToolbar, IonPage, IonTitle, IonIcon, IonItem, IonLabel, IonRouterLink, IonBadge, useIonViewDidEnter } from '@ionic/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { archiveOutline } from 'ionicons/icons';
-
 import FilterOption from '../../components/filter-option/filter-option';
 import TicketCard from '../../components/ticket-card/ticket-card';
-
 import { showTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
 import { tickets } from '../../stores/tickets-store/tickets-store';
 import { loadMessages } from '../../utils/chat/storage-load-messages/storage-load-messages';
-import { getArchivedTickets } from '../../functions/tickets/ticket-options/ticket-archive';
+import { getArchivedTickets } from '../../functions/tickets/archive-unarchive-options/ticket-archive-unarchive-functions';
 import useInterval from '../../hooks/tickets/message-update-interval-badge/use-interval';
 
 import '../../theme/page-themes/ticket-page.css';

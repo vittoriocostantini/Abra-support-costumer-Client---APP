@@ -5,7 +5,7 @@ import TicketsPage from '../../pages/tickets/tickets-page';
 import ContactPage from '../../pages/contact/contact-page';
 import SubmitCase from '../../pages/submit/submit-case';
 import SettingsPage from '../../pages/settings/settings-page';
-import ChatPage from '../chat/chat-page';
+import ChatPage from '../chats/chat-page';
 import Privacity from '../../pages/settings/settings-sub-pages/privacity/privacity';
 import Languaje from '../../pages/settings/settings-sub-pages/lang/languaje';
 import AboutUs from '../../pages/settings/settings-sub-pages/about/about-us';
