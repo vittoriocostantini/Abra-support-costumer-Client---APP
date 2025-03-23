@@ -1,7 +1,6 @@
 import { simulateAutoResponse } from '../../hooks/chat/auto-response/auto-response'; // Importar la función de respuesta automática
 import { saveMessagesToLocalStorage, loadMessagesFromLocalStorage } from '../../utils/chat/storage-utils/storage-utils';
 
-// Este hook se encarga de enviar un mensaje y simular una respuesta automática
 // Define types for better readability and type safety
 type Message = { text: string; sender: string; chatId: string; unread?: number; replyingTo?: string }; // Add replyingTo
 

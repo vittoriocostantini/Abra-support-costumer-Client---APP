@@ -22,7 +22,7 @@ import { countUnreadMessages } from '../../functions/messages/message-notificati
 import { TicketsProduct } from '../../models/ticket-store/ticket-model-store';
 import { resetUnreadMessages } from '../../functions/messages/reset-service-messages/reset-unread-messages';
 import { getCurrentTime } from '../../services/time-service/time-service';
-import { handleArchiveClick } from '../../hooks/tickets/archive-option/archive-click-handler';
+import { handleArchiveClick } from '../../handlers/archive-click-option/ticket-archive-click-handler';
 import { checkIsInChat } from '../../functions/tickets/route-chat-check/route-check-chat';
 
 const TicketCard: React.FC<TicketsProduct> = ({
@@ -92,14 +92,13 @@ const TicketCard: React.FC<TicketsProduct> = ({
 
   useEffect(() => {
     if (messages.length > 0) {
-      setCurrentStatus('En Proceso'); // Actualizar el estado cuando hay mensajes
+      setCurrentStatus('En Proceso'); 
     }
   }, [messages]);
 
   // Contar los mensajes no leídos para este ticket
   const unreadCount = countUnreadMessages(messages, id, isInChat);
 
-  // Renderizado
   return (
     <IonItemSliding ref={itemSlidingRef} className={`ticket-card ${!isVisible ? 'fade-out' : 'fade-in'}`}>
       <IonItem detail={false} className="ticket-card" onClick={handleCardClick} id="ticketCard">
