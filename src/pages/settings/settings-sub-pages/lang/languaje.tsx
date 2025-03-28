@@ -70,7 +70,6 @@ const languageOptions: LanguageOption[] = [
   { code: 'sr', label: 'Serbio' },
   { code: 'hr', label: 'Croata' },
   { code: 'bs', label: 'Bosnio' },
-  { code: 'tl', label: 'Tagalo' },
   { code: 'jw', label: 'Javanés' },
   { code: 'su', label: 'Sundanés' },
   { code: 'xh', label: 'Xhosa' },
@@ -89,10 +88,10 @@ const Languaje: React.FC<LanguajeProps> = ({ initialLanguage = '' }) => { // Uso
   hideTabBar();
   return (
     <IonPage>
-      <IonHeader translucent  >
+      <IonHeader   class='ion-no-border'>
         <IonToolbar>
           <IonButtons slot="start"  >
-            <IonBackButton defaultHref="/settings" text="" />
+            <IonBackButton defaultHref="/settings" text="Ajustes" />
           </IonButtons>
           <IonTitle>Idioma</IonTitle>
         </IonToolbar>

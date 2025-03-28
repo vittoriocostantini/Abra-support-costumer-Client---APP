@@ -41,3 +41,14 @@
   --background: var(--ion-color-boton-file) !important;
   --background-activated: var(--ion-color-boton-file-active) !important;
 }
+
+.toast-submit{
+  --background: var(--ion-color-toast) !important;
+  --background-activated: var(--ion-color-toast) !important;
+}
+
+ion-toast.toast-submit::part(message){
+  color: #000;
+  font-size: 13px;
+  font-weight: bold;
+}

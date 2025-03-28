@@ -1,14 +1,15 @@
-.AgentList ion-label {
-    padding-top: 10px;
-    padding-bottom: 10px;
+.option-prefer {
+  background-color: var(--ion-color-prefer) !important;
 }
 
-.AgentList ion-icon {
-    font-size: 25px;
+.option-prefer:active {
+  background-color: var(--ion-color-prefer-active) !important;
 }
 
-.agent-list-item {
-    margin: 10px !important;
-
+.option-block {
+  background-color: var(--ion-color-block) !important;
 }
 
+.option-block:active {
+  background-color: var(--ion-color-block-active) !important;
+}

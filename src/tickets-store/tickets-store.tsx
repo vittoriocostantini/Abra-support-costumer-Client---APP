@@ -1,7 +1,6 @@
 import { Ticket as TicketModel } from './models/ticket-model'; // Importar la interfaz Ticket como TicketModel
-import { getAgentByName, getRandomAgent } from '../agents-data/agent-data';
+import { getRandomAgent } from '../agents-data/agent-data';
 import { IonIcon } from '@ionic/react';
-import { share } from 'ionicons/icons';
 
 // Define la interfaz para un ticket
 interface Ticket {
@@ -31,7 +30,7 @@ export const addTicket = (title: string, icon: string) => {
     number: `#${tickets.length + 1}`,
     status: 'Pendiente', // Cambiado a "Pendiente"
     date: formattedDate, // Usar la fecha formateada
-    path: '/Tickets/chat/',
+    path: '/tickets/chat/',
     avatarUrl: randomAgent.avatar, // Usar el avatar del agente aleatorio
     agentName: randomAgent.name,   // Usar el nombre del agente aleatorio
     imageAlt: 'Avatar',
@@ -57,3 +56,4 @@ export const updateTicketIcon = (id: string, newIcon: string) => {
 };
 
 // Aquí puedes agregar más funciones relacionadas con los tickets si es necesario
+

@@ -1,0 +1,42 @@
+.content-tickets  {
+    --background: var(--ion-content) !important;
+  }
+  
+ 
+  .archive-label {
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 20px;
+   
+  }
+
+  .archived-tickets {
+    --background: var(--ion-header) !important;
+    display: block;
+
+  }
+
+  .archived-tickets p {
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 20px;
+    color: #ff7474;
+  }
+
+
+  .tickets-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+  }
+
+  .archived-badge {
+    background-color: #ff7474;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 10px;
+  }

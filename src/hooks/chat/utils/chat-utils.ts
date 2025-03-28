@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import { scrollToBottom as scrollToBottomUtil, handleScroll } from '../scroll-utils/scroll-utils';
+import { loadMessages } from '../storage-load-messages/storage-load-messages';
 
 // Este hook se encarga de desplazar el contenedor de mensajes hacia abajo cuando se agrega un nuevo mensaje
 export const scrollToBottom = (messagesEndRef: React.RefObject<HTMLDivElement>) => {
@@ -9,42 +11,39 @@ export const scrollToBottom = (messagesEndRef: React.RefObject<HTMLDivElement>) 
 
 export const useScrollToBottom = (messagesEndRef: React.RefObject<HTMLDivElement>, messages: any[]) => {
     useEffect(() => {
-        const scrollToBottom = ( ) => {
+        const scrollToBottomCallback = () => {
             if (messagesEndRef.current) {
-                messagesEndRef.current.scrollIntoView({ behavior: "smooth"  });
+                scrollToBottomUtil(messagesEndRef.current);
             }
         };
-        
 
         // Llama a scrollToBottom cada vez que los mensajes cambien
-        scrollToBottom();
+        scrollToBottomCallback();
 
         // Agregar un evento de desplazamiento para detectar el fondo
-        const handleScroll = () => {
+        const handleScrollEvent = () => {
             if (messagesEndRef.current) {
-                const { scrollTop, scrollHeight, clientHeight } = messagesEndRef.current;
-                if (scrollTop + clientHeight >= scrollHeight) {
-                    scrollToBottom();
-                }
+                handleScroll(messagesEndRef.current, scrollToBottomCallback);
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScrollEvent);
 
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('scroll', handleScrollEvent);
         };
     }, [messages]);
 };
 
 // Este hook se encarga de cargar los mensajes guardados en localStorage
-export const loadMessages = (chatId: string): { text: string; sender: string; chatId: string; unread?: number }[] => {
-    const savedMessages = localStorage.getItem(`chatMessages_${chatId}`);
-    
-    // Borrar los mensajes después de 10 segundos
-    // setTimeout(() => {
-    //     localStorage.removeItem(`chatMessages_${chatId}`);
-    // }, 10000);
+// export const loadMessages = (chatId: string): { text: string; sender: string; chatId: string; unread?: number }[] => {
+//     const savedMessages = localStorage.getItem(`chatMessages_${chatId}`);
+//     
+//     // Borrar los mensajes después de 10 segundos
+//     // setTimeout(() => {
+//     //     localStorage.removeItem(`chatMessages_${chatId}`);
+//     // }, 10000);
+//
+//     return savedMessages ? JSON.parse(savedMessages) : [];
+// };
 
-    return savedMessages ? JSON.parse(savedMessages) : [];
-};

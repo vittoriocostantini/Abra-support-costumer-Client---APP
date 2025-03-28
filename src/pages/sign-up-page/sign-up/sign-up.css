@@ -1,0 +1,115 @@
+.content-sign {
+    --background: var(--ion-content);
+}
+
+ ion-back-button {
+    color: var(--ion-color-boton-back);
+}
+
+.list-sign-up {
+    margin: 0px 20px 0px 20px;
+    background: var(--ion-content) !important;
+
+}
+
+.list-sign-up ion-item {
+    width: 10;
+    --background: var(--background-color-input);
+    border-radius: 10px;
+}
+
+
+.list-sign-up ion-title {
+    padding: 0px;
+}
+
+
+.list-sign-up h2 {
+    font-size: small;
+    width: 50%;
+    margin: 2px;
+    font-weight: bold;
+}
+
+.list-sign-up ion-button {
+    display: block;
+    --background: var(--ion-color-boton-send-case);
+    --background-activated: var(--ion-color-boton-send-case-active);
+    margin: 20px 120px 0px 120px;
+
+}
+
+.title-gmail {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+/* Animaciones para transiciones */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.slide-in-right {
+    animation: slideInRight 0.3s ease-in-out;
+}
+
+.slide-out-left {
+    animation: slideOutLeft 0.3s ease-in-out;
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.3s ease-in-out;
+}
+
+.slide-out-right {
+    animation: slideOutRight 0.3s ease-in-out;
+}
+
+.item-terms {
+    margin: 0px 0px 10px 0px;
+}
+
+.back-button-icon {
+    color: black;
+    font-size: 27px;
+}

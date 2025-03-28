@@ -1,0 +1,41 @@
+.content-sign {
+    --background: var(--ion-content);
+}
+
+ ion-back-button {
+    color: var(--ion-color-boton-back);
+}
+
+.list-login {
+    margin: 0px 20px 0px 20px;
+    background: var(--ion-content) !important;
+
+}
+
+.list-login ion-item {
+    width: 10;
+    --background: var(--background-color-input);
+    border-radius: 10px;
+}
+
+
+
+
+.list-login ion-button {
+    display: block;
+    width: 150px;
+    --background: var(--ion-color-boton-send-case);
+    --background-activated: var(--ion-color-boton-send-case-active);
+    margin: 20px 110px 0px 110px;
+
+}
+
+.title-password, .title-gmail-log {
+    font-size: x-large;
+    font-weight: bold;
+
+}
+
+.item-gmail-log {
+    margin-bottom: 10px;
+}

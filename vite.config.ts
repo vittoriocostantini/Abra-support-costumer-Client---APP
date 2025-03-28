@@ -19,5 +19,9 @@ export default defineConfig({
 
   build: {
     // ... otras configuraciones de construcción ...
+  },
+
+  optimizeDeps: {
+    exclude: ['@capacitor/core'],
   }
 })

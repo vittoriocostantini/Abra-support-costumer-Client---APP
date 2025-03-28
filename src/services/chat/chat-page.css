@@ -1,3 +1,4 @@
+
 .chat-avatar {
     background-color: #e0dede;
     position: relative;
@@ -34,19 +35,25 @@
     display: flex;
     position: absolute;
     bottom: 0;
-    border-top: 1px solid #e0e0e0;
-    padding: 0px 0px 0px 0px;
     background-color: #ffffff;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+
 }
 
 .toolbar-footer {
     height: auto;
     position: absolute;
     display: flex;
+    padding: 0px;
     bottom: 0px;
     width: 100%;
+    border-left: 4px solid #333333; /* border */
     align-items: center;
+    --padding-top: 0px !important;
+    --padding-start: 0px !important;
+    --padding-right: 0px !important;
+    --padding-end: 0px !important;
+
 }
 
 
@@ -56,9 +63,8 @@
     position: static;
     display: flex;
     align-items: center;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding: 0px 0px 0px 0px;
+    margin: 0px;
+    padding: 0px ;
     justify-content: center;
     align-items: center;
 }
@@ -67,26 +73,24 @@
     opacity: 0;
     transition: opacity 0.3s ease;
     position: absolute;
-    right:0px;
+    right:5px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0;
-    bottom: 22px;
-    padding: 5px;
-    --border-radius: 90%;
-    height: 40px;
-    width: 40px;
+    bottom: 27px;
+ 
+    --background: #000;
+    --background-activated: #3d3d3d;
 
 
 }
 
 .chat-button-send.visible {
     opacity: 1;
-    bottom: 22px;
+    bottom: 27px;
     position: absolute;
     display: flex;
-    --border-radius: 90%;
     margin: 0;
 
 }
@@ -96,4 +100,32 @@
     position: absolute;
 }
 
-/* chat-page.css */
+.back-button {
+    --color: #000;
+}
+
+.reply-message {
+    border-top-left-radius: 5px;
+    font-size: 14px;
+    color: #333; /* Dark text color */
+    max-width: 100%;
+    overflow: hidden;
+    display: flex;
+}
+
+
+.reply-message p {
+    text-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 10px;
+    width: 70%;
+ 
+}
+
+.close-reply {
+    left: 50px;
+    position: relative;
+    --color: #000;
+}

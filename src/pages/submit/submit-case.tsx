@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { IonContent, 
   IonHeader, 
   IonTitle, 
@@ -14,9 +14,11 @@ import { IonContent,
   IonIcon, 
   IonBadge, 
   IonList,
+  IonToast,
+  IonLoading
 } from '@ionic/react';
 import '../../theme/page-themes/submit-case.css';
-import PlatformScrollSubmit from '../../components/platform-scroll-apps/platform-scroll-submit';
+import PlatformScrollSubmit from '../../components/platform-scroll-apps/platform-scroll-submit-app';
 import { attachOutline, bulb, share } from 'ionicons/icons';
 import { showTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
 import { useIonViewDidEnter } from '@ionic/react';
@@ -26,28 +28,44 @@ import { updateTicketTitle, updateTicketIcon, addTicket } from '../../tickets-st
 
 const SubmitCase: React.FC = () => {
   const [title, setTitle] = useState('');
-  const [icon, setIcon] = useState<string>(share);
+  const [icon, setIcon] = useState<string>('');
+  const [showToast, setShowToast] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const platformScrollRef = useRef<{ resetState: () => void }>(null);
+  const [notes, setNotes] = useState('');
+  const [description, setDescription] = useState('');
 
   useIonViewDidEnter(() => {
     showTabBar();
   });
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    addTicket(title, icon);
+    if (!icon) {
+      setShowToast(true);
+      return;
+    }
+    setLoading(true);
+    await addTicket(title, icon);
     console.log('Nuevo ticket creado:', title, icon);
+    setTitle(''); // Limpiar el título
+    setIcon(''); // Limpiar el icono
+    setNotes(''); // Limpiar las notas
+    setDescription(''); // Limpiar la descripción
+    setLoading(false); // Desactivar el loading
+    platformScrollRef.current?.resetState(); // Resetear el estado del componente PlatformScrollSubmit
   };
 
   return (
     <IonPage>
-      <IonHeader className='header-search' translucent>
+      <IonHeader className='header-search' >
         <IonToolbar className='toolbar-search'>
           <IonButtons slot="start">
         </IonButtons>
           <IonTitle className='title-search'>Crea tu caso</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen className='content-submit'> 
+      <IonContent fullscreen className='content-submit' scrollY={false}> 
         <IonHeader collapse='condense' className='header-case'>
           <IonToolbar>
             <IonTitle size='large'>Crea tu caso</IonTitle>
@@ -56,7 +74,7 @@ const SubmitCase: React.FC = () => {
         <form className='form-search' onSubmit={handleSubmit}>
           <IonList className='list-container'>
           <IonItem>
-            <IonLabel position="stacked">Title</IonLabel>
+            <IonLabel position="stacked">Título</IonLabel>
             <IonInput
               type="text"
               required
@@ -65,14 +83,14 @@ const SubmitCase: React.FC = () => {
               onIonChange={(e) => setTitle(e.detail.value!)}
             ></IonInput>
           </IonItem>
-          <PlatformScrollSubmit onSelectIcon={setIcon} />
+          <PlatformScrollSubmit ref={platformScrollRef} onSelectIcon={setIcon} reset={!icon} />
           <IonItem>
             <IonLabel position="stacked">Descripción</IonLabel>
-            <IonTextarea required></IonTextarea>
+            <IonTextarea required value={description} onIonChange={(e) => setDescription(e.detail.value!)}></IonTextarea>
           </IonItem>
           <IonItem>
             <IonLabel position="stacked">Notas</IonLabel>
-            <IonTextarea></IonTextarea>
+            <IonTextarea value={notes} onIonChange={(e) => setNotes(e.detail.value!)}></IonTextarea>
           </IonItem>
           <IonItem>
             <IonBadge className='badge-file' >Tips</IonBadge>
@@ -95,6 +113,18 @@ const SubmitCase: React.FC = () => {
           <IonButton  type="submit" className='button-submit'>Enviar</IonButton>
         </form>
       </IonContent>
+      <IonToast
+        className='toast-submit'
+        position="top"
+        isOpen={showToast}
+        onDidDismiss={() => setShowToast(false)}
+        message="Por favor, selecciona una aplicación antes de enviar."
+        duration={2000}
+      />
+      <IonLoading
+        isOpen={loading}
+        message={'Enviando...'}
+      />
     </IonPage>
   );
 }
