@@ -112,7 +112,7 @@
 }
 
 .close-reply {
-    left: 50px;
-    position: relative;
+    position: absolute;
+    right: 0;
     --color: #000;
 }

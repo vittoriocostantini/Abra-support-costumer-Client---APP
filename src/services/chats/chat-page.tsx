@@ -129,7 +129,7 @@ const ChatPage: React.FC = () => {
                         <div className={`reply-message ${isReplyExiting ? 'reply-message-exit' : 'reply-message-animate'}`}>
                             <p>{replyMessage}</p>
                             <IonButton 
-                                slot='end' 
+                                slot="end"
                                 fill='clear' 
                                 className='close-reply' 
                                 onClick={() => {

@@ -17,7 +17,7 @@ const Privacity: React.FC = () => {
           <IonTitle>Privacidad</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className='privacity-content' scrollY={false}> 
+      <IonContent className='privacity-content' scrollY={false} fullscreen> 
        <IonItem className='privacity-item' lines="none" detail={false} >
         <IonLabel className='privacity-label'>
           <p><IonIcon size='small'  icon={lockClosed} />Controla tu información personal y 
