@@ -18,8 +18,8 @@ import MessagesList from '../../components/chat-utils/message-container/message-
 import '../../theme/variables.css';
 import { hideTabBar } from '../tabs/tab-bar-view/tabbar-view';
 import { useKeyboardListeners } from '../../hooks/chat/keyboard/keyboard-handler';
-import { useParams } from 'react-router-dom';
-import { getAgentById } from '../../agents-data/agent-data';
+import { useParams, useLocation } from 'react-router-dom';
+import { getAgentByName } from '../../agents-data/agent-data';
 import { sendMessageHandler } from '../../hooks/chat/send-message/send-message';
 import { loadMessages, useScrollToBottom } from '../../hooks/chat/utils/chat-utils';
 import useResetTextarea from '../../hooks/chat/chat-input/use-reset-textarea';
@@ -27,8 +27,10 @@ import useResetTextarea from '../../hooks/chat/chat-input/use-reset-textarea';
 
 // ChatPage es el componente principal de la página de chat
 const ChatPage: React.FC = () => {
+    const location = useLocation<{ agentName: string; avatarUrl: string }>();
+    const { agentName, avatarUrl } = location.state || { agentName: 'Nombre del agente', avatarUrl: 'https://ionicframework.com/docs/img/demos/avatar.svg' };
+    const { name: agentNameFromData, avatar: agentAvatar } = getAgentByName(agentName);
     const { id: chatId } = useParams<{ id: string }>();
-    const { name: agentName, avatar: agentAvatar } = getAgentById(chatId);
     const inputRef = useRef<HTMLTextAreaElement>(null!);
     const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
     const [message, setMessage] = useState('');
@@ -107,7 +109,7 @@ const ChatPage: React.FC = () => {
                     </IonButtons>
                     <div className='agent-info'>
                         <IonAvatar slot="start" className="chat-avatar" >
-                            <img src={agentAvatar} alt="Avatar del agente"  />
+                            <img src={avatarUrl} alt="Avatar del agente" />
                         </IonAvatar>
                         <IonTitle className='agent-title'>{agentName}</IonTitle>
                         

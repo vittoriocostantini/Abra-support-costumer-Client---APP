@@ -1,3 +1,6 @@
+import { tickets } from '../../../tickets-store/tickets-store'; // Importar tickets
+import { updateTicketStatus } from '../../ticket-support/ticket-status'; // Importar la función para actualizar el estado
+
 // Este hook se encarga de enviar un mensaje y simular una respuesta automática
 export const sendMessage = (
     message: { text: string; sender: string; chatId: string }, 
@@ -16,7 +19,7 @@ export const sendMessage = (
                 localStorage.setItem(`chatMessages_${message.chatId}`, JSON.stringify(updatedMessages)); // Guardar en localStorage con chatId
                 return updatedMessages;
             });
-        }, 1000);
+        }, 10000);
     }
 };
 
@@ -30,6 +33,10 @@ export const sendMessageHandler = (
 ) => {
     const newMessage = { text: message, sender: 'currentUser', chatId: chatId };
     sendMessage(newMessage, setMessages);
+    
+    // Cambiar el estado del ticket a "En Proceso"
+    updateTicketStatus(chatId, 'En Proceso'); // Usar la nueva función
+
     setMessage(''); // Limpiar el mensaje
     if (inputRef.current) {
         inputRef.current.value = ''; // Limpiar el contenido

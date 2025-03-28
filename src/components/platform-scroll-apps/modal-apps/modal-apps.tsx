@@ -6,7 +6,8 @@ import { IonModal,
   IonContent, 
   IonItem, 
   IonLabel, 
-  IonIcon 
+  IonIcon,
+  IonPage
 } from '@ionic/react';
 
 // Importa la interfaz y la lista de aplicaciones
@@ -22,6 +23,7 @@ interface ModalAppsProps {
 
 const ModalApps: React.FC<ModalAppsProps> = ({ isOpen, onDidDismiss, onSelectApp }) => {
   return (
+    <IonPage>
     <IonModal 
       isOpen={isOpen} 
       onDidDismiss={onDidDismiss}
@@ -35,7 +37,7 @@ const ModalApps: React.FC<ModalAppsProps> = ({ isOpen, onDidDismiss, onSelectApp
           <IonTitle>Apps</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
+      <IonContent className='content-modal' scrollY={true}>
         {appItems.map((app, index) => (
           <IonItem 
             key={index} 
@@ -51,6 +53,7 @@ const ModalApps: React.FC<ModalAppsProps> = ({ isOpen, onDidDismiss, onSelectApp
         ))}
       </IonContent>
     </IonModal>
+    </IonPage>
   );
 };
 

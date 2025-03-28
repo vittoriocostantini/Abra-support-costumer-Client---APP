@@ -3,7 +3,7 @@
     overflow-y: auto;
     margin: 0;
     padding: 0;
-    background:  url('src/Assets/Chats/ChatsBackground.png');
+    background:  url('../../../assets/Chats/ChatsBackground.png');
     display: flex; /* Usar flexbox para organizar las burbujas */
     flex-direction: column; /* Alinear las burbujas en columna */
     align-items: flex-start; /* Alinear a la izquierda por defecto */

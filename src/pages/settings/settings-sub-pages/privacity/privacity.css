@@ -1,5 +1,7 @@
 
-
+.privacity-content{
+  --background: var(--ion-content) !important;
+}
 
 
 .privacity-item{

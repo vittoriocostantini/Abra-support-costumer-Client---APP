@@ -4,4 +4,33 @@
     border-top: 0 solid #000;
 }
 
+
+
+.button-case {
+  --color-focused: var(--ion-color-button-case) !important;
+  --color-selected: var(--ion-color-button-case) !important;
+  
+}
+
+.button-contact {
+  --color-focused: var(--ion-color-button-contact) !important;
+  --color-selected: var(--ion-color-button-contact) !important;
+  
+}
+
+.button-tickets {
+  --color-focused: var(--ion-color-button-tickets) !important;
+  --color-selected: var(--ion-color-button-tickets) !important;
+  
+}
+
+.button-settings {
+  --color-focused: var(--ion-color-button-settings) !important;
+  --color-selected: var(--ion-color-button-settings) !important;
+  
+}
+
+
+
+
 /* tab-bar.css */

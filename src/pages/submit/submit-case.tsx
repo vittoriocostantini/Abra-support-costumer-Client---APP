@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IonContent, 
   IonHeader, 
   IonTitle, 
@@ -17,40 +17,55 @@ import { IonContent,
 } from '@ionic/react';
 import '../../theme/page-themes/submit-case.css';
 import PlatformScrollSubmit from '../../components/platform-scroll-apps/platform-scroll-submit';
-import { attachOutline, bulb } from 'ionicons/icons';
+import { attachOutline, bulb, share } from 'ionicons/icons';
 import { showTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
 import { useIonViewDidEnter } from '@ionic/react';
+import { updateTicketTitle, updateTicketIcon, addTicket } from '../../tickets-store/tickets-store';
 
 
 
 const SubmitCase: React.FC = () => {
+  const [title, setTitle] = useState('');
+  const [icon, setIcon] = useState<string>(share);
+
   useIonViewDidEnter(() => {
     showTabBar();
   });
   
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    addTicket(title, icon);
+    console.log('Nuevo ticket creado:', title, icon);
+  };
+
   return (
     <IonPage>
       <IonHeader className='header-search' translucent>
         <IonToolbar className='toolbar-search'>
           <IonButtons slot="start">
-          <IonMenuButton></IonMenuButton>
         </IonButtons>
           <IonTitle className='title-search'>Crea tu caso</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent fullscreen className='content-submit'> 
         <IonHeader collapse='condense' className='header-case'>
           <IonToolbar>
             <IonTitle size='large'>Crea tu caso</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <form className='form-search'>
+        <form className='form-search' onSubmit={handleSubmit}>
           <IonList className='list-container'>
           <IonItem>
-            <IonLabel position="stacked">Sujeto</IonLabel>
-            <IonInput type="text" required></IonInput>
+            <IonLabel position="stacked">Title</IonLabel>
+            <IonInput
+              type="text"
+              required
+              className='title-input'
+              value={title}
+              onIonChange={(e) => setTitle(e.detail.value!)}
+            ></IonInput>
           </IonItem>
-          <PlatformScrollSubmit />
+          <PlatformScrollSubmit onSelectIcon={setIcon} />
           <IonItem>
             <IonLabel position="stacked">Descripción</IonLabel>
             <IonTextarea required></IonTextarea>
@@ -71,7 +86,7 @@ const SubmitCase: React.FC = () => {
               id="fileInput"
               style={{ display: 'none' }}
             />
-            <IonButton onClick={() => document.getElementById('fileInput')?.click()}>
+            <IonButton onClick={() => document.getElementById('fileInput')?.click()} className='button-file'>
               <IonIcon icon={attachOutline} size='large' />
             </IonButton>
           </IonItem>

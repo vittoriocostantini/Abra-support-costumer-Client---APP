@@ -7,6 +7,7 @@ import {
   IonContent,
   IonModal,
   IonIcon,
+  IonPage,
   IonItem,
   IonLabel,
   IonInput,
@@ -25,6 +26,7 @@ interface FeedbackFormProps {
 
 const FeedbackForm: React.FC<FeedbackFormProps> = ({ isOpen, onClose }) => {
   return (
+    <>
     <IonModal
       isOpen={isOpen}
       onDidDismiss={onClose}
@@ -81,15 +83,16 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ isOpen, onClose }) => {
         <IonList className='list-feedback'>
           <IonItem>
             <IonLabel>Incluir logs de sistemas</IonLabel>
-            <IonToggle slot="end" />
+            <IonToggle slot="end" color='success'/>
           </IonItem>
           <IonItem>
             <IonLabel>Incluir información de diagnóstico</IonLabel>
-            <IonToggle slot="end" />
+            <IonToggle slot="end" color='success'/>
           </IonItem>
         </IonList>
       </div>
     </IonModal>
+    </>
   );
 };
 

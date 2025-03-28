@@ -15,7 +15,7 @@ const AboutUs: React.FC = () => {
           <IonTitle>Acerca de</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen> 
+      <IonContent fullscreen className='content-about'> 
         <IonHeader collapse='condense'>
           <IonToolbar>
             <IonTitle size='large'>Acerca de</IonTitle>

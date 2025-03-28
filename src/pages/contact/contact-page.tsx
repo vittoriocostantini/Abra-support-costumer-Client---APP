@@ -13,16 +13,16 @@ const ContactPage: React.FC = () => {
   });
   return (
     <IonPage>
-      <IonHeader className='header-home' translucent >
+      <IonHeader className='header-home'  >
         <IonToolbar className='toolbar-home'>
-          <IonTitle className='title-contact'>Contacta a un agente</IonTitle>
+          <IonTitle  >Contacta a un agente</IonTitle>
           <AgentHistory />
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen >
+      <IonContent fullscreen className='content-contact'  >
         <IonHeader collapse="condense" >
           <IonToolbar>
-            <IonTitle size="large">Contacta a un agente</IonTitle>
+            <IonTitle className='title-contact' size='large' >Contacta a un agente</IonTitle>
           </IonToolbar>
         </IonHeader>
         <AgentList />

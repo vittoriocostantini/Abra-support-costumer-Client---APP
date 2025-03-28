@@ -1,11 +1,12 @@
-
+.content-contact  {
+  --background: var(--ion-content) !important;
+}
 
 .title-contact {
-  font-size: 20px;
+  font-size: 30px;
   color: #414040;
-  text-align: center;
-  margin: 5px !important; /* Elimina todos los márgenes */
-  padding: 10px !important; /* Elimina todos los paddings */
+  text-align: start;
+  font-weight: bold;
 }
 
 
