@@ -1,36 +1,17 @@
-import { simulateAutoResponse } from '../../hooks/chat/auto-response/auto-response'; // Importar la función de respuesta automática
-import { saveMessagesToLocalStorage, loadMessagesFromLocalStorage } from '../../utils/chat/storage-utils/storage-utils';
-
-// Define types for better readability and type safety
-type Message = { text: string; sender: string; chatId: string; unread?: number; replyingTo?: string }; // Add replyingTo
+import {  sendMessage } from '../../services/message/message-service';
+import { Message } from '../../models/message/message-model';
 
 // Utility function to check if a message is empty
 const isMessageEmpty = (message: string) => !message.trim();
 
-// Function to send a message and simulate an auto-response
-export const sendMessage = (
-    message: Message, 
-    setMessages: React.Dispatch<React.SetStateAction<Message[]>>
-) => {
-    if (isMessageEmpty(message.text)) return;
-
-    const currentMessages = loadMessagesFromLocalStorage(message.chatId);
-    setMessages(prevMessages => {
-        const updatedMessages = [...prevMessages, { ...message, sender: 'Yo', unread: 0 }];
-        saveMessagesToLocalStorage(message.chatId, updatedMessages);
-        return updatedMessages;
-    });
-    simulateAutoResponse(message.chatId, setMessages);
-};
-
-// Este hook se encarga de manejar el envío de un mensaje
+// Este manejador se encarga de procesar el envío de un mensaje y la interacción con la UI
 export const sendMessageHandler = (
-    message: string, // Texto del mensaje
-    chatId: string, // ID del chat
-    setMessages: React.Dispatch<React.SetStateAction<Message[]>>, // Función para actualizar los mensajes
-    setMessage: React.Dispatch<React.SetStateAction<string>>, // Función para actualizar el texto del mensaje
-    inputRef: React.RefObject<HTMLTextAreaElement>, // Referencia al elemento de entrada de texto
-    replyMessage: string | null = null // Add replyMessage parameter with default value
+    message: string,
+    chatId: string,
+    setMessages: React.Dispatch<React.SetStateAction<Message[]>>,
+    setMessage: React.Dispatch<React.SetStateAction<string>>,
+    inputRef: React.RefObject<HTMLTextAreaElement>,
+    replyMessage: string | null = null
 ) => {
     if (isMessageEmpty(message)) return;
 
@@ -38,9 +19,9 @@ export const sendMessageHandler = (
         text: message, 
         sender: 'currentUser', 
         chatId: chatId,
-        replyingTo: replyMessage || undefined // Convert null to undefined
-    
+        replyingTo: replyMessage || undefined
     };
+    
     if (replyMessage) {
         console.log('Sending reply to message:', replyMessage);
         console.log('Reply content:', message);
