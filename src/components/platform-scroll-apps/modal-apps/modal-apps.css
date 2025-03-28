@@ -90,3 +90,8 @@
 .hide-backdrop::part(backdrop) {
   display: none;
 }
+
+
+.modal-add {
+  --height: 45% !important;
+}
