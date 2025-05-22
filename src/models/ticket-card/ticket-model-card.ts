@@ -10,4 +10,6 @@ export interface Ticket {
   agentName: string;
   imageAlt: string;
   icon: JSX.Element;
-} 
+  description: string; // Nueva propiedad para la descripción del ticket
+  notes: string; // Nueva propiedad para las notas del ticket
+}

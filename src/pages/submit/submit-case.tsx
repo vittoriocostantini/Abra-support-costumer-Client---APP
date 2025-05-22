@@ -22,7 +22,7 @@ import PlatformScrollSubmit from '../../components/platform-scroll-apps/platform
 import { attachOutline, bulb, share } from 'ionicons/icons';
 import { showTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
 import { useIonViewDidEnter } from '@ionic/react';
-import { updateTicketTitle, updateTicketIcon, addTicket } from '../../stores/tickets-store/tickets-store';
+import { addTicket } from '../../stores/tickets-store/tickets-store';
 
 
 
@@ -46,8 +46,7 @@ const SubmitCase: React.FC = () => {
       return;
     }
     setLoading(true);
-    await addTicket(title, icon);
-    console.log('Nuevo ticket creado:', title, icon);
+    await addTicket(title, icon, description, notes);
     setTitle(''); // Limpiar el título
     setIcon(''); // Limpiar el icono
     setNotes(''); // Limpiar las notas
