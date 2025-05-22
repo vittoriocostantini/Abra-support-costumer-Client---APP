@@ -2,6 +2,7 @@ import React from 'react';
 import { IonList, IonItem, IonAvatar, IonLabel, IonItemSliding, IonItemOptions, IonItemOption, IonIcon } from '@ionic/react';
 import '../../../theme/components-themes/agent-list.css';
 import { star, happy, personRemove } from 'ionicons/icons';
+
 interface Agent {
   id: number;
   name: string;
