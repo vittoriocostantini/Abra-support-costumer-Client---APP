@@ -24,8 +24,12 @@ http://ionicframework.com/docs/theming/ */
   --ion-toolbar: #f2f2f7 !important;
   --ion-button-tickets: #e3e3e395 !important;
   --ion-button-tickets-active: #cdcbcb !important;
+
+  /* colores de message-bubble*/
   --ion-chat-bubble-sent: #cbffa3 !important;
   --ion-chat-bubble-received: #a0e2ff !important;
+
+  
   --ion-color-toast: #abeaff !important;
   --ion-color-block: #f96e6e !important;
   --ion-color-prefer: #9ddba0 !important;

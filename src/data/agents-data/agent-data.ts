@@ -20,4 +20,3 @@ export const getRandomAgent = () => {
     const randomIndex = Math.floor(Math.random() * agentsData.length);
     return agentsData[randomIndex];
 };
-

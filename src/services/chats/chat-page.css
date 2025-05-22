@@ -34,7 +34,8 @@
     padding: 0px;
     bottom: 0px;
     width: 100%;
-    border-left: 4px solid #333333; /* border */
+    border-left: 5px solid #333333; /* border */
+    border-top-left-radius: 5px;
     align-items: center;
     --padding-top: 0px !important;
     --padding-start: 0px !important;
@@ -92,7 +93,7 @@
 }
 
 .reply-message {
-    border-top-left-radius: 5px;
+    border-top-left-radius: 20px;
     font-size: 14px;
     color: #333; /* Dark text color */
     max-width: 100%;

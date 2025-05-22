@@ -9,8 +9,8 @@ import { tickets } from '../../stores/tickets-store/tickets-store';
 import { loadMessages } from '../../utils/chat/storage-load-messages/storage-load-messages';
 import { getArchivedTickets } from '../../functions/tickets/archive-unarchive-options/ticket-archive-unarchive-functions';
 import useInterval from '../../hooks/tickets/message-update-interval-badge/use-interval';
-
 import '../../theme/page-themes/ticket-page.css';
+
 
 const TicketsPage: React.FC = () => {
   const [submittedTitle, setSubmittedTitle] = useState('');
@@ -18,7 +18,7 @@ const TicketsPage: React.FC = () => {
   const [archivedTickets, setArchivedTickets] = useState(getArchivedTickets());
   const [popLayout, setPopLayout] = useState(false);
   const [filterStatus, setFilterStatus] = useState<string | null>(null);
-
+{}
   useIonViewDidEnter(() => {
     showTabBar();
     setUpdatedTickets(tickets);
