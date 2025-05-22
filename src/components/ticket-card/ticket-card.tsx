@@ -19,7 +19,7 @@ import './ticket-card.css';
 import '../../theme/variables.css';
 import StatusIndicator from '../status-indicator/status-indicator';
 import { countUnreadMessages } from '../../functions/messages/message-notification/message-count';
-import { TicketsProduct } from '../../models/ticket-store/ticket-model-store';
+import { TicketsProduct } from '../../models/ticket-store/ticket-model-product';
 import { resetUnreadMessages } from '../../functions/messages/reset-service-messages/reset-unread-messages';
 import { getCurrentTime } from '../../services/time-service/time-service';
 import { handleArchiveClick } from '../../handlers/archive-click-option/ticket-archive-click-handler';
