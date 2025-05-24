@@ -3,46 +3,46 @@ import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel
 import { hideTabBar } from '../../../../services/tabs/tab-bar-view/tabbar-view';
 import { lockClosed } from 'ionicons/icons';
 import './privacity.css';
+import { useTranslation } from 'react-i18next';
 
 const Privacity: React.FC = () => {
   hideTabBar();
-
+  const { t } = useTranslation('privacy');
   return (
     <IonPage>
       <IonHeader  className='privacity-header' class='ion-no-border' >
         <IonToolbar className='privacity-toolbar' >
           <IonButtons slot="start"  >
-            <IonBackButton defaultHref="/settings" text="Ajustes" />
+            <IonBackButton defaultHref="/settings" text={t('settings')} />
           </IonButtons>
-          <IonTitle>Privacidad</IonTitle>
+          <IonTitle>{t('privacy')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className='privacity-content' scrollY={false} fullscreen> 
        <IonItem className='privacity-item' lines="none" detail={false} >
         <IonLabel className='privacity-label'>
-          <p><IonIcon size='small'  icon={lockClosed} />Controla tu información personal y 
-          privacidad, elije la configuración que mejor se adapte a tus necesidades.</p>
+          <p><IonIcon size='small'  icon={lockClosed} />{t('privacyNote')}</p>
         </IonLabel>
        </IonItem>
        <IonList className='privacity-list'>  
         <IonItem detail={true} button>
           <IonLabel>
-            <p>Foto de perfil</p>
+            <p>{t('profilePicture')}</p>
           </IonLabel>
         </IonItem>
         <IonItem detail={true} button>
           <IonLabel>
-            <p>Agentes preferidos</p>
+            <p>{t('preferredAgents')}</p>
           </IonLabel>
         </IonItem>
         <IonItem detail={true} button>
           <IonLabel>
-            <p>Terminos y condiciones</p>
+            <p>{t('termsAndConditions')}</p>
           </IonLabel>
         </IonItem>
         <IonItem detail={true} button>
           <IonLabel>
-            <p>Política de privacidad</p>
+            <p>{t('privacyPolicy')}</p>
           </IonLabel>
         </IonItem>
        </IonList>

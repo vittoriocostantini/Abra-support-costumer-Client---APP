@@ -9,7 +9,8 @@ import { tickets } from '../../stores/tickets-store/tickets-store';
 import { loadMessages } from '../../utils/chat/storage-load-messages/storage-load-messages';
 import { getArchivedTickets } from '../../functions/tickets/archive-unarchive-options/ticket-archive-unarchive-functions';
 import useInterval from '../../hooks/tickets/message-update-interval-badge/use-interval';
-import '../../theme/page-themes/ticket-page.css';
+import '../../theme/page-themes/ticket-page.css'; 
+import { useTranslation } from 'react-i18next';
 
 
 const TicketsPage: React.FC = () => {
@@ -18,7 +19,7 @@ const TicketsPage: React.FC = () => {
   const [archivedTickets, setArchivedTickets] = useState(getArchivedTickets());
   const [popLayout, setPopLayout] = useState(false);
   const [filterStatus, setFilterStatus] = useState<string | null>(null);
-{}
+  const { t } = useTranslation('tickets');
   useIonViewDidEnter(() => {
     showTabBar();
     setUpdatedTickets(tickets);
@@ -53,21 +54,21 @@ const TicketsPage: React.FC = () => {
     <IonPage>
       <IonHeader className='header-tickets' class='ion-no-border'>
         <IonToolbar className='toolbar-tickets'>
-          <IonTitle>Chats</IonTitle>
+          <IonTitle>{t('chats')}</IonTitle>
           <FilterOption onFilterSelect={setFilterStatus} />
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen className='content-tickets'>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size='large'>Chats</IonTitle>
+            <IonTitle size='large'>{t('chats')}</IonTitle>
           </IonToolbar>
         </IonHeader>
         <ul className='tickets-list'>
           <IonRouterLink routerLink="/tickets/sub-pages/archived-tickets">
             <IonItem button detail={false} className='archived-tickets'>
               <IonIcon size='small' icon={archiveOutline} />
-              <IonLabel className='archive-label'>Archivados</IonLabel>
+              <IonLabel className='archive-label'>{t('archived')}</IonLabel>
             </IonItem>
           </IonRouterLink>
           <AnimatePresence mode={popLayout ? "popLayout" : "sync"}>

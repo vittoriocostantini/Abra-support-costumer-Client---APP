@@ -18,6 +18,7 @@ import {
 } from '@ionic/react';
 import { send, attachOutline, heart } from 'ionicons/icons';
 import './feedback-form.css';
+import { useTranslation } from 'react-i18next';
 
 interface FeedbackFormProps {
   isOpen: boolean;
@@ -25,6 +26,7 @@ interface FeedbackFormProps {
 }
 
 const FeedbackForm: React.FC<FeedbackFormProps> = ({ isOpen, onClose }) => {
+  const { t } = useTranslation('feedback');
   return (
     <>
     <IonModal
@@ -37,14 +39,14 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ isOpen, onClose }) => {
     >
       <IonHeader className='header-feedback'>
         <IonToolbar className='toolbar-feedback'>
-          <IonTitle>Feedback</IonTitle>
+          <IonTitle>{t('feedback')}</IonTitle>
           <IonButton
             slot="start"
             onClick={onClose}
             className='button-close'
             fill='clear'
           >
-            Cancelar
+            {t('cancel')}
           </IonButton>
           <IonButton
             slot="end"
@@ -58,14 +60,14 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ isOpen, onClose }) => {
             className='button-send'
             fill='clear'
           >
-            Enviar
+            {t('send')}
           </IonButton>
         </IonToolbar>
       </IonHeader>
       <div className='container-feedback'>
         <div className='container-feedback-textarea'>
           <textarea
-            placeholder='Escribe tu feedback aquí'
+            placeholder={t('writeFeedback')}
             className='textarea-feedback'
           />
         </div>
@@ -73,20 +75,17 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({ isOpen, onClose }) => {
           <IonLabel className='feedback-label'>
             <p>
               <IonIcon size='small' icon={heart} />
-              Agradecemos tu sinceridad y valoración, tus comentarios son muy importantes para nosotros, 
-              al reportar algun bug o problema con la aplicación, nos ayudas a mejorarla para ofrecerte
-              un mejor servicio y experiencia a la hora de usarla, todas tus criticas o sugerencias seran 
-              tomadas en cuenta por nuestra empresa y desarrolladores, muchas gracias por tu colaboración.
+              {t('feedbackNote')}
             </p>
           </IonLabel>
         </IonItem>
         <IonList className='list-feedback'>
           <IonItem>
-            <IonLabel>Incluir logs de sistemas</IonLabel>
+            <IonLabel>{t('includeLogs')}</IonLabel>
             <IonToggle slot="end" color='success'/>
           </IonItem>
           <IonItem>
-            <IonLabel>Incluir información de diagnóstico</IonLabel>
+            <IonLabel>{t('includeDiagnosticInformation')}</IonLabel>
             <IonToggle slot="end" color='success'/>
           </IonItem>
         </IonList>

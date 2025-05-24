@@ -1,0 +1,8 @@
+{
+  "status": {
+    "open": "Aberto",
+    "closed": "Fechado",
+    "pending": "Pendente",
+    "in_progress": "Em andamento"
+  }
+} 

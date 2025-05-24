@@ -18,6 +18,7 @@ import { notifications, lockClosed, language, informationCircle, logOut, documen
 import { useIonViewDidEnter } from '@ionic/react';
 import { showTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
 import FeedbackForm from '../../components/feedback-form/feedback-form';
+import { useTranslation } from 'react-i18next';
 
 // Definición de la interfaz IonItemButton
 interface IonItemButton {
@@ -28,75 +29,74 @@ interface IonItemButton {
   className?: string;
 }
 
-// Array de objetos que siguen la estructura de la interfaz IonItemButton
-const itemButtons: IonItemButton[] = [
-  { label: 'Notificaciones', icon: notifications, onClick: () => console.log('Notificaciones clicked'), className: 'item-notificaciones' },
-  { label: 'Privacidad & seguridad', icon: lockClosed, onClick: () => console.log('Privacidad clicked'), route: '/settings/sub-pages/privacity', className: 'item-privacidad' },
-  { label: 'Idioma', icon: language, onClick: () => console.log('Idioma clicked'), route: '/settings/sub-pages/languaje', className: 'item-idioma' },
-  { label: 'Acerca de', icon: informationCircle, onClick: () => console.log('Acerca de clicked'), route: '/settings/sub-pages/about', className: 'item-acerca-de' },
-  { label: 'Cerrar sesión', icon: logOut, onClick: () => console.log('Cerrar sesión clicked'), className: 'item-cerrar-sesion' },
-  { label: 'Feedback', icon: documentText, onClick: () => console.log('Enviar feedback clicked'), route: '/settings/sub-pages/feedback', className: 'item-feedback' },
-  
-];
-
-
 const SettingsPage: React.FC = () => {
   const [showFeedbackModal, setShowFeedbackModal] = useState(false);
+  const { t } = useTranslation('settings');
+
+  // Array de objetos que siguen la estructura de la interfaz IonItemButton
+  const itemButtons: IonItemButton[] = [
+    { label: t('notifications'), icon: notifications, onClick: () => console.log('Notificaciones clicked'), className: 'item-notificaciones' },
+    { label: t('privacy'), icon: lockClosed, onClick: () => console.log('Privacidad clicked'), route: '/settings/sub-pages/privacity', className: 'item-privacidad' },
+    { label: t('language'), icon: language, onClick: () => console.log('Idioma clicked'), route: '/settings/sub-pages/languaje', className: 'item-idioma' },
+    { label: t('about'), icon: informationCircle, onClick: () => console.log('Acerca de clicked'), route: '/settings/sub-pages/about', className: 'item-acerca-de' },
+    { label: t('logout'), icon: logOut, onClick: () => console.log('Cerrar sesión clicked'), className: 'item-cerrar-sesion' },
+    { label: t('feedback'), icon: documentText, onClick: () => console.log('Enviar feedback clicked'), route: '/settings/sub-pages/feedback', className: 'item-feedback' },
+  ];
 
   useIonViewDidEnter(() => {
     showTabBar();
   });
   
   return (
-  <IonPage>
-    <IonHeader className='header-settings' >
-      <IonToolbar className='toolbar-settings'>
-        <IonTitle className='title-settings'>Ajustes</IonTitle>
-      </IonToolbar>
-    </IonHeader>
-    <IonContent className='content-settings' fullscreen scrollY={false}>
-      <IonHeader collapse='condense' class='header-settings-condense'>
-        <IonToolbar class='toolbar-settings-condense'> 
-          <IonTitle size='large'>Ajustes</IonTitle>
+    <IonPage>
+      <IonHeader className='header-settings' >
+        <IonToolbar className='toolbar-settings'>
+          <IonTitle className='title-settings'>{t('settings')}</IonTitle>
         </IonToolbar>
       </IonHeader>
-      
-      <IonList className='list-settings'>
-        {itemButtons.map((item, index) => (
-          <IonRouterLink routerLink={item.label === 'Feedback' ? undefined : item.route} key={index}>
-            <IonItem button lines="none" detail={false} onClick={() => {
-              if (item.label === 'Feedback') {
-                setShowFeedbackModal(true);
-              } else {
-                item.onClick();
-              }
-            }} className={`item-settings ${item.className}`}>
-              <IonLabel className='label-settings-normal'>{item.label}</IonLabel>
-              {item.label === 'Notificaciones' ? (
-                <>
+      <IonContent className='content-settings' fullscreen scrollY={false}>
+        <IonHeader collapse='condense' class='header-settings-condense'>
+          <IonToolbar class='toolbar-settings-condense'> 
+            <IonTitle size='large'>{t('settings')}</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+        
+        <IonList className='list-settings'>
+          {itemButtons.map((item, index) => (
+            <IonRouterLink routerLink={item.label === t('feedback') ? undefined : item.route} key={index}>
+              <IonItem button lines="none" detail={false} onClick={() => {
+                if (item.label === t('feedback')) {
+                  setShowFeedbackModal(true);
+                } else {
+                  item.onClick();
+                }
+              }} className={`item-settings ${item.className}`}>
+                <IonLabel className='label-settings-normal'>{item.label}</IonLabel>
+                {item.label === t('notifications') ? (
+                  <>
+                    <IonIcon size="large" slot="start" icon={item.icon}></IonIcon>
+                    <IonToggle slot="end" onIonChange={() => item.onClick()} color='success' />
+                  </>
+                ) : (
                   <IonIcon size="large" slot="start" icon={item.icon}></IonIcon>
-                  <IonToggle slot="end" onIonChange={() => item.onClick()} color='success' />
-                </>
-              ) : (
-                <IonIcon size="large" slot="start" icon={item.icon}></IonIcon>
-              )}
-            </IonItem>
-          </IonRouterLink>
-        ))}
-      </IonList>
-      <IonItem button detail={false} className='item-login' lines="none" routerLink='/sign-up-page/'>
-      <IonIcon icon={logIn} size='large' slot="start"></IonIcon>
-        <IonLabel>Iniciar sesión</IonLabel>
+                )}
+              </IonItem>
+            </IonRouterLink>
+          ))}
+        </IonList>
+        <IonItem button detail={false} className='item-login' lines="none" routerLink='/sign-up-page/'>
+          <IonIcon icon={logIn} size='large' slot="start"></IonIcon>
+          <IonLabel>{t('login')}</IonLabel>
         </IonItem>
-      <IonItem lines="none" detail={false} className='about-us-item'> 
-        <IonLabel><b>Abra Support</b>
-        <h2>Version 0.0.1</h2>
-        </IonLabel>
-      </IonItem>
-    </IonContent>
-    <FeedbackForm isOpen={showFeedbackModal} onClose={() => setShowFeedbackModal(false)} />
-  </IonPage>
-);
+        <IonItem lines="none" detail={false} className='about-us-item'> 
+          <IonLabel><b>Abra</b>
+            <h2>{t('version')} 0.0.1</h2>
+          </IonLabel>
+        </IonItem>
+      </IonContent>
+      <FeedbackForm isOpen={showFeedbackModal} onClose={() => setShowFeedbackModal(false)} />
+    </IonPage>
+  );
 }
 
 export default SettingsPage;

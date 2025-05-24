@@ -1,0 +1,7 @@
+{
+  "settings": "Settings",
+  "language": "Language",
+  "changeLanguage": "Change language",
+  "languageNote": "Only changes the application language, it will not change the customer service language or the language in which agents will communicate",
+  "changingLanguage": "Changing language..."
+}

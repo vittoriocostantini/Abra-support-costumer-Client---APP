@@ -1,7 +1,8 @@
 import React from 'react';
 import { IonList, IonItem, IonAvatar, IonLabel, IonItemSliding, IonItemOptions, IonItemOption, IonIcon } from '@ionic/react';
 import '../../../theme/components-themes/agent-list.css';
-import { star, happy, personRemove } from 'ionicons/icons';
+import { happy, personRemove } from 'ionicons/icons';
+import { useTranslation } from 'react-i18next';
 
 interface Agent {
   id: number;
@@ -14,6 +15,7 @@ interface AgentListProps {
 }
 
 function AgentList({ agents }: AgentListProps) {
+  const { t } = useTranslation('agent');
   return (
     <>
       <IonList inset={true} className='agent-list'>
@@ -25,17 +27,17 @@ function AgentList({ agents }: AgentListProps) {
               </IonAvatar>
               <IonLabel>
                 <h2>{agent.name}</h2>
-                <p>Agente</p>
+                <p>{t('agent')}</p>
               </IonLabel>
             </IonItem>
             <IonItemOptions side="end" className='option-container'>
               <IonItemOption className='option-prefer'>
                 <IonIcon slot="top" size="large" icon={happy}/>
-                Preferir
+                {t('prefer')}
               </IonItemOption>
               <IonItemOption className='option-block'>
                 <IonIcon slot="top" size="large" icon={personRemove}/>
-                Bloquear
+                {t('block')}
               </IonItemOption>
             </IonItemOptions>
           </IonItemSliding>

@@ -26,7 +26,7 @@ import useResetTextarea from '../../hooks/chat/chat-input/use-reset-textarea';
 import { loadMessages } from '../../utils/chat/storage-load-messages/storage-load-messages';
 import { useMessageStatus } from '../../functions/messages/message-status/message-status';
 import { handleChatIconAddClick } from '../../functions/chats/button-add-event-handler/button-add-event';
-
+import { useTranslation } from 'react-i18next';
 // ChatPage es el componente principal de la página de chat
 const ChatPage: React.FC = () => {
     const location = useLocation<{ agentName: string; avatarUrl: string }>();
@@ -42,7 +42,7 @@ const ChatPage: React.FC = () => {
     const resetTextarea = useResetTextarea(inputRef);
     const [replyMessage, setReplyMessage] = useState<string | null>(null);
     const [isReplyExiting, setIsReplyExiting] = useState(false);
-    
+    const { t } = useTranslation('common');
     // Este hook se encarga de ocultar la barra de pestañas
     hideTabBar();
     // Este hook se encarga de escuchar los eventos de teclado
@@ -108,7 +108,7 @@ const ChatPage: React.FC = () => {
                     </IonButtons>   
                     <div className='agent-info'>
                         <IonAvatar slot="start" className="chat-avatar" >
-                            <img src={avatarUrl} alt="Avatar del agente" />
+                            <img src={avatarUrl} alt={t('agentAvatar')} />
                         </IonAvatar>
                         <p className='agent-title'>{agentName}</p>
                     </div>

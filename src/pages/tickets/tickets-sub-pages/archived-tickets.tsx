@@ -6,10 +6,12 @@ import { getArchivedTickets, unarchiveTicket } from '../../../functions/tickets/
 import TicketCard from '../../../components/ticket-card/ticket-card';
 import { loadMessages } from '../../../utils/chat/storage-load-messages/storage-load-messages';
 import { AnimatePresence, motion } from 'framer-motion';
-import useInterval from '../../../hooks/tickets/message-update-interval-badge/use-interval'; // Import the useInterval hook
+import useInterval from '../../../hooks/tickets/message-update-interval-badge/use-interval'; 
 import { useMessageStatus } from '../../../functions/messages/message-status/message-status';
+import { useTranslation } from 'react-i18next';
 
 const ArchivedTickets: React.FC = () => {
+    const { t } = useTranslation('archived');
     hideTabBar();
     const [archivedTickets, setArchivedTickets] = useState(getArchivedTickets());
 
@@ -34,9 +36,9 @@ const ArchivedTickets: React.FC = () => {
         <IonPage>
             <IonHeader class="ion-no-border" className="archived-header" translucent>
                 <IonToolbar>
-                    <IonTitle>Archivados</IonTitle>
+                    <IonTitle>{t('archived')}</IonTitle>
                     <IonButtons slot="start">
-                        <IonBackButton defaultHref="/tickets" text="Chats" className='back-button'/>
+                        <IonBackButton defaultHref="/tickets" text={t('chats')} className='back-button'/>
                     </IonButtons>
                 </IonToolbar>
             </IonHeader>

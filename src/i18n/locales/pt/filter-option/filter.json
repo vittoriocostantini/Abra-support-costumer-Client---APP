@@ -1,0 +1,10 @@
+{
+  "status": {
+    "completed": "Concluído",
+    "in_progress": "Em andamento",
+    "pending": "Pendente"
+  },
+  "actions": {
+    "remove_filter": "Remover filtro"
+  }
+} 

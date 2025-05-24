@@ -5,6 +5,7 @@ import './message-list.css';
 import { lockClosed } from 'ionicons/icons';
 import useMessageListScroll from '../../hooks/chat/container/use-message-chat-listeners';
 import { getCurrentTime } from '../../services/time-service/time-service';
+import { useTranslation } from 'react-i18next';
 
 // Este componente se encarga de renderizar la lista de mensajes y escuchar los eventos de teclado
 interface MessagesListProps {
@@ -18,6 +19,7 @@ interface MessagesListProps {
 const MessagesList: React.FC<MessagesListProps> = ({ messages, messagesEndRef, keyboardHeight, setReplyMessage, agentName }) => {
     const containerRef = useRef<HTMLIonListElement | null>(null);
     const footerRef = useRef<HTMLIonFooterElement | null>(null);
+    const { t } = useTranslation('letter');
     
     useMessageListScroll(footerRef, messagesEndRef, keyboardHeight);
 
@@ -37,8 +39,7 @@ const MessagesList: React.FC<MessagesListProps> = ({ messages, messagesEndRef, k
         <div className='message-container' style={{ height: '100%' }}>
             <IonList className="messages-list" ref={containerRef} id="message-list">
                 <div className='chat-letter'>
-                    <p><IonIcon size='small' icon={lockClosed} />Los mensajes se cifran de extremo a extremo
-                    para garantizar la privacidad y la seguridad de la conversación.</p>
+                    <p><IonIcon size='small' icon={lockClosed} />{t('chatLetter')}</p>
                 </div>
                 {messages.map((msg, index) => {
                     const isLastInGroup = index === messages.length - 1 || 

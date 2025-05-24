@@ -1,0 +1,9 @@
+{
+  "feedback": "Feedback",
+  "cancel": "Cancelar",
+  "send": "Enviar",
+  "writeFeedback": "Escribe tu feedback aquí...",
+  "feedbackNote": "Agradecemos tu sinceridad y valoración, tus comentarios son muy importantes para nosotros, al reportar algun bug o problema con la aplicación, nos ayudas a mejorarla para ofrecerte un mejor servicio y experiencia a la hora de usarla, todas tus criticas o sugerencias seran tomadas en cuenta por nuestra empresa y desarrolladores, muchas gracias por tu colaboración.",
+  "includeLogs": "Incluir logs",
+  "includeDiagnosticInformation": "Incluir información de diagnóstico"
+} 

@@ -5,23 +5,25 @@ import AgentList from '../../components/agent-history/agent-list/agent-list';
 import { useIonViewDidEnter } from '@ionic/react';
 import { showTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
 import { agentsData } from '../../data/agents-data/agent-data';
-
+import { useTranslation } from 'react-i18next';
 
 const ContactPage: React.FC = () => {
+  const { t } = useTranslation('contact');
   useIonViewDidEnter(() => {
     showTabBar();
   });
+  
   return (
     <IonPage>
       <IonHeader className='header-home'  >
         <IonToolbar className='toolbar-home'>
-          <IonTitle  >Prefiere un agente</IonTitle>
+          <IonTitle  >{t('preferAgent')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen className='content-contact'  >
         <IonHeader collapse="condense" >
           <IonToolbar>
-            <IonTitle className='title-contact' size='large' >Prefiere un agente</IonTitle>
+            <IonTitle className='title-contact' size='large' >{t('preferAgent')}</IonTitle>
           </IonToolbar>
         </IonHeader>
         <AgentList agents={agentsData} />

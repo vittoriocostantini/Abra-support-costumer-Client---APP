@@ -1,9 +1,7 @@
-// Importaciones de librerías externas
 import React, { useState, useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   IonAvatar,
-  IonChip,
   IonLabel,
   IonItem,
   IonItemSliding,
@@ -13,8 +11,7 @@ import {
   IonBadge
 } from '@ionic/react';
 import { trash, archive, ellipse, headsetOutline, reader } from 'ionicons/icons';
-
-// Importaciones de archivos internos
+import { useTranslation } from 'react-i18next';
 import './ticket-card.css';
 import '../../theme/variables.css';
 import StatusIndicator from '../status-indicator/status-indicator';
@@ -31,7 +28,6 @@ const TicketCard: React.FC<TicketsProduct> = ({
   number,
   path,
   avatarUrl,
-  imageAlt,
   status,
   date,
   agentName,
@@ -40,18 +36,17 @@ const TicketCard: React.FC<TicketsProduct> = ({
   onArchive,
   isArchived,
 }) => {
-  // Estados
+  const { t } = useTranslation('ticket');
+  
   const [displayedTimestamp] = useState(getCurrentTime());
   const [localIsArchived, setIsArchived] = useState(isArchived);
   const [isVisible, setIsVisible] = useState(true);
   const [isInChat, setIsInChat] = useState(false);
-  const [currentStatus, setCurrentStatus] = useState(status); // Añadir estado para el status
+  const [currentStatus, setCurrentStatus] = useState(status);
 
-  // Referencias
   const history = useHistory();
   const itemSlidingRef = useRef<HTMLIonItemSlidingElement>(null);
 
-  // Funciones
   const handleCardClick = () => {
     resetUnreadMessages(id);
     history.push({
@@ -68,7 +63,6 @@ const TicketCard: React.FC<TicketsProduct> = ({
     }, 120);
   };
 
-  // Efectos
   useEffect(() => {
     setIsArchived(isArchived);
   }, [isArchived]);
@@ -96,7 +90,6 @@ const TicketCard: React.FC<TicketsProduct> = ({
     }
   }, [messages]);
 
-  // Contar los mensajes no leídos para este ticket
   const unreadCount = countUnreadMessages(messages, id, isInChat);
 
   return (
@@ -125,7 +118,7 @@ const TicketCard: React.FC<TicketsProduct> = ({
           <IonLabel className="ticket-status">
             <div className="status-text">
               <h3 className="ticket-number"><IonIcon icon={ellipse}/>{number}</h3>
-              <StatusIndicator status={currentStatus} /> {/* Usar currentStatus */}
+              <StatusIndicator status={currentStatus} />
               <h3 className="agent-name"><IonIcon icon={ellipse}/><IonIcon icon={headsetOutline}/>{agentName}</h3>
             </div>
           </IonLabel>
@@ -137,18 +130,18 @@ const TicketCard: React.FC<TicketsProduct> = ({
           itemSlidingRef.current?.close();
         }}>
           <IonIcon slot="top" size="large" icon={localIsArchived ? reader : archive} />
-          {localIsArchived ? 'Desarchivar' : 'Archivar'}
+          {localIsArchived ? t('unarchive') : t('archive')}
         </IonItemOption>
       </IonItemOptions>
       <IonItemOptions className="option-end" side="end">
         <IonItemOption className="option-avatar" onClick={() => itemSlidingRef.current?.close()}>
           <IonAvatar slot="end" className="avatar-agent">
-            <img alt={imageAlt} src={avatarUrl} />
+            <img alt={t('agentAvatar')} src={avatarUrl} />
           </IonAvatar>
         </IonItemOption>
         <IonItemOption className="option-delete" onClick={() => itemSlidingRef.current?.close()}>
           <IonIcon slot="top" size="large" icon={trash}/>
-          Eliminar
+          {t('delete')}
         </IonItemOption>
       </IonItemOptions>
     </IonItemSliding>

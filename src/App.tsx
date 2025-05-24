@@ -1,6 +1,7 @@
 import { IonApp, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import TabBar from './services/tabs/tab-bar';
+import './i18n/i18n';
 
 import '@ionic/react/css/core.css';
 import '@ionic/react/css/normalize.css';

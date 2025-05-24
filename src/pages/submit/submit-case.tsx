@@ -23,8 +23,7 @@ import { attachOutline, bulb, share } from 'ionicons/icons';
 import { showTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
 import { useIonViewDidEnter } from '@ionic/react';
 import { addTicket } from '../../stores/tickets-store/tickets-store';
-
-
+import { useTranslation } from 'react-i18next';
 
 const SubmitCase: React.FC = () => {
   const [title, setTitle] = useState('');
@@ -34,6 +33,7 @@ const SubmitCase: React.FC = () => {
   const platformScrollRef = useRef<{ resetState: () => void }>(null);
   const [notes, setNotes] = useState('');
   const [description, setDescription] = useState('');
+  const { t } = useTranslation('submit');
 
   useIonViewDidEnter(() => {
     showTabBar();
@@ -47,12 +47,12 @@ const SubmitCase: React.FC = () => {
     }
     setLoading(true);
     await addTicket(title, icon, description, notes);
-    setTitle(''); // Limpiar el título
-    setIcon(''); // Limpiar el icono
-    setNotes(''); // Limpiar las notas
-    setDescription(''); // Limpiar la descripción
-    setLoading(false); // Desactivar el loading
-    platformScrollRef.current?.resetState(); // Resetear el estado del componente PlatformScrollSubmit
+    setTitle('');
+    setIcon('');
+    setNotes('');
+    setDescription('');
+    setLoading(false);
+    platformScrollRef.current?.resetState();
   };
 
   return (
@@ -61,19 +61,19 @@ const SubmitCase: React.FC = () => {
         <IonToolbar className='toolbar-search'>
           <IonButtons slot="start">
         </IonButtons>
-          <IonTitle className='title-search'>Crea tu caso</IonTitle>
+          <IonTitle className='title-search'>{t('createCase')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen className='content-submit' scrollY={false}> 
         <IonHeader collapse='condense' className='header-case'>
           <IonToolbar>
-            <IonTitle size='large'>Crea tu caso</IonTitle>
+            <IonTitle size='large'>{t('createCase')}</IonTitle>
           </IonToolbar>
         </IonHeader>
         <form className='form-search' onSubmit={handleSubmit}>
           <IonList className='list-container'>
           <IonItem>
-            <IonLabel position="stacked">Título</IonLabel>
+            <IonLabel position="stacked">{t('title')}</IonLabel>
             <IonInput
               type="text"
               required
@@ -84,17 +84,17 @@ const SubmitCase: React.FC = () => {
           </IonItem>
           <PlatformScrollSubmit ref={platformScrollRef} onSelectIcon={setIcon} reset={!icon} />
           <IonItem>
-            <IonLabel position="stacked">Descripción</IonLabel>
+            <IonLabel position="stacked">{t('description')}</IonLabel>
             <IonTextarea required value={description} onIonChange={(e) => setDescription(e.detail.value!)}></IonTextarea>
           </IonItem>
           <IonItem>
-            <IonLabel position="stacked">Notas</IonLabel>
+            <IonLabel position="stacked">{t('notes')}</IonLabel>
             <IonTextarea value={notes} onIonChange={(e) => setNotes(e.detail.value!)}></IonTextarea>
           </IonItem>
           <IonItem>
-            <IonBadge className='badge-file' >Tips</IonBadge>
+            <IonBadge className='badge-file'>{t('tips')}</IonBadge>
            <IonLabel className="label-file" style={{ position: 'relative' }}> <IonIcon icon={bulb} size='small' />
-              puedes abjuntar imagenes o archivos para la resolución del caso 
+              {t('attachFiles')}
             </IonLabel>
             <input
               type="file"
@@ -109,7 +109,7 @@ const SubmitCase: React.FC = () => {
           </IonItem>
           </IonList>
 
-          <IonButton  type="submit" className='button-submit'>Enviar</IonButton>
+          <IonButton type="submit" className='button-submit'>{t('send')}</IonButton>
         </form>
       </IonContent>
       <IonToast
@@ -117,12 +117,12 @@ const SubmitCase: React.FC = () => {
         position="top"
         isOpen={showToast}
         onDidDismiss={() => setShowToast(false)}
-        message="Por favor, selecciona una aplicación antes de enviar."
+        message={t('selectAppFirst')}
         duration={2000}
       />
       <IonLoading
         isOpen={loading}
-        message={'Enviando...'}
+        message={t('sending')}
       />
     </IonPage>
   );

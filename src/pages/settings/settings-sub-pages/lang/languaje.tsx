@@ -1,42 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonButtons, IonBackButton, IonList, IonCheckbox, IonIcon } from '@ionic/react';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonButtons, IonBackButton, IonList, IonCheckbox, IonIcon, IonLoading } from '@ionic/react';
 import { hideTabBar } from '../../../../services/tabs/tab-bar-view/tabbar-view';
 import { language } from 'ionicons/icons';
 import './languaje.css';
 import { LanguajeProps, languageOptions, getCurrentLanguage, saveLanguage } from '../../../../models/lang-options/language-model';
+import { useTranslation } from 'react-i18next';
 
 const Languaje: React.FC<LanguajeProps> = ({ initialLanguage = getCurrentLanguage() }) => {
   const [selectedLanguage, setSelectedLanguage] = useState<string>(initialLanguage);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { t } = useTranslation('language');
 
   // Función para manejar el cambio de idioma
-  const handleLanguageChange = (language: string) => {
-    setSelectedLanguage(language);
-    saveLanguage(language);
+  const handleLanguageChange = async (language: string) => {
+    setIsLoading(true);
+    try {
+      setSelectedLanguage(language);
+      await saveLanguage(language);
+    } catch (error) {
+    } finally {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    }
   };
 
   hideTabBar();
   return (
     <IonPage>
+
       <IonHeader class='ion-no-border'>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/settings" text="Ajustes" />
+            <IonBackButton defaultHref="/settings" text={t('settings')} />
           </IonButtons>
-          <IonTitle>Idioma</IonTitle>
+          <IonTitle>{t('language')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen className='content-languaje'> 
         <IonHeader collapse='condense'>
           <IonToolbar>
-            <IonTitle size='large'>Idioma</IonTitle>
+            <IonTitle size='large'>{t('language')}</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonItem className='letter-languaje'>
           <IonLabel>
             <IonIcon icon={language} size='large' />
-            <p>Cambia el idioma de la aplicación</p>
-            <p>Solo cambia el idioma de la aplicación, no se cambiará el 
-              idioma de atencion al cliente o el idioma en que se comunicaran los agentes</p>
+            <p>{t('changeLanguage')}</p>
+            <p>{t('languageNote')}</p>
           </IonLabel>
         </IonItem>
         <IonList className='list-languaje'>
@@ -51,6 +62,13 @@ const Languaje: React.FC<LanguajeProps> = ({ initialLanguage = getCurrentLanguag
             </IonItem>
           ))}
         </IonList>
+        <IonLoading
+          isOpen={isLoading}
+          message={t('changingLanguage')}
+          duration={0}
+          spinner="circular"
+          cssClass="custom-loading"
+        />
       </IonContent>
     </IonPage>
   );

@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import './filter-option.css';
 import { IonIcon, IonButton, IonActionSheet } from '@ionic/react';
 import { ellipsisHorizontal } from 'ionicons/icons';
+import { useTranslation } from 'react-i18next';
 
 interface FilterOptionProps {
     onFilterSelect: (estado: string | null) => void; // Permitir null para quitar el filtro
 }
 
 const FilterOption: React.FC<FilterOptionProps> = ({ onFilterSelect }) => {
+    const { t } = useTranslation('filter');
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
@@ -29,7 +31,7 @@ const FilterOption: React.FC<FilterOptionProps> = ({ onFilterSelect }) => {
           isOpen={isOpen}
           buttons={[
             {
-              text: 'Completado',
+              text: t('status.completed'),
               data: {
                 action: 'completado',
               },
@@ -37,7 +39,7 @@ const FilterOption: React.FC<FilterOptionProps> = ({ onFilterSelect }) => {
               cssClass: selectedOption === 'Completado' ? 'selected-option' : '',
             },
             {
-              text: 'En proceso',
+              text: t('status.in_progress'),
               data: {
                 action: 'en_proceso',
               },
@@ -45,7 +47,7 @@ const FilterOption: React.FC<FilterOptionProps> = ({ onFilterSelect }) => {
               cssClass: selectedOption === 'En Proceso' ? 'selected-option' : '',
             },
             {
-              text: 'Pendiente',
+              text: t('status.pending'),
               data: {
                 action: 'pendiente',
               },
@@ -53,7 +55,7 @@ const FilterOption: React.FC<FilterOptionProps> = ({ onFilterSelect }) => {
               cssClass: selectedOption === 'Pendiente' ? 'selected-option' : '',
             },
             {
-              text: 'Quitar filtro',
+              text: t('actions.remove_filter'),
               role: 'cancel',
               cssClass: 'quitar-filtro',
               data: {
