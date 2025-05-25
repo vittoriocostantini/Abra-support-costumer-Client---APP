@@ -1,5 +1,8 @@
-import { IonApp, setupIonicReact } from '@ionic/react';
+import React from 'react';
+import { Redirect, Route } from 'react-router-dom';
+import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import './firebase/config/firebase-config'; // Importar la configuración de Firebase
 import TabBar from './services/tabs/tab-bar';
 import './i18n/i18n';
 
@@ -25,7 +28,9 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <IonReactRouter>
-        <TabBar />
+        <IonRouterOutlet>
+          <TabBar />
+        </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
   );

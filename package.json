@@ -15,7 +15,7 @@
   "dependencies": {
     "@capacitor/android": "^6.0.0",
     "@capacitor/app": "6.0.1",
-    "@capacitor/core": "^6.2.0",
+    "@capacitor/core": "^6.2.1",
     "@capacitor/haptics": "6.0.1",
     "@capacitor/ios": "^6.2.0",
     "@capacitor/keyboard": "^6.0.2",
@@ -28,6 +28,7 @@
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
     "express": "^4.21.2",
+    "firebase": "^11.8.1",
     "framer-motion": "^12.4.7",
     "i18next": "^25.2.0",
     "i18next-browser-languagedetector": "^8.1.0",
