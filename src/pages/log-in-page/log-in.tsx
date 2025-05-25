@@ -1,5 +1,5 @@
-import React from 'react';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonList, IonIcon, IonFooter, IonText, IonBackButton, IonButton } from '@ionic/react';
+import React, { useState } from 'react';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonList, IonIcon, IonFooter, IonText, IonBackButton, IonButton, IonToast } from '@ionic/react';
 import { hideTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
 import './log-in.css';
 import { 
@@ -7,12 +7,27 @@ import {
          logoApple,
          closeCircle,
          closeCircleOutline,
-         
 }
-from 'ionicons/icons'
+from 'ionicons/icons';
+import { authService } from '../../firebase/auth/auth.service';
+import { useHistory } from 'react-router-dom';
 
 const LogInPage: React.FC = () => {
     hideTabBar();
+    const history = useHistory();
+    const [showToast, setShowToast] = useState(false);
+    const [toastMessage, setToastMessage] = useState('');
+
+    const handleGoogleLogin = async () => {
+        try {
+            await authService.loginWithGoogle();
+            history.push('/submit-case');
+        } catch (error: any) {
+            setToastMessage(error.message);
+            setShowToast(true);
+        }
+    };
+
     return (
         <IonPage>
            <IonHeader class='ion-no-border'>
@@ -33,7 +48,7 @@ const LogInPage: React.FC = () => {
                     <IonItem button detail={false} lines="none" className="rounded-item-log register-item-log" routerLink='/log-in-with-account/'>
                         <IonLabel>Inicia sesion con tu email</IonLabel>
                     </IonItem>
-                    <IonItem button detail={false} lines="none" className="rounded-item-log">
+                    <IonItem button detail={false} lines="none" className="rounded-item-log" onClick={handleGoogleLogin}>
                         <IonIcon size="large" icon={logoGoogle} className="google-logo"/> 
                             <IonLabel>Inicia sesion con Google</IonLabel>
                     </IonItem>
@@ -43,11 +58,17 @@ const LogInPage: React.FC = () => {
                         </IonItem>
                         <IonButton fill='clear' className='log-in-account'>
                             <IonBackButton defaultHref='/sign-up-page' text="No tienes cuenta?" icon="false"></IonBackButton>
-                                </IonButton>
-                       
-                 </IonList>
+                        </IonButton>
+                </IonList>
+                <IonToast
+                    isOpen={showToast}
+                    onDidDismiss={() => setShowToast(false)}
+                    message={toastMessage}
+                    duration={3000}
+                    position="top"
+                    color="danger"
+                />
             </IonContent>
-         
         </IonPage>
     );
 };

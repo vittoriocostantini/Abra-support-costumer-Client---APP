@@ -18,16 +18,17 @@
     border-radius: 10px;
 }
 
-
-
-
-.list-login ion-button {
+.error-message {
+    font-size: 0.8rem;
+    margin: 5px 0 10px 10px;
     display: block;
-    width: 150px;
+}
+
+.login-button {
+    margin: 20px auto;
+    max-width: 300px;
     --background: var(--ion-color-boton-send-case);
     --background-activated: var(--ion-color-boton-send-case-active);
-    margin: 20px 110px 0px 110px;
-
 }
 
 .title-password, .title-gmail-log {

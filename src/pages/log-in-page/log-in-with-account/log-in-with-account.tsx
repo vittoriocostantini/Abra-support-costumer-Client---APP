@@ -1,54 +1,42 @@
 import React from 'react';
-import { IonPage, 
-    IonHeader,    
-    IonInput,
-    IonToolbar, 
-    IonTitle, 
-    IonContent, 
-    IonItem, 
-    IonLabel, 
-    IonList, 
-    IonIcon, 
-    IonFooter, 
-    IonText, 
-    IonBackButton, 
-    IonButton } from '@ionic/react';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonBackButton, IonButton, IonToast } from '@ionic/react';
 import { hideTabBar } from '../../../services/tabs/tab-bar-view/tabbar-view';
 import './log-in-with-account.css';
+import { useLoginForm } from '../../../hooks/login/use-login-form';
+import { LoginForm } from '../../../components/login-form/login-form';
+
+const TOAST_DURATION = 2000;
 
 const LogInAccount: React.FC = () => {
     hideTabBar();
+    const { state, handleInputChange, handleSubmit, handleToastDismiss, isFormValid } = useLoginForm();
+
     return (
         <IonPage>
-           <IonHeader class='ion-no-border'>
-           <IonToolbar>
+            <IonHeader class='ion-no-border'>
+                <IonToolbar>
                     <IonButton slot='start' fill='clear'>
-                             <IonBackButton text='' />
+                        <IonBackButton text='' />
                     </IonButton>
-                        <IonTitle>Inicia Sesion</IonTitle>
+                    <IonTitle>Inicia Sesion</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen className="content-login" scrollY={false}>
-                <IonList className="list-login">
-                <form>
-            <IonText slot='start' className='title-gmail-log' >email o usuario</IonText>
-                <IonItem className='item-gmail-log'>    
-                    <IonInput type="email" labelPlacement="floating" fill="solid" required ></IonInput>
-                 </IonItem>
-                 <IonText slot='start' className='title-password' >Contraseña</IonText>
-
-                 <IonItem className='password-item'>    
-                    <IonInput type="password" labelPlacement="floating" fill="solid" required></IonInput>
-                 </IonItem>
-            <IonButton shape='round'type="button" >Inicia Sesion</IonButton>
-         </form>
-                 </IonList>
+                <LoginForm
+                    state={state}
+                    handleInputChange={handleInputChange}
+                    handleSubmit={handleSubmit}
+                    isFormValid={isFormValid}
+                />
             </IonContent>
-                <IonFooter class='ion-no-border'>
-                    <IonToolbar>
-                         <IonTitle>Inicia Sesion</IonTitle>
-                    </IonToolbar>
-                </IonFooter>
+            <IonToast
+                isOpen={state.showToast}
+                onDidDismiss={handleToastDismiss}
+                message={state.toastMessage}
+                duration={TOAST_DURATION}
+                position="top"
+                color="danger"
+            />
         </IonPage>
     );
 };
