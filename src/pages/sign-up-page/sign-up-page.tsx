@@ -2,13 +2,7 @@ import React from 'react';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonList, IonIcon, IonFooter, IonText, IonBackButton, IonButton } from '@ionic/react';
 import './sign-up-page.css';
 import { hideTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
-import { 
-         logoGoogle,
-         logoApple,
-         closeCircleOutline,
-         
-}
-from 'ionicons/icons'
+import {  logoGoogle, logoApple, closeCircleOutline } from 'ionicons/icons';
 
 const signUpPage: React.FC = () => {
     hideTabBar();
