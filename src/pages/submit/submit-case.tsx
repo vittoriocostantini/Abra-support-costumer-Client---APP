@@ -20,7 +20,6 @@ import { IonContent,
 import '../../theme/page-themes/submit-case.css';
 import PlatformScrollSubmit from '../../components/platform-scroll-apps/platform-scroll-submit-app';
 import { attachOutline, bulb, share } from 'ionicons/icons';
-import { showTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
 import { useIonViewDidEnter } from '@ionic/react';
 import { addTicket } from '../../stores/tickets-store/tickets-store';
 import { useTranslation } from 'react-i18next';
@@ -35,10 +34,7 @@ const SubmitCase: React.FC = () => {
   const [description, setDescription] = useState('');
   const { t } = useTranslation('submit');
 
-  useIonViewDidEnter(() => {
-    showTabBar();
-  });
-  
+ 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!icon) {

@@ -94,7 +94,7 @@ export const useLoginForm = () => {
         dispatch({ type: 'SET_LOADING', isLoading: true });
         try {
             await authService.login({ email: state.email, password: state.password });
-            history.replace('/pages/submit-case');
+            history.replace('/tabs/submit-case');
         } catch (error: any) {
             let errorMessage: ErrorMessage = ERROR_MESSAGES.LOGIN_ERROR;
             

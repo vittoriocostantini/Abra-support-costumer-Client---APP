@@ -16,7 +16,6 @@ import { IonContent,
 import '../../theme/page-themes/settings-page.css';
 import { notifications, lockClosed, language, informationCircle, logOut, documentText, logIn } from 'ionicons/icons';
 import { useIonViewDidEnter } from '@ionic/react';
-import { showTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
 import FeedbackForm from '../../components/feedback-form/feedback-form';
 import { useTranslation } from 'react-i18next';
 
@@ -36,16 +35,13 @@ const SettingsPage: React.FC = () => {
   // Array de objetos que siguen la estructura de la interfaz IonItemButton
   const itemButtons: IonItemButton[] = [
     { label: t('notifications'), icon: notifications, onClick: () => console.log('Notificaciones clicked'), className: 'item-notificaciones' },
-    { label: t('privacy'), icon: lockClosed, onClick: () => console.log('Privacidad clicked'), route: '/settings/sub-pages/privacity', className: 'item-privacidad' },
-    { label: t('language'), icon: language, onClick: () => console.log('Idioma clicked'), route: '/settings/sub-pages/languaje', className: 'item-idioma' },
-    { label: t('about'), icon: informationCircle, onClick: () => console.log('Acerca de clicked'), route: '/settings/sub-pages/about', className: 'item-acerca-de' },
+    { label: t('privacy'), icon: lockClosed, onClick: () => console.log('Privacidad clicked'), route: '/settings/privacity', className: 'item-privacidad' },
+    { label: t('language'), icon: language, onClick: () => console.log('Idioma clicked'), route: '/settings/languaje', className: 'item-idioma' },
+    { label: t('about'), icon: informationCircle, onClick: () => console.log('Acerca de clicked'), route: '/settings/about', className: 'item-acerca-de' },
     { label: t('logout'), icon: logOut, onClick: () => console.log('Cerrar sesión clicked'), className: 'item-cerrar-sesion' },
-    { label: t('feedback'), icon: documentText, onClick: () => console.log('Enviar feedback clicked'), route: '/settings/sub-pages/feedback', className: 'item-feedback' },
+    { label: t('feedback'), icon: documentText, onClick: () => console.log('Enviar feedback clicked'), route: '/settings/feedback', className: 'item-feedback' },
   ];
 
-  useIonViewDidEnter(() => {
-    showTabBar();
-  });
   
   return (
     <IonPage>
@@ -84,7 +80,7 @@ const SettingsPage: React.FC = () => {
             </IonRouterLink>
           ))}
         </IonList>
-        <IonItem button detail={false} className='item-login' lines="none" routerLink='/sign-up-page/'>
+        <IonItem button detail={false} className='item-login' lines="none" routerLink='/log-in'>
           <IonIcon icon={logIn} size='large' slot="start"></IonIcon>
           <IonLabel>{t('login')}</IonLabel>
         </IonItem>

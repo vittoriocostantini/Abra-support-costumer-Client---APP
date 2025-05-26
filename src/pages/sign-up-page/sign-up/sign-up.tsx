@@ -9,9 +9,9 @@ import {
     IonList,
     IonToast,
     IonIcon,
+    useIonViewWillEnter
 } from '@ionic/react';
 import { chevronBack } from 'ionicons/icons';
-import { hideTabBar } from '../../../services/tabs/tab-bar-view/tabbar-view';
 import './sign-up.css';
 import { useSignUpForm } from '../../../hooks/sign-up/use-sign-up-form';
 import { EmailStep } from '../../../components/sign-up-form/steps-form/email-step';
@@ -19,9 +19,8 @@ import { PasswordStep } from '../../../components/sign-up-form/steps-form/passwo
 import { NameStep } from '../../../components/sign-up-form/steps-form/name-step';
 
 const SignUp: React.FC = () => {
-    hideTabBar();
+ 
 
-    
     const {
         stepState,
         formData,

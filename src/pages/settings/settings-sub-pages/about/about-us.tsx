@@ -1,11 +1,10 @@
 import React from 'react';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonToggle, IonButtons, IonBackButton } from '@ionic/react';
-import { hideTabBar } from '../../../../services/tabs/tab-bar-view/tabbar-view';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonToggle, IonButtons, IonBackButton, useIonViewDidEnter } from '@ionic/react';
 import './about-us.css';
 import { useTranslation } from 'react-i18next';
 
 const AboutUs: React.FC = () => {
-  hideTabBar();
+
   const { t } = useTranslation('about');
   return (
     <IonPage>

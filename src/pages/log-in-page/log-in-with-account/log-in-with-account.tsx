@@ -1,6 +1,5 @@
 import React from 'react';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonBackButton, IonButton, IonToast } from '@ionic/react';
-import { hideTabBar } from '../../../services/tabs/tab-bar-view/tabbar-view';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonBackButton, IonButton, IonToast, useIonViewWillEnter } from '@ionic/react';
 import './log-in-with-account.css';
 import { useLoginForm } from '../../../hooks/login/use-login-form';
 import { LoginForm } from '../../../components/login-form/login-form';
@@ -8,7 +7,7 @@ import { LoginForm } from '../../../components/login-form/login-form';
 const TOAST_DURATION = 2000;
 
 const LogInAccount: React.FC = () => {
-    hideTabBar();
+
     const { state, handleInputChange, handleSubmit, handleToastDismiss, isFormValid } = useLoginForm();
 
     return (

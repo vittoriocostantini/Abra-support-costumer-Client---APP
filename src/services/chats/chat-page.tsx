@@ -8,6 +8,7 @@ import { IonPage,
     IonButton, 
     IonIcon, 
     IonAvatar, 
+    useIonViewWillEnter
     } from '@ionic/react';
 import { send,  chevronBack, closeCircleOutline } from 'ionicons/icons';
 import './chat-page.css';
@@ -17,7 +18,6 @@ import { handleFilesSelected } from '../../handlers/file-upload-button/file-hand
 import ChatInput from '../../components/chat-input/chat-input';
 import FileUploadButton from '../../functions/chats/file-upload/file-upload-service';
 import MessagesList from '../../components/message-container/message-list';
-import { hideTabBar } from '../tabs/tab-bar-view/tabbar-view';
 import { useKeyboardListeners } from '../../handlers/keyboard/keyboard-handler';
 import { useParams, useLocation } from 'react-router-dom';
 import { sendMessageHandler } from '../../handlers/send-message/send-message';
@@ -30,7 +30,7 @@ import { useTranslation } from 'react-i18next';
 // ChatPage es el componente principal de la página de chat
 const ChatPage: React.FC = () => {
     const location = useLocation<{ agentName: string; avatarUrl: string }>();
-    const { agentName, avatarUrl } = location.state || { agentName: 'Nombre del agente', avatarUrl: 'https://ionicframework.com/docs/img/demos/avatar.svg' };
+    const { agentName = 'Agente', avatarUrl = 'https://ionicframework.com/docs/img/demos/avatar.svg' } = location.state || {};
     const { id: chatId } = useParams<{ id: string }>();
     const inputRef = useRef<HTMLTextAreaElement>(null!);
     const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
@@ -44,7 +44,7 @@ const ChatPage: React.FC = () => {
     const [isReplyExiting, setIsReplyExiting] = useState(false);
     const { t } = useTranslation('common');
     // Este hook se encarga de ocultar la barra de pestañas
-    hideTabBar();
+  
     // Este hook se encarga de escuchar los eventos de teclado
     useKeyboardListeners();
 
@@ -123,7 +123,7 @@ const ChatPage: React.FC = () => {
                     agentName={agentName} // Pass the agent's name
                 />
               </IonContent>
-            <IonFooter className="chat-footer" id='chat-footer' class='ion-no-border' translucent={true} >
+            <IonFooter className="chat-footer" id='chat-footer' class='ion-no-border' translucent={true} mode='ios'>
                 <IonToolbar className="toolbar-footer">
                     {replyMessage && (
                         <div className={`reply-message ${isReplyExiting ? 'reply-message-exit' : 'reply-message-animate'}`}>

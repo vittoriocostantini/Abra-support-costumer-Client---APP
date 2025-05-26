@@ -59,7 +59,7 @@ const MessagesList: React.FC<MessagesListProps> = ({ messages, messagesEndRef, k
                         />
                     );
                 })}
-                <div ref={messagesEndRef} style={{ paddingBottom: '60px',width: '100%' }} ></div>
+                <div ref={messagesEndRef} style={{ paddingBottom: '100px',width: '100%' }} ></div>
             </IonList>
         </div>
     );

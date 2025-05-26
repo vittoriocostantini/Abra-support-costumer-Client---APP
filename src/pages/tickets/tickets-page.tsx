@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonToolbar, IonPage, IonTitle, IonIcon, IonItem, IonLabel, IonRouterLink, IonBadge, useIonViewDidEnter } from '@ionic/react';
+import { IonContent, IonHeader, IonToolbar, IonPage, IonTitle, IonIcon, IonItem, IonLabel, IonRouterLink, IonBadge, useIonViewWillEnter, IonNavLink, IonFooter, IonButton, IonButtons, IonTabButton } from '@ionic/react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { archiveOutline } from 'ionicons/icons';
+import { addCircle, archiveOutline, contract, person, settings, ticket } from 'ionicons/icons';
 import FilterOption from '../../components/filter-option/filter-option';
 import TicketCard from '../../components/ticket-card/ticket-card';
-import { showTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
 import { tickets } from '../../stores/tickets-store/tickets-store';
 import { loadMessages } from '../../utils/chat/storage-load-messages/storage-load-messages';
 import { getArchivedTickets } from '../../functions/tickets/archive-unarchive-options/ticket-archive-unarchive-functions';
 import useInterval from '../../hooks/tickets/message-update-interval-badge/use-interval';
 import '../../theme/page-themes/ticket-page.css'; 
 import { useTranslation } from 'react-i18next';
+import FooterTickets from '../../components/footer-tickets-page/footer-tickets';
 
 
 const TicketsPage: React.FC = () => {
@@ -20,8 +20,8 @@ const TicketsPage: React.FC = () => {
   const [popLayout, setPopLayout] = useState(false);
   const [filterStatus, setFilterStatus] = useState<string | null>(null);
   const { t } = useTranslation('tickets');
-  useIonViewDidEnter(() => {
-    showTabBar();
+  
+  useIonViewWillEnter(() => {
     setUpdatedTickets(tickets);
   });
 
@@ -65,11 +65,12 @@ const TicketsPage: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ul className='tickets-list'>
-          <IonRouterLink routerLink="/tickets/sub-pages/archived-tickets">
+          <IonRouterLink routerDirection="forward" routerLink="/view/archived/" className="ion-activatable">
             <IonItem button detail={false} className='archived-tickets'>
               <IonIcon size='small' icon={archiveOutline} />
               <IonLabel className='archive-label'>{t('archived')}</IonLabel>
             </IonItem>
+            
           </IonRouterLink>
           <AnimatePresence mode={popLayout ? "popLayout" : "sync"}>
             {filteredTickets.map((ticket, index) => {
@@ -111,7 +112,9 @@ const TicketsPage: React.FC = () => {
             })}
           </AnimatePresence>
         </ul>
+    
       </IonContent>
+      <FooterTickets />
     </IonPage>
   );
 };

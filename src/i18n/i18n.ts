@@ -52,6 +52,9 @@ import ptLetter from './locales/pt/support-chat/letter.json';
 import enFilter from './locales/en/filter-option/filter.json';
 import esFilter from './locales/es/filter-option/filter.json';
 import ptFilter from './locales/pt/filter-option/filter.json';
+import enFooter from './locales/en/ui/footer.json';
+import esFooter from './locales/es/ui/footer.json';
+import ptFooter from './locales/pt/ui/footer.json';
 
 const resources = {
   en: {
@@ -71,7 +74,8 @@ const resources = {
     tickets: enTickets,
     archived: enArchived,
     letter: enLetter,
-    filter: enFilter
+    filter: enFilter,
+    footer: enFooter
   },
   es: {
     common: esCommon,
@@ -90,7 +94,8 @@ const resources = {
     tickets: esTickets,
     archived: esArchived,
     letter: esLetter,
-    filter: esFilter
+    filter: esFilter,
+    footer: esFooter
   },
   pt: {
     common: ptCommon,
@@ -109,7 +114,8 @@ const resources = {
     tickets: ptTickets,
     archived: ptArchived,
     letter: ptLetter,
-    filter: ptFilter
+    filter: ptFilter,
+    footer: ptFooter
   }
 };
 
@@ -119,7 +125,7 @@ i18n
   .init({
     resources,
     fallbackLng: 'es',
-    ns: ['common', 'status', 'tabs', 'feedback', 'submit', 'settings', 'platformScroll', 'privacy', 'about', 'ticket', 'language', 'contact', 'agent', 'tickets', 'archived', 'letter', 'filter'],
+    ns: ['common', 'status', 'tabs', 'feedback', 'submit', 'settings', 'platformScroll', 'privacy', 'about', 'ticket', 'language', 'contact', 'agent', 'tickets', 'archived', 'letter', 'filter', 'footer' ],
     defaultNS: 'common',
     interpolation: {
       escapeValue: false

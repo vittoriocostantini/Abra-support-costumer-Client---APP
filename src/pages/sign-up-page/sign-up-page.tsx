@@ -1,11 +1,10 @@
 import React from 'react';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonList, IonIcon, IonFooter, IonText, IonBackButton, IonButton } from '@ionic/react';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonList, IonIcon, IonFooter, IonText, IonBackButton, IonButton, useIonViewWillEnter, useIonViewDidLeave } from '@ionic/react';
 import './sign-up-page.css';
-import { hideTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
 import {  logoGoogle, logoApple, closeCircleOutline } from 'ionicons/icons';
 
 const signUpPage: React.FC = () => {
-    hideTabBar();
+
     return (
         <IonPage>
            <IonHeader class='ion-no-border'>
@@ -39,11 +38,6 @@ const signUpPage: React.FC = () => {
                                 </IonButton>
                  </IonList>
             </IonContent>
-                <IonFooter class='ion-no-border'>
-                    <IonToolbar>
-                         <IonTitle>Registrarte</IonTitle>
-                    </IonToolbar>
-                </IonFooter>
         </IonPage>
     );
 };

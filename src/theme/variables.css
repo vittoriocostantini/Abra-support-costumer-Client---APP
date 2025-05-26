@@ -24,6 +24,7 @@ http://ionicframework.com/docs/theming/ */
   --ion-toolbar: #f2f2f7 !important;
   --ion-button-tickets: #e3e3e395 !important;
   --ion-button-tickets-active: #cdcbcb !important;
+  --ion-button-footer-tickets: #666666 !important;
 
   /* colores de message-bubble*/
   --ion-chat-bubble-sent: #cbffa3 !important;
@@ -73,6 +74,8 @@ http://ionicframework.com/docs/theming/ */
 /* variables de sign in */
 
 --background-color-input: #d8d8d8;
+
+
 }
 
 
@@ -104,5 +107,4 @@ ion-app {
   ion-toolbar{
     --background: var(--ion-toolbar) !important;
   }
-  
-  
+ 

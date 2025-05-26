@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonList, IonIcon, IonFooter, IonText, IonBackButton, IonButton, IonToast } from '@ionic/react';
-import { hideTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonList, IonIcon, IonFooter, IonText, IonBackButton, IonButton, IonToast, useIonViewWillEnter, IonRouterLink } from '@ionic/react';
 import './log-in.css';
 import { 
          logoGoogle,
@@ -13,7 +12,7 @@ import { authService } from '../../firebase/auth/auth.service';
 import { useHistory } from 'react-router-dom';
 
 const LogInPage: React.FC = () => {
-    hideTabBar();
+
     const history = useHistory();
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState('');
@@ -21,7 +20,7 @@ const LogInPage: React.FC = () => {
     const handleGoogleLogin = async () => {
         try {
             await authService.loginWithGoogle();
-            history.push('/submit-case');
+            history.replace('/tabs/submit-case');
         } catch (error: any) {
             setToastMessage(error.message);
             setShowToast(true);
@@ -29,7 +28,7 @@ const LogInPage: React.FC = () => {
     };
 
     return (
-        <IonPage>
+        <IonPage > 
            <IonHeader class='ion-no-border'>
            <IonToolbar>
                     <IonButton slot='start' fill='clear'>
@@ -37,7 +36,8 @@ const LogInPage: React.FC = () => {
                     </IonButton>
                 </IonToolbar>
             </IonHeader>   
-            <IonContent fullscreen className="content-login" scrollY={false}>
+            <IonContent fullscreen 
+            className="content-login" scrollY={false}>
                 <IonList className="rounded-items-log-in">
                 <IonText className="title-app">
                     <h1>Servicio inmediato.
@@ -56,9 +56,9 @@ const LogInPage: React.FC = () => {
                             <IonIcon size="large" icon={logoApple} className="apple-logo"/> 
                                 <IonLabel>Inicia sesion con Apple</IonLabel>
                         </IonItem>
-                        <IonButton fill='clear' className='log-in-account'>
-                            <IonBackButton defaultHref='/sign-up-page' text="No tienes cuenta?" icon="false"></IonBackButton>
-                        </IonButton>
+                        <IonRouterLink routerLink='/sign-up-page' className='log-in-account'>
+                            <IonLabel>No tienes cuenta?</IonLabel>
+                        </IonRouterLink>
                 </IonList>
                 <IonToast
                     isOpen={showToast}

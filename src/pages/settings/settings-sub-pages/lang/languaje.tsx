@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonButtons, IonBackButton, IonList, IonCheckbox, IonIcon, IonLoading } from '@ionic/react';
-import { hideTabBar } from '../../../../services/tabs/tab-bar-view/tabbar-view';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonButtons, IonBackButton, IonList, IonCheckbox, IonIcon, IonLoading, useIonViewDidEnter } from '@ionic/react';
 import { language } from 'ionicons/icons';
 import './languaje.css';
 import { LanguajeProps, languageOptions, getCurrentLanguage, saveLanguage } from '../../../../models/lang-options/language-model';
@@ -25,7 +24,7 @@ const Languaje: React.FC<LanguajeProps> = ({ initialLanguage = getCurrentLanguag
     }
   };
 
-  hideTabBar();
+
   return (
     <IonPage>
 

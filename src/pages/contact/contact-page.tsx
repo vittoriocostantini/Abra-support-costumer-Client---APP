@@ -3,16 +3,12 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonPage, IonButtons, IonMe
 import '../../theme/page-themes/contact-page.css';
 import AgentList from '../../components/agent-history/agent-list/agent-list';
 import { useIonViewDidEnter } from '@ionic/react';
-import { showTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
 import { agentsData } from '../../data/agents-data/agent-data';
 import { useTranslation } from 'react-i18next';
 
 const ContactPage: React.FC = () => {
   const { t } = useTranslation('contact');
-  useIonViewDidEnter(() => {
-    showTabBar();
-  });
-  
+ 
   return (
     <IonPage>
       <IonHeader className='header-home'  >

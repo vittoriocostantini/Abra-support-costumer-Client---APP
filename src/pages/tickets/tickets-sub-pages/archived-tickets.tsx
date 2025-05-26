@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton } from '@ionic/react';
-import { hideTabBar } from '../../../services/tabs/tab-bar-view/tabbar-view';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton, useIonViewDidEnter } from '@ionic/react';
 import './archived-tickets.css';
 import { getArchivedTickets, unarchiveTicket } from '../../../functions/tickets/archive-unarchive-options/ticket-archive-unarchive-functions';
 import TicketCard from '../../../components/ticket-card/ticket-card';
@@ -12,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 const ArchivedTickets: React.FC = () => {
     const { t } = useTranslation('archived');
-    hideTabBar();
+
     const [archivedTickets, setArchivedTickets] = useState(getArchivedTickets());
 
     const handleUnarchive = (ticketId: string) => {
@@ -38,7 +37,7 @@ const ArchivedTickets: React.FC = () => {
                 <IonToolbar>
                     <IonTitle>{t('archived')}</IonTitle>
                     <IonButtons slot="start">
-                        <IonBackButton defaultHref="/tickets" text={t('chats')} className='back-button'/>
+                        <IonBackButton text={t('chats')} className='back-button'/>
                     </IonButtons>
                 </IonToolbar>
             </IonHeader>

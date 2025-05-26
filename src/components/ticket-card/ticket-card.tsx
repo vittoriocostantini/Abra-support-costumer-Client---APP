@@ -50,8 +50,11 @@ const TicketCard: React.FC<TicketsProduct> = ({
   const handleCardClick = () => {
     resetUnreadMessages(id);
     history.push({
-      pathname: `${path}${id}`,
-      state: { agentName, avatarUrl }
+      pathname: `/tickets/chat/${id}`,
+      state: { 
+        agentName: agentName || 'Agente', 
+        avatarUrl: avatarUrl || 'https://ionicframework.com/docs/img/demos/avatar.svg'
+      }
     });
   };
 
