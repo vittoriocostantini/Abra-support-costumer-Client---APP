@@ -68,7 +68,7 @@ export const useSignUpForm = () => {
                 password: formData.password,
                 displayName: formData.name
             });
-            history.replace('/pages/submit-case');
+            history.replace('/tabs/submit-case');
         } catch (error: any) {
             setToastMessage(error.message);
             setShowToast(true);

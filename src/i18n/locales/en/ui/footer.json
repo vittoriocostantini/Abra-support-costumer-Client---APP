@@ -1,7 +1,8 @@
 {
     
       "case": "Case",
-      "contact": "Contact",
+      "agents": "Agents",
+      "tickets": "Tickets",
       "settings": "Settings"
     
   }   

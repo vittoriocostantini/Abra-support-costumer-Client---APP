@@ -18,6 +18,7 @@ import { notifications, lockClosed, language, informationCircle, logOut, documen
 import { useIonViewDidEnter } from '@ionic/react';
 import FeedbackForm from '../../components/feedback-form/feedback-form';
 import { useTranslation } from 'react-i18next';
+import FooterTickets from '../../components/footer-tickets-page/footer-tickets';
 
 // Definición de la interfaz IonItemButton
 interface IonItemButton {
@@ -90,6 +91,7 @@ const SettingsPage: React.FC = () => {
           </IonLabel>
         </IonItem>
       </IonContent>
+      <FooterTickets />
       <FeedbackForm isOpen={showFeedbackModal} onClose={() => setShowFeedbackModal(false)} />
     </IonPage>
   );

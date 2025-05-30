@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from '@ionic/react';
+import { IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs, IonToolbar } from '@ionic/react';
 import { Route, Redirect } from 'react-router-dom';
 import { person, settings, ticket, addCircle } from 'ionicons/icons';
 import './tab-bar.css';
@@ -8,9 +8,6 @@ import SubmitCase from '../../pages/submit/submit-case';
 import ContactPage from '../../pages/contact/contact-page';
 import TicketsPage from '../../pages/tickets/tickets-page';
 import SettingsPage from '../../pages/settings/settings-page';
-import Privacity from '../../pages/settings/settings-sub-pages/privacity/privacity';
-import Languaje from '../../pages/settings/settings-sub-pages/lang/languaje';
-import AboutUs from '../../pages/settings/settings-sub-pages/about/about-us';
 
 function TabBar() {
   const { t } = useTranslation('tabs');
@@ -22,14 +19,14 @@ function TabBar() {
         <Route exact path="/tabs/submit-case">
           <SubmitCase />
         </Route>
-        <Route exact path="/tabs/contact">
+        <Route exact path="/tabs/agents">
           <ContactPage />
         </Route>
-        <Route  exact path="/view/tickets/">
-          <TicketsPage />
-        </Route>
-        <Route exact path="/tabs/settings">
+        <Route exact path="/settings">
           <SettingsPage />
+        </Route>
+        <Route exact path="/view/tickets/"> 
+          <TicketsPage />
         </Route>
       </IonRouterOutlet>
       <IonTabBar slot="bottom" className='tab-bar' id='app-tab-bar' translucent={true}>
@@ -37,7 +34,7 @@ function TabBar() {
           <IonIcon icon={addCircle} />
           <IonLabel>{t('tabs.case')}</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="contact" href="/tabs/contact" className='button-contact'>
+        <IonTabButton tab="agents" href="/tabs/agents" className='button-agents'>
           <IonIcon icon={person} />
           <IonLabel>{t('tabs.agents')}</IonLabel>
         </IonTabButton>
@@ -45,7 +42,7 @@ function TabBar() {
           <IonIcon icon={ticket} />
           <IonLabel>{t('tabs.tickets')}</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="settings" href="/tabs/settings" className='button-settings'>
+        <IonTabButton tab="settings" href="/settings" className='button-settings'>
           <IonIcon icon={settings} />
           <IonLabel>{t('tabs.settings')}</IonLabel>
         </IonTabButton>

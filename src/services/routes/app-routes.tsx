@@ -12,6 +12,7 @@ import Privacity from '../../pages/settings/settings-sub-pages/privacity/privaci
 import Languaje from '../../pages/settings/settings-sub-pages/lang/languaje';
 import AboutUs from '../../pages/settings/settings-sub-pages/about/about-us';
 import { IonRouterOutlet } from '@ionic/react';
+import SettingsPage from '../../pages/settings/settings-page';
 
 const AppRoutes: React.FC = () => (
   <IonRouterOutlet animated={true} mode="ios">
@@ -27,6 +28,7 @@ const AppRoutes: React.FC = () => (
     <Route path="/sign-up" component={SignUp} exact={true} />
     <Route path="/tickets/chat/:id" component={ChatPage} exact={true} />
     <Route path="/view/tickets/" render={() => <TicketsPage />} />
+    <Route path="/settings" component={SettingsPage} exact={true} />
   </IonRouterOutlet>
 );
 

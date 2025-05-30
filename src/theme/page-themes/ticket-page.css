@@ -61,24 +61,3 @@
 
 
 
-.button-case-ticket {
-  
-  --color: var(--ion-button-footer-tickets) !important;
-
-
-}
-
-.button-contact-ticket {
-  --color: var(--ion-button-footer-tickets) !important;
-  
-}
-
-
-
-
-.button-settings-ticket {
-  --color: var(--ion-button-footer-tickets) !important;
-  
-}
-
-
