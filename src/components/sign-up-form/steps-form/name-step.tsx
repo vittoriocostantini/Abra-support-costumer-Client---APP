@@ -5,13 +5,11 @@ import { FormData } from '../../../models/sign-up/barrel-models/sign-up-barrels'
 interface NameStepProps {
     formData: FormData;
     onInputChange: (e: CustomEvent) => void;
-    onSubmit: () => void;
 }
 
 export const NameStep: React.FC<NameStepProps> = ({
     formData,
     onInputChange,
-    onSubmit
 }) => (
     <>
         <IonText className="title-user-name">¿Cuál es tu nombre?</IonText>
@@ -49,7 +47,6 @@ export const NameStep: React.FC<NameStepProps> = ({
         <IonButton
             shape="round"
             type="submit"
-            onClick={onSubmit}
             disabled={!formData.name || !formData.termsAccepted}
         >
             Crear cuenta
