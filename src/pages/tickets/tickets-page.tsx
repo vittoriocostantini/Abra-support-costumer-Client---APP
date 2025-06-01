@@ -1,54 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonToolbar, IonPage, IonTitle, IonIcon, IonItem, IonLabel, IonRouterLink, IonBadge, useIonViewWillEnter, IonNavLink, IonFooter, IonButton, IonButtons, IonTabButton } from '@ionic/react';
+import React, { useState } from 'react';
+import { IonContent, IonHeader, IonToolbar, IonPage, IonTitle, IonIcon, IonItem, IonLabel, IonRouterLink } from '@ionic/react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { addCircle, archiveOutline, contract, person, settings, ticket } from 'ionicons/icons';
+import { archiveOutline } from 'ionicons/icons';
 import FilterOption from '../../components/filter-option/filter-option';
 import TicketCard from '../../components/ticket-card/ticket-card';
-import { tickets } from '../../stores/tickets-store/tickets-store';
+import { useTicketsStore } from '../../stores/tickets-store/tickets-global-store';
 import { loadMessages } from '../../utils/chat/storage-load-messages/storage-load-messages';
-import { getArchivedTickets } from '../../functions/tickets/archive-unarchive-options/ticket-archive-unarchive-functions';
-import useInterval from '../../hooks/tickets/message-update-interval-badge/use-interval';
 import '../../theme/page-themes/ticket-page.css'; 
 import { useTranslation } from 'react-i18next';
 import FooterTickets from '../../components/footer-tickets-page/footer-tickets';
 
 
 const TicketsPage: React.FC = () => {
+  const {
+    tickets,
+    archivedTickets,
+    archiveTicket,
+    unarchiveTicket,
+    deleteTicket,
+  } = useTicketsStore();
   const [submittedTitle, setSubmittedTitle] = useState('');
-  const [updatedTickets, setUpdatedTickets] = useState(tickets);
-  const [archivedTickets, setArchivedTickets] = useState(getArchivedTickets());
   const [popLayout, setPopLayout] = useState(false);
   const [filterStatus, setFilterStatus] = useState<string | null>(null);
   const { t } = useTranslation('tickets');
   
-  useIonViewWillEnter(() => {
-    setUpdatedTickets(tickets);
-  });
+  // useIonViewWillEnter(() => {
+  //   setUpdatedTickets(tickets);
+  // });
 
-  useInterval(setUpdatedTickets, tickets);
+  // useInterval(tickets, tickets);
 
-  const handleArchiveTicket = (ticketId: string) => {
-    setUpdatedTickets(prevTickets => prevTickets.filter(ticket => ticket.id !== ticketId));
-    setArchivedTickets(prevArchived => {
-      const ticketToUnarchive = prevArchived.find(ticket => ticket && ticket.id === ticketId);
-      if (ticketToUnarchive) {
-        return prevArchived.filter(ticket => ticket && ticket.id !== ticketId);
-      }
-      return [...prevArchived, tickets.find(ticket => ticket && ticket.id === ticketId)];
-    });
+  const handleArchiveTicketLocal = (ticketId: string, isArchived: boolean) => {
+    if (isArchived) {
+      unarchiveTicket(ticketId);
+    } else {
+      archiveTicket(ticketId);
+    }
   };
 
-  const handleUnarchiveTicket = (ticketId: string) => {
-    const ticketToUnarchive = archivedTickets.find(ticket => ticket.id === ticketId);
-    if (ticketToUnarchive) {
-      setUpdatedTickets(prevTickets => [...prevTickets, ticketToUnarchive]);
-      setArchivedTickets(prevArchived => prevArchived.filter(ticket => ticket.id !== ticketId));
-    }
+  const handleDeleteTicketLocal = (ticketId: string, isArchived?: boolean) => {
+    deleteTicket(ticketId, isArchived);
   };
 
   const isTicketValid = (ticket: any) => ticket && ticket.id;
 
-  const filteredTickets = filterStatus ? updatedTickets.filter(ticket => ticket.status === filterStatus) : updatedTickets;
+  const filteredTickets = filterStatus ? tickets.filter(ticket => ticket.status === filterStatus) : tickets;
 
   return (
     <IonPage>
@@ -75,7 +71,6 @@ const TicketsPage: React.FC = () => {
           <AnimatePresence mode={popLayout ? "popLayout" : "sync"}>
             {filteredTickets.map((ticket, index) => {
               if (!isTicketValid(ticket)) return null;
-              const isArchived = archivedTickets.some(archivedTicket => archivedTicket && archivedTicket.id === ticket.id);
               return (
                 <motion.li
                   layout
@@ -102,10 +97,11 @@ const TicketsPage: React.FC = () => {
                     agentName={ticket.agentName || ''}
                     icon={ticket.icon}
                     messages={loadMessages(ticket.id)}
-                    onArchive={handleArchiveTicket}
+                    onArchive={() => handleArchiveTicketLocal(ticket.id, false)}
                     archivedTickets={archivedTickets}
-                    isArchived={isArchived}
-                    onUnarchive={handleUnarchiveTicket}
+                    isArchived={archivedTickets.some(archivedTicket => archivedTicket && archivedTicket.id === ticket.id)}
+                    onUnarchive={() => handleArchiveTicketLocal(ticket.id, true)}
+                    onDelete={() => handleDeleteTicketLocal(ticket.id, false)}
                   />
                 </motion.li>
               );

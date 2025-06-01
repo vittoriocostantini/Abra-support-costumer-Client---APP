@@ -9,7 +9,7 @@ export interface Ticket {
   avatarUrl: string;
   agentName: string;
   imageAlt: string;
-  icon: JSX.Element;
+  icon: string;
   description: string; // Nueva propiedad para la descripción del ticket
   notes: string; // Nueva propiedad para las notas del ticket
 }

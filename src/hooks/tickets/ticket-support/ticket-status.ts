@@ -1,9 +1,7 @@
-import { tickets } from "../../../stores/tickets-store/tickets-store";
+import { useTicketsStore } from '../../../stores/tickets-store/tickets-global-store';
 
-// Función para actualizar el estado de un ticket
+// Función para actualizar el estado de un ticket usando zustand
 export const updateTicketStatus = (chatId: string, newStatus: string) => {
-    const ticket = tickets.find(ticket => ticket.id === chatId);
-    if (ticket) {
-        ticket.status = newStatus; // Cambiar el estado del ticket
-    }
+  const { updateTicketStatus } = useTicketsStore.getState();
+  updateTicketStatus(chatId, newStatus);
 };

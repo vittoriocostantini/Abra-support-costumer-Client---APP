@@ -19,7 +19,6 @@ import { countUnreadMessages } from '../../functions/messages/message-notificati
 import { TicketsProduct } from '../../models/ticket-store/ticket-model-product';
 import { resetUnreadMessages } from '../../functions/messages/reset-service-messages/reset-unread-messages';
 import { getCurrentTime } from '../../services/time-service/time-service';
-import { handleArchiveClick } from '../../handlers/archive-click-option/ticket-archive-click-handler';
 import { checkIsInChat } from '../../functions/tickets/route-chat-check/route-check-chat';
 
 const TicketCard: React.FC<TicketsProduct> = ({
@@ -28,6 +27,7 @@ const TicketCard: React.FC<TicketsProduct> = ({
   number,
   path,
   avatarUrl,
+  imageAlt,
   status,
   date,
   agentName,
@@ -35,6 +35,7 @@ const TicketCard: React.FC<TicketsProduct> = ({
   messages,
   onArchive,
   isArchived,
+  onDelete,
 }) => {
   const { t } = useTranslation('ticket');
   
@@ -58,13 +59,18 @@ const TicketCard: React.FC<TicketsProduct> = ({
     });
   };
 
-  const handleArchiveClickWrapper = () => {
+  const handleDeleteClick = () => {
     setIsVisible(false);
     setTimeout(() => {
-      handleArchiveClick(id, localIsArchived, onArchive, setIsArchived);
+      if (onDelete) {
+        onDelete(id);
+      }
       setIsVisible(true);
+      // Aquí podrías emitir un evento o llamar a una prop para que el padre actualice la lista
     }, 120);
   };
+
+  
 
   useEffect(() => {
     setIsArchived(isArchived);
@@ -99,7 +105,7 @@ const TicketCard: React.FC<TicketsProduct> = ({
     <IonItemSliding ref={itemSlidingRef} className={`ticket-card ${!isVisible ? 'fade-out' : 'fade-in'}`}>
       <IonItem detail={false} className="ticket-card" onClick={handleCardClick} id="ticketCard">
         <div className="app-select-card">
-          {icon}
+          <IonIcon size="small" icon={icon} />
         </div>
         {unreadCount > 0 && (
           <IonBadge
@@ -129,7 +135,13 @@ const TicketCard: React.FC<TicketsProduct> = ({
       </IonItem>
       <IonItemOptions className="option-start" side="start">
         <IonItemOption className="option-archive" onClick={() => {
-          handleArchiveClickWrapper();
+          setIsVisible(false);
+          setTimeout(() => {
+            if (onArchive) {
+              onArchive(id);
+            }
+            setIsVisible(true);
+          }, 120);
           itemSlidingRef.current?.close();
         }}>
           <IonIcon slot="top" size="large" icon={localIsArchived ? reader : archive} />
@@ -142,7 +154,10 @@ const TicketCard: React.FC<TicketsProduct> = ({
             <img alt={t('agentAvatar')} src={avatarUrl} />
           </IonAvatar>
         </IonItemOption>
-        <IonItemOption className="option-delete" onClick={() => itemSlidingRef.current?.close()}>
+        <IonItemOption className="option-delete" onClick={() => {
+          handleDeleteClick();
+          itemSlidingRef.current?.close();
+        }}>
           <IonIcon slot="top" size="large" icon={trash}/>
           {t('delete')}
         </IonItemOption>

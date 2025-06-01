@@ -9,10 +9,11 @@ export interface TicketsProduct {
   status: string;
   date: string;
   agentName: string;
-  icon?: JSX.Element;
+  icon?: string;
   messages: { text: string; sender: string; chatId: string; unread?: number }[];
   onArchive: (ticketId: string) => void;
   archivedTickets: any[];
   isArchived: boolean;
   onUnarchive: (ticketId: string) => void;
+  onDelete?: (ticketId: string) => void;
 } 
