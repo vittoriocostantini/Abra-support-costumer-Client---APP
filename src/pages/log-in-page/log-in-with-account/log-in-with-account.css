@@ -13,7 +13,7 @@
 }
 
 .list-login ion-item {
-    width: 10;
+    width: 100%;
     --background: var(--background-color-input);
     border-radius: 10px;
 }

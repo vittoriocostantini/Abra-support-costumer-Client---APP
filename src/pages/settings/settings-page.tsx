@@ -10,15 +10,12 @@ import { IonContent,
   IonRouterLink, 
   IonToggle,
   IonList,
-  IonModal,
-  IonButton,
 } from '@ionic/react';
 import '../../theme/page-themes/settings-page.css';
 import { notifications, lockClosed, language, informationCircle, logOut, documentText, logIn } from 'ionicons/icons';
-import { useIonViewDidEnter } from '@ionic/react';
-import FeedbackForm from '../../components/feedback-form/feedback-form';
+import FeedbackForm from '../../components/pages/settings/feedback-form/feedback-form';
 import { useTranslation } from 'react-i18next';
-import FooterTickets from '../../components/footer-tickets-page/footer-tickets';
+import FooterTickets from '../../components/footer-tab/footer-tab';
 
 // Definición de la interfaz IonItemButton
 interface IonItemButton {
