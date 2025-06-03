@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton } from '@ionic/react';
 import './archived-tickets.css';
-import TicketCard from '../../../components/ticket-card/ticket-card';
-import { loadMessages } from '../../../utils/chat/storage-load-messages/storage-load-messages';
+import TicketCard from '../../../components/tickets/ticket-card/ticket-card';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useTicketsStore } from '../../../stores/tickets-store/tickets-global-store';
+import { useMessageStore } from '../../../stores/message-store/message-store';
 
 const ArchivedTickets: React.FC = () => {
     const { t } = useTranslation('archived');
@@ -46,8 +46,9 @@ const ArchivedTickets: React.FC = () => {
 
 const TicketItem: React.FC<{ ticket: any, handleUnarchive: (id: string) => void }> = ({ ticket, handleUnarchive }) => {
     const { deleteTicket } = useTicketsStore();
-    const messages = loadMessages(ticket.id);
-
+    const { messages } = useMessageStore();
+    const ticketMessages = Array.isArray(messages[ticket.id]) ? messages[ticket.id] : [];
+    
     return (
         <motion.li
             layout
@@ -74,7 +75,7 @@ const TicketItem: React.FC<{ ticket: any, handleUnarchive: (id: string) => void 
                 date={ticket.date}
                 agentName={ticket.agentName}
                 icon={ticket.icon}
-                messages={messages}
+                messages={ticketMessages}
                 isArchived={true}
                 onArchive={handleUnarchive}
                 archivedTickets={[]}

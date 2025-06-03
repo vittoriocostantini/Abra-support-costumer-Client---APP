@@ -2,7 +2,7 @@ import React from 'react';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonBackButton, IonButton, IonToast, useIonViewWillEnter } from '@ionic/react';
 import './log-in-with-account.css';
 import { useLoginForm } from '../../../hooks/login/use-login-form';
-import { LoginForm } from '../../../components/login-form/login-form';
+import { LoginForm } from '../../../components/pages/log-in/login-form/login-form';
 
 const TOAST_DURATION = 2000;
 

@@ -18,9 +18,8 @@ import { IonContent,
   IonLoading
 } from '@ionic/react';
 import '../../theme/page-themes/submit-case.css';
-import PlatformScrollSubmit from '../../components/platform-scroll-apps/platform-scroll-submit-app';
-import { attachOutline, bulb, share } from 'ionicons/icons';
-import { useIonViewDidEnter } from '@ionic/react';
+import PlatformScrollSubmit from '../../components/pages/submit-case/platform-scroll-apps/platform-scroll-submit-app';
+import { attachOutline, bulb } from 'ionicons/icons';
 import { useTicketsStore } from '../../stores/tickets-store/tickets-global-store';
 import { useTranslation } from 'react-i18next';
 

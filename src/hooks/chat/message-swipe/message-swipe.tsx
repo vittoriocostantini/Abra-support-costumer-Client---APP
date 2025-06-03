@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { handleReply } from '../../../handlers/message-reply/message-reply-handle';
 //logica de swipe para message bubble
 export const useSwipeToReply = (isOwnMessage: boolean, message: string, setReplyMessage: (msg: string) => void) => {
     const [swipeDistance, setSwipeDistance] = useState(0);
@@ -51,7 +50,7 @@ export const useSwipeToReply = (isOwnMessage: boolean, message: string, setReply
 
     const handleTouchEnd = () => {
         if (swipeDistance > 0 && !isOwnMessage && validSwipeStart && isHorizontalSwipe) {
-            handleReply(message, setReplyMessage); // Pass the setReplyMessage function
+            setReplyMessage(message); // Ahora llama directamente a setReplyMessage
         }
         setSwipeDistance(0); // Reset after swipe
         setStartX(null);

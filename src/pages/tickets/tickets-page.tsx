@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { IonContent, IonHeader, IonToolbar, IonPage, IonTitle, IonIcon, IonItem, IonLabel, IonRouterLink } from '@ionic/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { archiveOutline } from 'ionicons/icons';
-import FilterOption from '../../components/filter-option/filter-option';
-import TicketCard from '../../components/ticket-card/ticket-card';
+import FilterOption from '../../components/tickets/filter-option/filter-option';
+import TicketCard from '../../components/tickets/ticket-card/ticket-card';
 import { useTicketsStore } from '../../stores/tickets-store/tickets-global-store';
-import { loadMessages } from '../../utils/chat/storage-load-messages/storage-load-messages';
+import { useMessageStore } from '../../stores/message-store/message-store';
 import '../../theme/page-themes/ticket-page.css'; 
 import { useTranslation } from 'react-i18next';
-import FooterTickets from '../../components/footer-tickets-page/footer-tickets';
+import FooterTickets from '../../components/footer-tab/footer-tab';
 
 
 const TicketsPage: React.FC = () => {
@@ -24,12 +24,6 @@ const TicketsPage: React.FC = () => {
   const [filterStatus, setFilterStatus] = useState<string | null>(null);
   const { t } = useTranslation('tickets');
   
-  // useIonViewWillEnter(() => {
-  //   setUpdatedTickets(tickets);
-  // });
-
-  // useInterval(tickets, tickets);
-
   const handleArchiveTicketLocal = (ticketId: string, isArchived: boolean) => {
     if (isArchived) {
       unarchiveTicket(ticketId);
@@ -45,6 +39,8 @@ const TicketsPage: React.FC = () => {
   const isTicketValid = (ticket: any) => ticket && ticket.id;
 
   const filteredTickets = filterStatus ? tickets.filter(ticket => ticket.status === filterStatus) : tickets;
+
+  const allMessages = useMessageStore(state => state.messages);
 
   return (
     <IonPage>
@@ -66,11 +62,11 @@ const TicketsPage: React.FC = () => {
               <IonIcon size='small' icon={archiveOutline} />
               <IonLabel className='archive-label'>{t('archived')}</IonLabel>
             </IonItem>
-            
           </IonRouterLink>
           <AnimatePresence mode={popLayout ? "popLayout" : "sync"}>
             {filteredTickets.map((ticket, index) => {
               if (!isTicketValid(ticket)) return null;
+              const ticketMessages = Array.isArray(allMessages[ticket.id]) ? allMessages[ticket.id] : [];
               return (
                 <motion.li
                   layout
@@ -96,7 +92,7 @@ const TicketsPage: React.FC = () => {
                     date={ticket.date || ''}
                     agentName={ticket.agentName || ''}
                     icon={ticket.icon}
-                    messages={loadMessages(ticket.id)}
+                    messages={ticketMessages}
                     onArchive={() => handleArchiveTicketLocal(ticket.id, false)}
                     archivedTickets={archivedTickets}
                     isArchived={archivedTickets.some(archivedTicket => archivedTicket && archivedTicket.id === ticket.id)}

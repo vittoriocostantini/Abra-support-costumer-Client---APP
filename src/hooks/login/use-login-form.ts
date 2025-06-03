@@ -2,7 +2,7 @@ import { useCallback, useReducer, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 import { authService } from '../../firebase/auth/auth.service';
 import { FormState, FormAction, LoginCredentials } from '../../models/login/barrel-models/login-barrel';
-import { ERROR_MESSAGES, ErrorMessage } from '../../constants/error-messages';
+import { ERROR_MESSAGES, ErrorMessage } from '../../constants/log-in-with-account/error-messages';
 
 const MIN_PASSWORD_LENGTH = 6;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

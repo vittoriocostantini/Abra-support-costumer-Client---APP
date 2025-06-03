@@ -1,8 +1,7 @@
 import React from 'react';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonPage, IonButtons, IonMenuButton } from '@ionic/react'; // Añadir IonIcon
 import '../../theme/page-themes/contact-page.css';
-import AgentList from '../../components/agent-history/agent-list/agent-list';
-import { useIonViewDidEnter } from '@ionic/react';
+import AgentList from '../../components/pages/agents/agent-history/agent-list/agent-list';
 import { agentsData } from '../../data/agents-data/agent-data';
 import { useTranslation } from 'react-i18next';
 

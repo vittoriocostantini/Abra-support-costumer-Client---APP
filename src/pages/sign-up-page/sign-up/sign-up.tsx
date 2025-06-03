@@ -9,14 +9,13 @@ import {
     IonList,
     IonToast,
     IonIcon,
-    useIonViewWillEnter
 } from '@ionic/react';
 import { chevronBack } from 'ionicons/icons';
 import './sign-up.css';
 import { useSignUpForm } from '../../../hooks/sign-up/use-sign-up-form';
-import { EmailStep } from '../../../components/sign-up-form/steps-form/email-step';
-import { PasswordStep } from '../../../components/sign-up-form/steps-form/password-step';
-import { NameStep } from '../../../components/sign-up-form/steps-form/name-step';
+import { EmailStep } from '../../../components/pages/sign-up/sign-up-form/steps-form/email-step';
+import { PasswordStep } from '../../../components/pages/sign-up/sign-up-form/steps-form/password-step';
+import { NameStep } from '../../../components/pages/sign-up/sign-up-form/steps-form/name-step';
 
 const SignUp: React.FC = () => {
  
@@ -57,7 +56,6 @@ const SignUp: React.FC = () => {
                     <NameStep
                         formData={formData}
                         onInputChange={handleInputChange}
-                        onSubmit={handleSubmit}
                     />
                 );
             default:

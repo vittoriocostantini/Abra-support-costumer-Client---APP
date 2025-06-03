@@ -8,98 +8,122 @@ import { IonPage,
     IonButton, 
     IonIcon, 
     IonAvatar, 
-    useIonViewWillEnter
     } from '@ionic/react';
 import { send,  chevronBack, closeCircleOutline } from 'ionicons/icons';
 import './chat-page.css';
 import '../../theme/variables.css';
 import '../../handlers/message-reply/reply-animation.css';
 import { handleFilesSelected } from '../../handlers/file-upload-button/file-handlers';
-import ChatInput from '../../components/chat-input/chat-input';
+import ChatInput from '../../components/pages/chats/chat-input/chat-input';
 import FileUploadButton from '../../functions/chats/file-upload/file-upload-service';
-import MessagesList from '../../components/message-container/message-list';
+import MessagesList from '../../components/pages/chats/message-container/message-list';
 import { useKeyboardListeners } from '../../handlers/keyboard/keyboard-handler';
 import { useParams, useLocation } from 'react-router-dom';
-import { sendMessageHandler } from '../../handlers/send-message/send-message';
 import { useScrollToBottom } from '../../utils/chat/scroll-to-bottom/scroll-to-bottom';
 import useResetTextarea from '../../hooks/chat/chat-input/use-reset-textarea';
-import { loadMessages } from '../../utils/chat/storage-load-messages/storage-load-messages';
 import { useMessageStatus } from '../../functions/messages/message-status/message-status';
 import { handleChatIconAddClick } from '../../functions/chats/button-add-event-handler/button-add-event';
 import { useTranslation } from 'react-i18next';
-// ChatPage es el componente principal de la página de chat
+import { useMessageStore } from '../../stores/message-store/message-store';
+import { simulateAutoResponse } from '../../hooks/chat/auto-response/auto-response';
+import ChatSendButton from '../../components/pages/chats/chat-send-button/chat-send-button';
+
+// ================= FUNCIONES AUXILIARES =================
+
+const handleKeyboardShow = (setIsKeyboardVisible: (v: boolean) => void, keyboardHeight: React.MutableRefObject<number>) => (event: any) => {
+    keyboardHeight.current = event.keyboardHeight;
+    setIsKeyboardVisible(true);
+};
+
+const handleKeyboardHide = (setIsKeyboardVisible: (v: boolean) => void, keyboardHeight: React.MutableRefObject<number>) => () => {
+    keyboardHeight.current = 0;
+    setIsKeyboardVisible(false);
+};
+
+// ================= COMPONENTE PRINCIPAL =================
+
 const ChatPage: React.FC = () => {
+    // ----------- Hooks de navegación y estado global -----------
     const location = useLocation<{ agentName: string; avatarUrl: string }>();
     const { agentName = 'Agente', avatarUrl = 'https://ionicframework.com/docs/img/demos/avatar.svg' } = location.state || {};
     const { id: chatId } = useParams<{ id: string }>();
+    const { t } = useTranslation('common');
+
+    // ----------- Refs -----------
     const inputRef = useRef<HTMLTextAreaElement>(null!);
-    const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
-    const [message, setMessage] = useState('');
-    const [messages, setMessages] = useState<{ text: string; sender: string; chatId: string; replyingTo?: string }[]>(loadMessages(chatId));
     const messagesEndRef = useRef<HTMLDivElement>(null!);
     const keyboardHeight = useRef<number>(0);
+
+    // ----------- Estado local -----------
+    const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
+    const [message, setMessage] = useState('');
     const [isSendButtonVisible, setSendButtonVisible] = useState(false);
-    const resetTextarea = useResetTextarea(inputRef);
-    const [replyMessage, setReplyMessage] = useState<string | null>(null);
-    const [isReplyExiting, setIsReplyExiting] = useState(false);
-    const { t } = useTranslation('common');
-    // Este hook se encarga de ocultar la barra de pestañas
-  
-    // Este hook se encarga de escuchar los eventos de teclado
+
+    // ----------- Estado global (Zustand) -----------
+    const messages = useMessageStore(state => Array.isArray(state.messages[chatId]) ? state.messages[chatId] : []);
+    const loadMessages = useMessageStore(state => state.loadMessages);
+    const addMessage = useMessageStore(state => state.addMessage);
+    const replyMessage = useMessageStore(state => state.replyMessage);
+    const setReplyMessage = useMessageStore(state => state.setReplyMessage);
+    const setActiveChatId = useMessageStore(state => state.setActiveChatId);
+
+    // ----------- Hooks personalizados -----------
     useKeyboardListeners();
+    const resetTextarea = useResetTextarea(inputRef);
+    useScrollToBottom(messagesEndRef, messages);
+    useMessageStatus(messages, chatId);
 
+    // ----------- useEffect -----------
     useEffect(() => {
-        const handleKeyboardShow = (event: any) => {
-            keyboardHeight.current = event.keyboardHeight;
-            setIsKeyboardVisible(true);
-        };
-
-        const handleKeyboardHide = () => {
-            keyboardHeight.current = 0;
-            setIsKeyboardVisible(false);
-        };
-
-        window.addEventListener('keyboardDidShow', handleKeyboardShow);
-        window.addEventListener('keyboardDidHide', handleKeyboardHide);
-
-        return () => {
-            window.removeEventListener('keyboardDidShow', handleKeyboardShow);
-            window.removeEventListener('keyboardDidHide', handleKeyboardHide);
-        };
-    }, []);
+        loadMessages(chatId);
+        setActiveChatId(chatId);
+        return () => setActiveChatId(null);
+    }, [chatId, loadMessages, setActiveChatId]);
 
     useEffect(() => {
         setSendButtonVisible(message.trim().length > 0);
     }, [message]);
 
+    useEffect(() => {
+        const showHandler = handleKeyboardShow(setIsKeyboardVisible, keyboardHeight);
+        const hideHandler = handleKeyboardHide(setIsKeyboardVisible, keyboardHeight);
+        window.addEventListener('keyboardDidShow', showHandler);
+        window.addEventListener('keyboardDidHide', hideHandler);
+        return () => {
+            window.removeEventListener('keyboardDidShow', showHandler);
+            window.removeEventListener('keyboardDidHide', hideHandler);
+        };
+    }, []);
+
+    // ----------- Funciones -----------
+    const sendMessage = () => {
+        if (message.trim().length === 0) return;
+        addMessage({
+            text: message,
+            sender: 'Yo',
+            chatId: chatId,
+            replyingTo: replyMessage || undefined,
+            unread: 0
+        });
+        simulateAutoResponse(chatId);
+        setMessage('');
+        resetTextarea();
+        setReplyMessage(null);
+    };
+
     const handleButtonClick = (event: React.MouseEvent<HTMLIonButtonElement>) => {
         event.preventDefault();
-        
-        // Use the new function to handle chat-icon-add click
-        if (handleChatIconAddClick(event, isKeyboardVisible, inputRef)) {
-            return; // Salir de la función para evitar el envío del mensaje
-        }
-        
-        // Lógica para enviar el mensaje
-        sendMessageHandler(message, chatId, setMessages, setMessage, inputRef, replyMessage);
-        resetTextarea();
-        setReplyMessage(null); // Clear the replyMessage state
-    
-        // No ocultar el teclado al enviar el mensaje
+        if (handleChatIconAddClick(event, isKeyboardVisible, inputRef)) return;
+        sendMessage();
         if (isKeyboardVisible && inputRef.current) {
-            inputRef.current.focus(); // Mantener el foco en el textarea
+            inputRef.current.focus();
         }
     };
 
-    // Este hook se encarga de desplazar el contenedor de mensajes hacia abajo cuando se agrega un nuevo mensaje
-    useScrollToBottom(messagesEndRef, messages);
-
-    // Use the new hook to update ticket status when a new message is detected
-    useMessageStatus(messages, chatId);
-
+    // ----------- Render -----------
     return (
         <IonPage className='chat-page'>
-            <IonHeader className='header-chat' translucent={true} class='ion-no-border'>
+            <IonHeader className='header-chat ion-no-border' translucent={true}>
                 <IonToolbar className='toolbar-header'>
                     <IonButtons slot="start">
                         <IonButton className="back-button" slot="start" onClick={() => window.history.back()} fill="clear">
@@ -120,27 +144,19 @@ const ChatPage: React.FC = () => {
                     messagesEndRef={messagesEndRef as React.RefObject<HTMLDivElement>} 
                     keyboardHeight={keyboardHeight.current}
                     setReplyMessage={setReplyMessage}
-                    agentName={agentName} // Pass the agent's name
+                    agentName={agentName}
                 />
               </IonContent>
-            <IonFooter className="chat-footer" id='chat-footer' class='ion-no-border' translucent={true} mode='ios'>
+            <IonFooter className="chat-footer ion-no-border" id='chat-footer' translucent={true} mode='ios'>
                 <IonToolbar className="toolbar-footer">
                     {replyMessage && (
-                        <div className={`reply-message ${isReplyExiting ? 'reply-message-exit' : 'reply-message-animate'}`}>
+                        <div className={`reply-message ${false ? 'reply-message-exit' : 'reply-message-animate'}`}>
                             <p>{replyMessage}</p>
                             <IonButton 
                                 slot="end"
                                 fill='clear' 
                                 className='close-reply' 
-                                onClick={() => {
-                                    // Start exit animation
-                                    setIsReplyExiting(true);
-                                    // Wait for animation to complete before removing
-                                    setTimeout(() => {
-                                        setReplyMessage(null);
-                                        setIsReplyExiting(false);
-                                    }, 300); // Same duration as animation
-                                }}
+                                onClick={() => setReplyMessage(null)}
                             >
                                 <IonIcon icon={closeCircleOutline} slot="icon-only" size='large'/>
                             </IonButton>
@@ -156,16 +172,10 @@ const ChatPage: React.FC = () => {
                             value={message}
                             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
                         />
-                        <IonButton
-                            slot="end" 
-                            shape="round"
-                            size="small"
-                            className={`chat-button-send ${isSendButtonVisible ? 'visible' : ''}`}
-                            onClick={handleButtonClick} 
-                            style={{ opacity: isSendButtonVisible ? 1 : 0 }}
-                        >
-                            <IonIcon icon={send} slot="icon-only"/>
-                        </IonButton>
+                        <ChatSendButton
+                            onClick={handleButtonClick}
+                            visible={isSendButtonVisible}
+                        />
                     </div>
                 </IonToolbar>
             </IonFooter>
