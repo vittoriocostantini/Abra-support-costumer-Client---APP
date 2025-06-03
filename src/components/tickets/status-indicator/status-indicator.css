@@ -1,0 +1,40 @@
+.status-icon {
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 10px;
+  margin: 2px;
+  animation: blink 1s infinite; /* Animación de parpadeo */
+  border: none;
+}
+
+.status-text h2 {
+  font-size: 11px;
+  color: #333232;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1; /* Totalmente visible */
+  }
+  50% {
+    opacity: 0.4; /* Semi-transparente */
+  }
+}
+
+.status-yellow {
+  color: #f9e79f; /* Amarillo pastel */
+  background-color: #f9e79f; /* Amarillo pastel */
+  box-shadow: 0 0 20px rgba(249, 231, 157, 0.7); /* Sombra amarilla pastel */
+}
+
+.status-blue {
+  color: #85c1ee; /* Azul pastel */
+  background-color: #85c1ee; /* Azul pastel */
+  box-shadow: 0 0 20px rgba(133, 193, 238, 0.7); /* Sombra azul pastel */
+}
+
+.status-green {
+  color: #a8e6cf; /* Verde pastel */
+  background-color: #a8e6cf; /* Verde pastel */
+  box-shadow: 0 0 20px rgba(168, 230, 207, 0.7); /* Sombra verde pastel */
+}

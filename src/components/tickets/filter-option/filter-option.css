@@ -1,0 +1,20 @@
+.filter-button {
+  --background: var(--ion-button-tickets) !important;
+  --background-activated: var(--ion-button-tickets) !important;
+  --background-focused: var(--ion-button-tickets) !important;
+}
+
+.action-sheet-button span {
+  color: #000;
+}
+
+.icon-button {
+  color: #000;
+}
+
+/* Estilo para la opción seleccionada */
+.selected-option {
+  background-color: #e0dfdf !important; /* Cambia el color de fondo */
+  color: #007bff !important; /* Cambia el color del texto */
+}
+
