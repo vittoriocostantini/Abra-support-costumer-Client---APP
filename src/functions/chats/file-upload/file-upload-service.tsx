@@ -18,12 +18,15 @@ const FileUploadButton: React.FC<FileUploadButtonProps> = ({ onFilesSelected, ha
 
     return (
         <>
-                <IonButton fill='clear' slot='icon-only' className="chat-icon-add"
-                    onClick={(event) => {
+            <IonButton 
+            className="chat-icon-add" 
+            size='small'
+            shape='round'
+            onClick={(event) => {
                         handleButtonClick(event);
                     document.getElementById('fileInput')?.click();
                 }}>
-                    <IonIcon icon={add} size="large"/>
+                    <IonIcon icon={add}  slot='icon-only'/>
                 </IonButton>
             <input
                 type="file"

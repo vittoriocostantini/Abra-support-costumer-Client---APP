@@ -53,19 +53,17 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
             )}
             <span className='message-text'>
                 <p>{isExpanded ? message : message.slice(0, 700)}</p>
+                <span className={`timestamp ${isOwnMessage ? 'sent-timestamp' : 'received-timestamp'}`}>
+                  {isOwnMessage ? timestampSent : timestampReceived}
+                </span>
             </span>
-          
-            <div className={`timestamp ${isOwnMessage ? 'sent-timestamp' : 'received-timestamp'}`}>
-                {isOwnMessage ? timestampSent : timestampReceived}
-                {shouldShowSeeMore && (
+            {shouldShowSeeMore && (
                 <IonButtons className='button-expand-message' >
                 <IonButton onClick={toggleExpand} fill='clear' size='small'>
                     <p>{isExpanded ? 'ver menos' : 'ver mas'}</p>
                 </IonButton>
                 </IonButtons>
             )}
-            </div>
-           
         </div>
     );
 };

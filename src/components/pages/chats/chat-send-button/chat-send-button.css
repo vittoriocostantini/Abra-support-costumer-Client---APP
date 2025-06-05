@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: center;
     margin: 0;
-    bottom: 27px;
+    bottom: 25px;
  
     --background: #000;
     --background-activated: #3d3d3d;
@@ -17,7 +17,7 @@
 
 .chat-button-send.visible {
     opacity: 1;
-    bottom: 27px;
+    bottom: 25px;
     position: absolute;
     display: flex;
     margin: 0;

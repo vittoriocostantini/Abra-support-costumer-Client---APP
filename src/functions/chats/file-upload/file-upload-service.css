@@ -1,7 +1,10 @@
 .chat-icon-add {
-    position: absolute;
-    bottom: 10px;
-    left: -5px;
     --color: #000;
-   
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 21px;
+
+    
 }

@@ -10,32 +10,42 @@
 }
 
 .message-bubble {
-    padding: 5px; /* Aumentar el padding para mayor espacio */
-    min-width: 20%;
-    max-width: 75%; /* Ajustar el ancho máximo */
+    display: inline-block;
+    padding: 5px ;
+    min-width: 27%;
+    max-width: 75%;
     background: #f5f5f5;
-    border-radius: 10px; /* Cambiar el radio para que sea más redondeado */
+    border-radius: 10px;
     position: relative;
-    transition: transform 0.1s ease; /* Reduced transition duration for faster swipe */
+    transition: transform 0.1s ease;
     animation: fadeIn 0.3s ease;
-    font-size: 14px; /* Ajustar el tamaño de fuente */
-    margin: 2px;
-     /* Ajustar la altura máxima para permitir más espacio */
+    font-size: 14px;
+    margin: 2px 5px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    vertical-align: top;
+    word-break: break-word;
 }
 
 .message-text {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    margin: 0;
+    padding: 0;
     white-space: pre-wrap;
+    word-break: break-word;
     width: 100%;
-    margin: 0px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: relative;
 }
 
 .message-text p {
     font-weight: 500;
     margin: 0;
+    font-size: 17px;
+    padding: 0;
+    width: 100%;
+    word-break: break-word;
 }
-
 
 .message-bubble.swiping {
     transform: translateX(var(--swipe-distance, 0px));
@@ -46,10 +56,14 @@
 }
 
 .sent {
-    background-color: var(--ion-chat-bubble-sent);
+    background-color: var(--ion-chat-bubble-sent, #d1f8c6);
+    color: #222;
     align-self: flex-end;
-    margin-right: 10px;
-    border-bottom-right-radius: 10px;
+    margin-left: auto;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 18px;
+    text-align: left;
+    box-shadow: 0 1px 4px rgba(95,143,57,0.08);
 }
 
 .sent::after {
@@ -74,10 +88,14 @@
 }
 
 .received {
-    background-color: var(--ion-chat-bubble-received);
+    background-color: var(--ion-chat-bubble-received, #e6e6e6);
+    color: #222;
     align-self: flex-start;
-    margin-left: 10px;
-    border-bottom-left-radius: 10px;
+    margin-right: auto;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 18px;
+    text-align: left;
+    box-shadow: 0 1px 4px rgba(66,114,135,0.08);
 }
 
 .received::after {
@@ -102,64 +120,58 @@
 }
 
 .timestamp {
-    font-size: 10px; /* Tamaño de fuente para el timestamp */
-    color: #999; /* Color del timestamp */
-    margin-top: 2px; /* Espacio entre el mensaje y el timestamp */
-    text-align: right; /* Alinear el timestamp a la derecha */
+    font-size: 12px;
+    color: #a3a3a3;
+    align-self: flex-end;
+    background: transparent;
+    line-height: 1;
+    white-space: nowrap;
+    z-index: 2;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+    position: static;
+    right: unset;
+    bottom: unset;
+    padding-left: 0;
+    margin-right: 0;
 }
-
-.sent-timestamp {
-    align-self: flex-end; /* Alinear a la derecha */
-}
-
-.received-timestamp {
-    align-self: flex-start; /* Alinear a la izquierda */
-}
-
 
 .bubble-reply-badge {
-    padding: 5px;
-    border-radius: 5px;
-    margin: 0px;
-    height: auto;
+    padding: 6px 10px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    background: #f0f0f0;
+    font-size: 13px;
+    color: #595858;
+    display: block;
+    max-width: 100%;
     overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* number of lines to show */
-            line-clamp: 3; 
-    -webkit-box-orient: vertical;
-  
 }
 
 .bubble-reply-badge p {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* number of lines to show */
-            line-clamp: 3; 
-    -webkit-box-orient: vertical;
-    margin: 0px;
-    position: relative;
-    padding: 3px; /* Ajustar el padding si es necesario */
+    margin: 0;
+    padding: 0;
     font-size: 13px;
     color: #595858;
-   
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-line;
 }
 
 .sent-badge {
-    background-color: #b5e393; /* Color de fondo para mensajes enviados */
-    border-right: 5px #5f8f39 solid;
-
+    background-color: #b5e393;
+    border-right: 4px #5f8f39 solid;
 }
 
 .received-badge {
-    background-color: #83bbd3; /* Color de fondo para mensajes recibidos */
-    border-left: 5px #427287 solid;
-
+    background-color: #83bbd3;
+    border-left: 4px #427287 solid;
 }
 
 .agent-name {
     font-weight: bold;
     color: #427287;
-    margin: 5px;
+    display: block;
 }
 
 .button-expand-message {
@@ -167,9 +179,7 @@
     width: 80px;
     bottom: -4px;
     right: 60px;
-
 }
-
 
 .button-expand-message p {
     margin: 0px;

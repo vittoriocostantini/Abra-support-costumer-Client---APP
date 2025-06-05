@@ -19,7 +19,6 @@ import FileUploadButton from '../../functions/chats/file-upload/file-upload-serv
 import MessagesList from '../../components/pages/chats/message-container/message-list';
 import { useKeyboardListeners } from '../../handlers/keyboard/keyboard-handler';
 import { useParams, useLocation } from 'react-router-dom';
-import { useScrollToBottom } from '../../utils/chat/scroll-to-bottom/scroll-to-bottom';
 import useResetTextarea from '../../hooks/chat/chat-input/use-reset-textarea';
 import { useMessageStatus } from '../../functions/messages/message-status/message-status';
 import { handleChatIconAddClick } from '../../functions/chats/button-add-event-handler/button-add-event';
@@ -53,6 +52,7 @@ const ChatPage: React.FC = () => {
     const inputRef = useRef<HTMLTextAreaElement>(null!);
     const messagesEndRef = useRef<HTMLDivElement>(null!);
     const keyboardHeight = useRef<number>(0);
+    const messagesListRef = useRef<any>(null);
 
     // ----------- Estado local -----------
     const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
@@ -70,7 +70,6 @@ const ChatPage: React.FC = () => {
     // ----------- Hooks personalizados -----------
     useKeyboardListeners();
     const resetTextarea = useResetTextarea(inputRef);
-    useScrollToBottom(messagesEndRef, messages);
     useMessageStatus(messages, chatId);
 
     // ----------- useEffect -----------
@@ -140,14 +139,14 @@ const ChatPage: React.FC = () => {
             </IonHeader>
               <IonContent id='chat-container' fullscreen scrollY={false}>
                 <MessagesList 
+                    ref={messagesListRef}
                     messages={messages} 
-                    messagesEndRef={messagesEndRef as React.RefObject<HTMLDivElement>} 
                     keyboardHeight={keyboardHeight.current}
                     setReplyMessage={setReplyMessage}
                     agentName={agentName}
                 />
               </IonContent>
-            <IonFooter className="chat-footer ion-no-border" id='chat-footer' translucent={true} mode='ios'>
+            <IonFooter className="chat-footer" id='chat-footer' translucent={true} mode='ios' >
                 <IonToolbar className="toolbar-footer">
                     {replyMessage && (
                         <div className={`reply-message ${false ? 'reply-message-exit' : 'reply-message-animate'}`}>
@@ -162,7 +161,7 @@ const ChatPage: React.FC = () => {
                             </IonButton>
                         </div>
                     )}
-                    <div className='chat-input-container'>  
+                    <div className='chat-input-container' >  
                         <FileUploadButton 
                             onFilesSelected={handleFilesSelected} 
                             handleButtonClick={handleButtonClick} 

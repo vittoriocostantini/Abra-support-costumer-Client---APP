@@ -2,7 +2,7 @@
     font-size: 14px;
     outline: none;
     background-color: #ffffff;
-    width: 70%;
+    width: 60%;
     min-height: 30px;
     max-height: 120px;
     border: none;
@@ -11,6 +11,7 @@
     padding: 6px;
     margin-bottom: 25px;
     overflow-y: scroll;
+    margin-left: 35px;
     transition: width 0.3s ease;
   
 }
@@ -18,13 +19,6 @@
 
 
 .chat-input-message.typing {
-    width: 90%;
+    width: 80%;
 }
-
-.chat-input-container {
-    display: flex;
-    justify-content: flex-start;
-    margin-left: 50px;
-}
-
 
