@@ -12,7 +12,7 @@ interface MessageBubbleProps {
     setReplyMessage: (msg: string) => void;
     replyingTo?: string;
     agentName: string;
-    isLastInGroup?: boolean; // Añadir esta nueva prop
+    isLastInGroup?: boolean; 
 }
 
 const MessageBubble: React.FC<MessageBubbleProps> = ({ 
@@ -23,12 +23,12 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
     setReplyMessage,
     replyingTo,
     agentName,
-    isLastInGroup = false // Valor por defecto false
+    isLastInGroup = false 
 }) => {
     const { swipeDistance, handleTouchStart, handleTouchMove, handleTouchEnd } = useSwipeToReply(isOwnMessage, message, setReplyMessage);
     const [displayedTimestamp] = useState(getCurrentTime());
-    const timestampSent = isOwnMessage ? displayedTimestamp : ''; // Timestamp para "sent"
-    const timestampReceived = !isOwnMessage ? displayedTimestamp : ''; // Timestamp para "received"
+    const timestampSent = isOwnMessage ? displayedTimestamp : ''; 
+    const timestampReceived = !isOwnMessage ? displayedTimestamp : ''; 
     const [isExpanded, setIsExpanded] = useState(false);
 
     const shouldShowSeeMore = message.length > 300;

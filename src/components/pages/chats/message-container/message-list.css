@@ -1,8 +1,9 @@
 .virtuoso-messages {
-    height: 100%;
     width: 100%;
     background: url('../../../../assets/chats/chats-background.png');
     overflow: hidden;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
 }
 
 .chat-letter {    
@@ -35,12 +36,17 @@
     flex: 1 1 auto;
     overflow: hidden;
     margin: 0px;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
 }
 
 .scroll-to-bottom-btn {
+    --border-radius: 20px 0px 0px 20px;
+    width: 70px;
     position: absolute;
-    right: 16px;
-    bottom: 100px;
+    display: block;
+    right: 0;
+    top: 10em;
     transition: background 0.2s;
 }
 
