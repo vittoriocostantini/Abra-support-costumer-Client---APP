@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { getCurrentTime } from '../../services/time-service/time-service';
 
 
 interface Message {
@@ -8,6 +9,7 @@ interface Message {
   chatId: string;
   unread?: number;
   replyingTo?: string;
+  timestamp?: string;
 }
 
 interface MessageStore {
@@ -36,7 +38,11 @@ export const useMessageStore = create<MessageStore>()(
       addMessage: (msg: Message) => {
         set((state) => {
           const prev = state.messages[msg.chatId] || [];
-          const updated = [...prev, msg];
+          const messageWithTimestamp = {
+            ...msg,
+            timestamp: msg.timestamp || getCurrentTime(),
+          };
+          const updated = [...prev, messageWithTimestamp];
           localStorage.setItem(`chatMessages_${msg.chatId}` , JSON.stringify(updated));
           return { messages: { ...state.messages, [msg.chatId]: updated } };
         });

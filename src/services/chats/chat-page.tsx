@@ -16,7 +16,7 @@ import '../../handlers/message-reply/reply-animation.css';
 import { handleFilesSelected } from '../../handlers/file-upload-button/file-handlers';
 import ChatInput from '../../components/pages/chats/chat-input/chat-input';
 import FileUploadButton from '../../functions/chats/file-upload/file-upload-service';
-import MessagesList from '../../components/pages/chats/message-container/message-list';
+import MessageList from '../../components/pages/chats/message-container/message-list';
 import { useKeyboardListeners } from '../../handlers/keyboard/keyboard-handler';
 import { useParams, useLocation } from 'react-router-dom';
 import useResetTextarea from '../../hooks/chat/chat-input/text-area/use-reset-textarea';
@@ -60,7 +60,8 @@ const ChatPage: React.FC = () => {
     const [isSendButtonVisible, setSendButtonVisible] = useState(false);
 
     // ----------- Estado global (Zustand) -----------
-    const messages = useMessageStore(state => Array.isArray(state.messages[chatId]) ? state.messages[chatId] : []);
+    const rawMessages = useMessageStore(state => Array.isArray(state.messages[chatId]) ? state.messages[chatId] : []);
+    const messages = rawMessages.map(m => ({...m, timestamp: m.timestamp || '', replyTo: m.replyingTo}));
     const loadMessages = useMessageStore(state => state.loadMessages);
     const addMessage = useMessageStore(state => state.addMessage);
     const replyMessage = useMessageStore(state => state.replyMessage);
@@ -137,12 +138,11 @@ const ChatPage: React.FC = () => {
                     </div>
                 </IonToolbar>
             </IonHeader>
-              <IonContent id='chat-container' fullscreen scrollY={false}>
-                <MessagesList 
+              <IonContent id='chat-container' scrollY={false} fullscreen={true} class='ion-content-scroll-host' >
+                <MessageList 
                     ref={messagesListRef}
                     messages={messages} 
-                    keyboardHeight={keyboardHeight.current}
-                    setReplyMessage={setReplyMessage}
+                    onReply={setReplyMessage}
                     agentName={agentName}
                 />
               </IonContent>

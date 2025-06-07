@@ -1,68 +1,90 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './message-bubble.css';
-import { getCurrentTime } from '../../../../services/time-service/time-service';
 import { useSwipeToReply } from '../../../../hooks/chat/message-swipe/message-swipe';
-import { IonButton, IonButtons } from '@ionic/react';
 
 interface MessageBubbleProps {
     message: string;
-    isOwnMessage: boolean;
+    isOwn: boolean;
     timestamp: string;
     sender: string;
-    setReplyMessage: (msg: string) => void;
-    replyingTo?: string;
+    onReply: (msg: string) => void;
+    replyTo?: string;
     agentName: string;
-    isLastInGroup?: boolean; 
+    isLastGroup?: boolean;
+    onSwipeStart?: () => void;
+    onSwipeEnd?: () => void;
 }
 
-const MessageBubble: React.FC<MessageBubbleProps> = ({ 
-    message, 
-    isOwnMessage, 
-    timestamp, 
-    sender, 
-    setReplyMessage,
-    replyingTo,
+const MAX_LENGTH = 700;
+
+const MessageBubble: React.FC<MessageBubbleProps> = ({
+    message,
+    isOwn,
+    timestamp,
+    sender,
+    onReply,
+    replyTo,
     agentName,
-    isLastInGroup = false 
+    isLastGroup = false,
+    onSwipeStart,
+    onSwipeEnd,
 }) => {
-    const { swipeDistance, handleTouchStart, handleTouchMove, handleTouchEnd } = useSwipeToReply(isOwnMessage, message, setReplyMessage);
-    const [displayedTimestamp] = useState(getCurrentTime());
-    const timestampSent = isOwnMessage ? displayedTimestamp : ''; 
-    const timestampReceived = !isOwnMessage ? displayedTimestamp : ''; 
-    const [isExpanded, setIsExpanded] = useState(false);
+    const { swipeDistance, handleTouchStart, handleTouchMove, handleTouchEnd, isSwiping } = useSwipeToReply(isOwn, message, onReply, onSwipeStart, onSwipeEnd);
+    const [expanded, setExpanded] = useState(false);
+    const showExpand = message.length > MAX_LENGTH;
 
-    const shouldShowSeeMore = message.length > 300;
+    // Ref para el div principal
+    const bubbleRef = useRef<HTMLDivElement>(null);
 
-    const toggleExpand = () => {
-        setIsExpanded(!isExpanded);
+    // Handler nativo para prevenir scroll en iOS
+    useEffect(() => {
+        const el = bubbleRef.current;
+        if (!el) return;
+        const handler = (e: TouchEvent) => {
+            if (isSwiping) {
+                e.preventDefault();
+            }
+        };
+        el.addEventListener('touchmove', handler, { passive: false });
+        return () => {
+            el.removeEventListener('touchmove', handler);
+        };
+    }, [isSwiping]);
+
+    // Nuevo handler para prevenir scroll durante swipe (para navegadores no iOS)
+    const handleTouchMoveWithPrevent: React.TouchEventHandler<HTMLDivElement> = (e) => {
+        if (isSwiping) {
+            e.preventDefault();
+        }
+        handleTouchMove(e);
     };
 
     return (
-        <div 
-            className={`message-bubble ${isOwnMessage ? 'sent' : 'received'} ${swipeDistance !== 0 ? 'swiping' : ''} ${isLastInGroup ? 'last-message' : ''}`}
+        <div
+            ref={bubbleRef}
+            className={`message-bubble ${isOwn ? 'sent' : 'received'} ${swipeDistance !== 0 ? 'swiping' : ''} ${isLastGroup ? 'last-message' : ''}`}
             style={{ '--swipe-distance': `${swipeDistance}px` } as React.CSSProperties}
+            tabIndex={0}
+            aria-label={`Mensaje de ${isOwn ? 'tú' : sender}`}
             onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
+            onTouchMove={handleTouchMoveWithPrevent}
             onTouchEnd={handleTouchEnd}
+            onDoubleClick={() => onReply(message)}
         >
-            {replyingTo && ( // Render bubble-reply-badge only if replyingTo is present
-                <div className={`bubble-reply-badge ${isOwnMessage ? 'sent-badge' : 'received-badge'}`}>
+            {replyTo && (
+                <div className={`bubble-reply-badge ${isOwn ? 'sent-badge' : 'received-badge'}`}>
                     <span className='agent-name'>{agentName}</span>
-                    <p>{replyingTo}</p>
+                    <p>{replyTo}</p>
                 </div>
             )}
             <span className='message-text'>
-                <p>{isExpanded ? message : message.slice(0, 700)}</p>
-                <span className={`timestamp ${isOwnMessage ? 'sent-timestamp' : 'received-timestamp'}`}>
-                  {isOwnMessage ? timestampSent : timestampReceived}
-                </span>
+                <p>{expanded ? message : message.slice(0, MAX_LENGTH)}</p>
+                <span className={`timestamp ${isOwn ? 'sent-timestamp' : 'received-timestamp'}`}>{timestamp || '-'}</span>
             </span>
-            {shouldShowSeeMore && (
-                <IonButtons className='button-expand-message' >
-                <IonButton onClick={toggleExpand} fill='clear' size='small'>
-                    <p>{isExpanded ? 'ver menos' : 'ver mas'}</p>
-                </IonButton>
-                </IonButtons>
+            {showExpand && (
+                <button className='button-expand-message' onClick={() => setExpanded(e => !e)} aria-label={expanded ? 'Ver menos' : 'Ver más'}>
+                    <span>{expanded ? 'ver menos' : 'ver más'}</span>
+                </button>
             )}
         </div>
     );

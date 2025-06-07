@@ -40,7 +40,6 @@
     "react-router": "^5.3.4",
     "react-router-dom": "^5.3.4",
     "react-virtuoso": "^4.12.8",
-    "react-window": "^1.8.11",
     "styled-components": "^6.1.13",
     "zustand": "^5.0.5"
   },
