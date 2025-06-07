@@ -3,8 +3,12 @@
     position: absolute;
     display: flex;
     align-items: center;
+    width: 35px;
+    height: 35px;
     justify-content: center;
     bottom: 21px;
+    --border-radius: 100px;
+    left: -5px;
 
     
 }

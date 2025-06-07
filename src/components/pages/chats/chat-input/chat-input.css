@@ -3,7 +3,7 @@
     outline: none;
     background-color: #ffffff;
     width: 60%;
-    min-height: 30px;
+    min-height: 35px;
     max-height: 120px;
     border: none;
     border-radius: 20px;
@@ -13,7 +13,6 @@
     overflow-y: scroll;
     margin-left: 35px;
     transition: width 0.3s ease;
-  
 }
 
 

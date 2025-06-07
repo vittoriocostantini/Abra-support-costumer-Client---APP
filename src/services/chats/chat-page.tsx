@@ -19,7 +19,7 @@ import FileUploadButton from '../../functions/chats/file-upload/file-upload-serv
 import MessagesList from '../../components/pages/chats/message-container/message-list';
 import { useKeyboardListeners } from '../../handlers/keyboard/keyboard-handler';
 import { useParams, useLocation } from 'react-router-dom';
-import useResetTextarea from '../../hooks/chat/chat-input/use-reset-textarea';
+import useResetTextarea from '../../hooks/chat/chat-input/text-area/use-reset-textarea';
 import { useMessageStatus } from '../../functions/messages/message-status/message-status';
 import { handleChatIconAddClick } from '../../functions/chats/button-add-event-handler/button-add-event';
 import { useTranslation } from 'react-i18next';

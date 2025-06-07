@@ -1,7 +1,7 @@
 import React from 'react';
 import './chat-input.css';
-import useResetTextarea from '../../../../hooks/chat/chat-input/use-reset-textarea';
-import useAdjustHeight from '../../../../hooks/chat/chat-input/use-adjust-height';
+import useResetTextarea from '../../../../hooks/chat/chat-input/text-area/use-reset-textarea';
+import useAdjustHeight from '../../../../hooks/chat/chat-input/text-area/use-adjust-height';
 
 interface ChatInputProps {
     inputRef: React.RefObject<HTMLTextAreaElement>;

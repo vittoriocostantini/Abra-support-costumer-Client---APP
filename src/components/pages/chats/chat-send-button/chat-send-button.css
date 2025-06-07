@@ -7,10 +7,9 @@
     align-items: center;
     justify-content: center;
     margin: 0;
+    --color: #000;
     bottom: 25px;
  
-    --background: #000;
-    --background-activated: #3d3d3d;
 
 
 }
@@ -21,10 +20,13 @@
     position: absolute;
     display: flex;
     margin: 0;
+    --color: #000;
+
 
 }
 
 
 .chat-button-send ion-icon {
     position: absolute;
+    font-size: 30px;
 }

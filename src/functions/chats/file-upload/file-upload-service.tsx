@@ -1,6 +1,6 @@
 import React from 'react';
 import { IonButton, IonIcon } from '@ionic/react';
-import { add } from 'ionicons/icons';
+import { add, addCircleOutline } from 'ionicons/icons';
 import './file-upload-service.css';
 
 interface FileUploadButtonProps {
@@ -21,12 +21,12 @@ const FileUploadButton: React.FC<FileUploadButtonProps> = ({ onFilesSelected, ha
             <IonButton 
             className="chat-icon-add" 
             size='small'
-            shape='round'
+            fill='clear'
             onClick={(event) => {
                         handleButtonClick(event);
                     document.getElementById('fileInput')?.click();
                 }}>
-                    <IonIcon icon={add}  slot='icon-only'/>
+                    <IonIcon icon={addCircleOutline}  slot='icon-only' size='large'/>
                 </IonButton>
             <input
                 type="file"
