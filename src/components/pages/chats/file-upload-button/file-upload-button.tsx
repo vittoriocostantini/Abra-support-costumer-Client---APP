@@ -1,7 +1,7 @@
 import React from 'react';
 import { IonButton, IonIcon } from '@ionic/react';
 import { add, addCircleOutline } from 'ionicons/icons';
-import './file-upload-service.css';
+import './file-upload-button.css';
 
 interface FileUploadButtonProps {
     onFilesSelected: (files: FileList) => void;
