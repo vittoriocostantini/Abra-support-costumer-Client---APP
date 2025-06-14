@@ -61,7 +61,7 @@ const SettingsPage: React.FC = () => {
               <IonItem button lines="none" detail={false} onClick={() => {
                 if (item.label === t('feedback')) {
                   setShowFeedbackModal(true);
-                } else {
+                } else if (item.label !== t('notifications')) {
                   item.onClick();
                 }
               }} className={`item-settings ${item.className}`}>
