@@ -16,7 +16,7 @@ import './ticket-card.css';
 import '../../../theme/variables.css';
 import StatusIndicator from '../status-indicator/status-indicator';
 import { useMessageStore } from '../../../stores/message-store/message-store';
-import { TicketsProduct } from '../../../models/ticket-store/ticket-model-product';
+import { TicketsProduct } from '../../../types/tickets/ticket-types';
 import { getCurrentTime } from '../../../services/time-service/time-service';
 
 const TicketCard: React.FC<TicketsProduct> = ({

@@ -1,8 +1,16 @@
 import { create } from 'zustand';
-import { Ticket } from '../../models/ticket-card/ticket-model-card';
+import { Ticket } from '../../types/tickets/ticket-types';
 import { getRandomAgent } from '../../data/agents-data/agent-data';
-import { getNextTicketId, getNextTicketNumber } from '../../utils/tickets/tickets-global-id/ticket-id-generator';
-import { loadTickets, saveTickets, loadArchivedTickets, saveArchivedTickets } from '../../utils/tickets/tickets-storage/tickets-storage';
+import {
+  getNextTicketId,
+  getNextTicketNumber,
+  loadTickets,
+  saveTickets,
+  loadArchivedTickets,
+  saveArchivedTickets,
+  updateTicketStatus as serviceUpdateTicketStatus,
+  updateTicketProperty
+} from '../../services/tickets/ticket-service';
 
 interface TicketsState {
   tickets: Ticket[];
@@ -12,6 +20,7 @@ interface TicketsState {
   archiveTicket: (id: string) => void;
   unarchiveTicket: (id: string) => void;
   updateTicketStatus: (id: string, newStatus: string) => void;
+  updateTicketProperty: (id: string, property: keyof Ticket, value: any) => void;
 }
 
 export const useTicketsStore = create<TicketsState>((set, get) => ({
@@ -83,9 +92,15 @@ export const useTicketsStore = create<TicketsState>((set, get) => ({
 
   updateTicketStatus: (id: string, newStatus: string) => {
     set(state => {
-      const updatedTickets = state.tickets.map(ticket =>
-        ticket.id === id ? { ...ticket, status: newStatus } : ticket
-      );
+      const updatedTickets = serviceUpdateTicketStatus(state.tickets, id, newStatus);
+      saveTickets(updatedTickets);
+      return { ...state, tickets: updatedTickets };
+    });
+  },
+
+  updateTicketProperty: (id: string, property: keyof Ticket, value: any) => {
+    set(state => {
+      const updatedTickets = updateTicketProperty(state.tickets, id, property, value);
       saveTickets(updatedTickets);
       return { ...state, tickets: updatedTickets };
     });

@@ -81,6 +81,8 @@ const TicketItem: React.FC<{ ticket: any, handleUnarchive: (id: string) => void 
                 archivedTickets={[]}
                 onUnarchive={handleUnarchive}
                 onDelete={() => deleteTicket(ticket.id, true)}
+                description={ticket.description || ''}
+                notes={ticket.notes || ''}
             />
         </motion.li>
     );

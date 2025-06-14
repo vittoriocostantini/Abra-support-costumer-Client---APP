@@ -92,6 +92,8 @@ const TicketsPage: React.FC = () => {
                     date={ticket.date || ''}
                     agentName={ticket.agentName || ''}
                     icon={ticket.icon}
+                    description={ticket.description || ''}
+                    notes={ticket.notes || ''}
                     messages={ticketMessages}
                     onArchive={() => handleArchiveTicketLocal(ticket.id, false)}
                     archivedTickets={archivedTickets}
