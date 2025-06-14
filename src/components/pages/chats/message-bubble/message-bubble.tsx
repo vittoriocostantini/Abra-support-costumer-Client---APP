@@ -53,9 +53,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
 
     // Nuevo handler para prevenir scroll durante swipe (para navegadores no iOS)
     const handleTouchMoveWithPrevent: React.TouchEventHandler<HTMLDivElement> = (e) => {
-        if (isSwiping) {
-            e.preventDefault();
-        }
+        // Solo ejecuta la lógica de swipe, sin preventDefault aquí
         handleTouchMove(e);
     };
 
