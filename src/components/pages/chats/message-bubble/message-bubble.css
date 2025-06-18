@@ -8,9 +8,7 @@
     border-radius: 10px;
     position: relative;
     transition: transform 0.1s ease;
-    animation: fadeIn 0.3s ease;
     font-size: 14px;
-    margin: 2px 5px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.04);
     vertical-align: top;
     word-break: break-word;
@@ -48,7 +46,6 @@
 .sent {
     background-color: var(--ion-chat-bubble-sent, #d1f8c6);
     color: #222;
-    align-self: flex-end;
     margin-left: auto;
     border-bottom-right-radius: 6px;
     border-bottom-left-radius: 18px;
@@ -87,7 +84,6 @@
 .bubble-reply-badge {
     padding: 6px 10px;
     border-radius: 10px;
-    margin-bottom: 6px;
     background: #f0f0f0;
     font-size: 13px;
     color: #595858;
@@ -125,8 +121,8 @@
 .button-expand-message {
     position: absolute;
     width: auto;
-    min-width: 70px;
     bottom: 2px;
+    min-width: 70px;
     right: 60px;
     background: none;
     border: none;
@@ -145,13 +141,3 @@
     margin-bottom: 0 !important;
 }
 
-/* Transición suave para la aparición de las burbujas */
-.bubble-fade-appear, .bubble-fade-enter {
-    opacity: 0;
-    transform: translateY(20px) scale(0.98);
-}
-.bubble-fade-appear-active, .bubble-fade-enter-active {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    transition: opacity 0.35s cubic-bezier(0.4,0.0,0.2,1), transform 0.35s cubic-bezier(0.4,0.0,0.2,1);
-}

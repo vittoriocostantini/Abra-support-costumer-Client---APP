@@ -5,6 +5,7 @@ import MessageBubble from '../message-bubble/message-bubble';
 import './message-list.css';
 import { chevronDown, lockClosed } from 'ionicons/icons';
 import { useTranslation } from 'react-i18next';
+import { useAutoScroll } from '../../../../hooks/chat/message-list/scroll-last-message';
 
 interface Message {
     text: string;
@@ -25,47 +26,30 @@ const MessageList = forwardRef<any, MessageListProps>(({ messages, onReply, agen
     const { t } = useTranslation('letter');
     const [atBottom, setAtBottom] = useState(true);
     const [containerHeight, setContainerHeight] = useState<number>(0);
-    const prevMessagesLength = useRef<number>(messages.length);
     const [isAnySwiping, setIsAnySwiping] = useState(false);
 
-    useEffect(() => {
-        if (containerRef.current) {
-            setContainerHeight(containerRef.current.offsetHeight);
-            const resizeObserver = new window.ResizeObserver(() => {
-                if (containerRef.current) {
-                    setContainerHeight(containerRef.current.offsetHeight);
-                }
-            });
-            resizeObserver.observe(containerRef.current);
-            return () => resizeObserver.disconnect();
-        }
-    }, []);
+    // Usar el hook para scroll automático
+    useAutoScroll(virtuosoRef, messages, atBottom);
 
     useEffect(() => {
-        const isLastMessageFromMe = messages[messages.length - 1]?.sender === 'Yo';
-        if (messages.length > prevMessagesLength.current) {
-            if (virtuosoRef.current && (atBottom || isLastMessageFromMe)) {
-                setTimeout(() => {
-                    if (virtuosoRef.current) {
-                        virtuosoRef.current.scrollToIndex({ index: messages.length - 1, align: 'end', behavior: 'smooth' });
-                    }
-                }, 80);
+        const updateHeight = () => {
+            if (containerRef.current) {
+                setContainerHeight(containerRef.current.offsetHeight);
             }
+        };
+        updateHeight();
+        const resizeObserver = new window.ResizeObserver(updateHeight);
+        if (containerRef.current) {
+            resizeObserver.observe(containerRef.current);
         }
-        prevMessagesLength.current = messages.length;
-    }, [messages, atBottom]);
+        return () => resizeObserver.disconnect();
+    }, []);
 
     useImperativeHandle(ref, () => ({
         scrollToBottom: () => {
             virtuosoRef.current?.scrollToIndex({ index: messages.length - 1, align: 'end', behavior: 'smooth' });
         }
     }));
-
-    useEffect(() => {
-        if (atBottom && messages.length > 0) {
-            virtuosoRef.current?.scrollToIndex({ index: messages.length - 1, align: 'end', behavior: 'smooth' });
-        }
-    }, [messages, atBottom]);
 
     // Funciones para manejar swipe global
     const handleSwipeStart = () => setIsAnySwiping(true);
@@ -82,7 +66,6 @@ const MessageList = forwardRef<any, MessageListProps>(({ messages, onReply, agen
             }}
         >
             <Virtuoso 
-            
                 ref={virtuosoRef}
                 style={{ height: '100%', width: '100%', flex: 1}}
                 className='virtuoso-messages ion-content-scroll-host'     
@@ -106,6 +89,7 @@ const MessageList = forwardRef<any, MessageListProps>(({ messages, onReply, agen
                                 onSwipeStart={handleSwipeStart}
                                 onSwipeEnd={handleSwipeEnd}
                             />
+                            <div className='message-bubble-end' style={{ height: '2px' }}/>
                         </div>
                     );
                 }}
@@ -116,6 +100,7 @@ const MessageList = forwardRef<any, MessageListProps>(({ messages, onReply, agen
                 atBottomStateChange={setAtBottom}
                 atBottomThreshold={containerHeight ? Math.floor(containerHeight * 0.3) : 10}
                 followOutput={atBottom ? 'smooth' : false}
+                
             />
             {!atBottom && (
                <IonFabButton
