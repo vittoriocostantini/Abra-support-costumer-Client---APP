@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 
 const useResetTextarea = (inputRef: React.RefObject<HTMLTextAreaElement>) => {
     const resetTextarea = () => {

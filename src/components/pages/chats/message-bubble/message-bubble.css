@@ -75,8 +75,6 @@
     font-weight: 400;
     letter-spacing: 0.1px;
     position: static;
-    right: unset;
-    bottom: unset;
     padding-left: 0;
     margin-right: 0;
 }
@@ -134,10 +132,5 @@
     padding: 2px 8px;
     border-radius: 8px;
     transition: background 0.2s;
-}
-
-
-.message-bubble:last-child {
-    margin-bottom: 0 !important;
 }
 

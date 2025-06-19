@@ -1,11 +1,12 @@
-import React, { useRef, useImperativeHandle, forwardRef, useState, useEffect } from 'react';
+import React, { useRef, useImperativeHandle, forwardRef, useState, useEffect, useMemo } from 'react';
 import { Virtuoso } from 'react-virtuoso';
-import { IonIcon, IonButtons, IonFabButton } from '@ionic/react';
+import { IonIcon, IonButtons, IonFabButton, IonFooter, IonToolbar, IonHeader } from '@ionic/react';
 import MessageBubble from '../message-bubble/message-bubble';
 import './message-list.css';
 import { chevronDown, lockClosed } from 'ionicons/icons';
 import { useTranslation } from 'react-i18next';
 import { useAutoScroll } from '../../../../hooks/chat/message-list/scroll-last-message';
+import { LogLevel } from 'react-virtuoso';
 
 interface Message {
     text: string;
@@ -27,9 +28,14 @@ const MessageList = forwardRef<any, MessageListProps>(({ messages, onReply, agen
     const [atBottom, setAtBottom] = useState(true);
     const [containerHeight, setContainerHeight] = useState<number>(0);
     const [isAnySwiping, setIsAnySwiping] = useState(false);
+    const hasScrolledInitially = useRef(false);
+    const [isAtTop, setIsAtTop] = useState(true);
+
+    // Memoizar mensajes para evitar renders innecesarios
+    const memoizedMessages = useMemo(() => messages, [messages]);
 
     // Usar el hook para scroll automático
-    useAutoScroll(virtuosoRef, messages, atBottom);
+    useAutoScroll(virtuosoRef, memoizedMessages, atBottom);
 
     useEffect(() => {
         const updateHeight = () => {
@@ -45,6 +51,20 @@ const MessageList = forwardRef<any, MessageListProps>(({ messages, onReply, agen
         return () => resizeObserver.disconnect();
     }, []);
 
+    // Scroll automático al cargar la página
+    useEffect(() => {
+        if (!hasScrolledInitially.current && messages.length > 0) {
+            setTimeout(() => {
+                virtuosoRef.current?.scrollToIndex({
+                    index: messages.length - 1,
+                    align: 'end',
+                    behavior: 'auto',
+                });
+                hasScrolledInitially.current = true;
+            }, 50); // 50ms suele ser suficiente, puedes ajustar
+        }
+    }, [messages.length]);
+    
     useImperativeHandle(ref, () => ({
         scrollToBottom: () => {
             virtuosoRef.current?.scrollToIndex({ index: messages.length - 1, align: 'end', behavior: 'smooth' });
@@ -61,7 +81,7 @@ const MessageList = forwardRef<any, MessageListProps>(({ messages, onReply, agen
             className='message-container'
             id='chat-container'
             style={{
-                transition: 'margin-bottom 0.2s, padding-bottom 0.2s',
+                transition: 'padding-bottom 0.2s',
                 overflow: isAnySwiping ? 'hidden' : 'auto',
             }}
         >
@@ -69,13 +89,15 @@ const MessageList = forwardRef<any, MessageListProps>(({ messages, onReply, agen
                 ref={virtuosoRef}
                 style={{ height: '100%', width: '100%', flex: 1}}
                 className='virtuoso-messages ion-content-scroll-host'     
-                totalCount={messages.length}
-                data={messages}
+                totalCount={memoizedMessages.length}
+                logLevel={LogLevel.DEBUG}
+                data={memoizedMessages}
                 itemContent={(index, msg) => {
                     const isOwn = msg.sender === 'Yo';
-                    const isLastGroup = index === messages.length - 1 || messages[index + 1]?.sender !== msg.sender;
+                    const isLastGroup = index === memoizedMessages.length - 1 || memoizedMessages[index + 1]?.sender !== msg.sender;
+                    const isFirstGroup = index === 0;
                     return (
-                        <div style={{ width: '100%', display: 'flex', flexDirection: 'column'  }}>
+                        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', paddingTop: isFirstGroup ? '70px' : '0px' }}>
                             <MessageBubble
                                 key={index}
                                 message={msg.text}
@@ -93,14 +115,10 @@ const MessageList = forwardRef<any, MessageListProps>(({ messages, onReply, agen
                         </div>
                     );
                 }}
-                components={{
-                    Header: () => <div className='chat-letter'><p><IonIcon size='small' icon={lockClosed} />{t('chatLetter')}</p></div>,
-                    Footer: () => <div style={{ height: '40px' }} />
-                }}
                 atBottomStateChange={setAtBottom}
                 atBottomThreshold={containerHeight ? Math.floor(containerHeight * 0.3) : 10}
                 followOutput={atBottom ? 'smooth' : false}
-                
+                atTopStateChange={setIsAtTop}
             />
             {!atBottom && (
                <IonFabButton
@@ -113,6 +131,7 @@ const MessageList = forwardRef<any, MessageListProps>(({ messages, onReply, agen
                </IonButtons>
            </IonFabButton>
             )}
+            <div className={`chat-letter${isAtTop ? '' : ' chat-letter-fade-out'}`}>{t('chatLetter')}</div>
         </div>
     );
 });

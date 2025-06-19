@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useMemo } from 'react';
 import { IonPage, 
     IonHeader, 
     IonToolbar, 
@@ -62,6 +62,7 @@ const ChatPage: React.FC = () => {
     // ----------- Estado global (Zustand) -----------
     const rawMessages = useMessageStore(state => Array.isArray(state.messages[chatId]) ? state.messages[chatId] : []);
     const messages = rawMessages.map(m => ({...m, timestamp: m.timestamp || '', replyTo: m.replyingTo}));
+    const memoizedMessages = useMemo(() => messages, [messages]);
     const loadMessages = useMessageStore(state => state.loadMessages);
     const addMessage = useMessageStore(state => state.addMessage);
     const replyMessage = useMessageStore(state => state.replyMessage);
@@ -141,7 +142,7 @@ const ChatPage: React.FC = () => {
               <IonContent id='chat-container' scrollY={false} fullscreen={true} class='ion-content-scroll-host' >
                 <MessageList 
                     ref={messagesListRef}
-                    messages={messages} 
+                    messages={memoizedMessages} 
                     onReply={setReplyMessage}
                     agentName={agentName}
                 />
