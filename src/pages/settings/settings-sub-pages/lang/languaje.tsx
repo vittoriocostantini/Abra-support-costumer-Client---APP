@@ -1,111 +1,53 @@
-import React, { useState } from 'react';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonToggle, IonButtons, IonBackButton, IonList, IonCheckbox, IonIcon } from '@ionic/react';
-import { hideTabBar } from '../../../../services/tabs/tab-bar-view/tabbar-view';
+import React, { useState, useEffect } from 'react';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonButtons, IonBackButton, IonList, IonCheckbox, IonIcon, IonLoading, useIonViewDidEnter } from '@ionic/react';
 import { language } from 'ionicons/icons';
 import './languaje.css';
+import { LanguajeProps, languageOptions, getCurrentLanguage, saveLanguage } from '../../../../models/lang-options/language-model';
+import { useTranslation } from 'react-i18next';
 
-// Definición de la interfaz para las propiedades del componente
-interface LanguajeProps {
-  initialLanguage?: string; // Idioma inicial opcional
-}
-
-// Definición de la interfaz para los elementos de idioma
-interface LanguageOption {
-  code: string; // Código del idioma (ej. 'es', 'en', 'fr')
-  label: string; // Nombre del idioma (ej. 'Español', 'Inglés', 'Francés')
-}
-
-// Lista de opciones de idioma
-const languageOptions: LanguageOption[] = [
-  { code: 'es', label: 'Español' },
-  { code: 'en', label: 'Inglés' },
-  { code: 'fr', label: 'Francés' },
-  { code: 'pt', label: 'Portugués' },
-  { code: 'it', label: 'Italiano' },
-  { code: 'de', label: 'Alemán' },
-  { code: 'ja', label: 'Japonés' },
-  { code: 'zh', label: 'Chino' },
-  { code: 'ar', label: 'Árabe' },
-  { code: 'hi', label: 'Hindi' },
-  { code: 'ru', label: 'Ruso' },
-  { code: 'tr', label: 'Turco' },
-  { code: 'nl', label: 'Holandés' },
-  { code: 'sv', label: 'Sueco' },
-  { code: 'no', label: 'Noruego' },
-  { code: 'da', label: 'Danés' },
-  { code: 'fi', label: 'Finlandés' },
-  { code: 'el', label: 'Griego' },
-  { code: 'hu', label: 'Húngaro' },
-  { code: 'pl', label: 'Polaco' },
-  { code: 'cs', label: 'Checo' },
-  { code: 'ro', label: 'Rumano' },
-  { code: 'sk', label: 'Eslovaco' },
-  { code: 'sl', label: 'Esloveno' },
-  { code: 'bg', label: 'Búlgaro' },
-  { code: 'lv', label: 'Letón' },
-  { code: 'lt', label: 'Lituano' },
-  { code: 'et', label: 'Estonio' },
-  { code: 'vi', label: 'Vietnamita' },
-  { code: 'th', label: 'Tailandés' },
-  { code: 'ms', label: 'Malayo' },
-  { code: 'id', label: 'Indonesio' },
-  { code: 'tl', label: 'Tagalo' },
-  { code: 'sw', label: 'Suajili' },
-  { code: 'bn', label: 'Bengalí' },
-  { code: 'pa', label: 'Panjabi' },
-  { code: 'ta', label: 'Tamil' },
-  { code: 'te', label: 'Telugu' },
-  { code: 'ml', label: 'Malayalam' },
-  { code: 'mr', label: 'Marathi' },
-  { code: 'gu', label: 'Gujarati' },
-  { code: 'kn', label: 'Canarés' },
-  { code: 'si', label: 'Cingalés' },
-  { code: 'km', label: 'Jemer' },
-  { code: 'la', label: 'Latín' },
-  { code: 'hy', label: 'Armenio' },
-  { code: 'is', label: 'Islandés' },
-  { code: 'cy', label: 'Galés' },
-  { code: 'sq', label: 'Albanés' },
-  { code: 'mk', label: 'Macedonio' },
-  { code: 'sr', label: 'Serbio' },
-  { code: 'hr', label: 'Croata' },
-  { code: 'bs', label: 'Bosnio' },
-  { code: 'jw', label: 'Javanés' },
-  { code: 'su', label: 'Sundanés' },
-  { code: 'xh', label: 'Xhosa' },
-  { code: 'zu', label: 'Zulú' },
-  // Añadir más idiomas según sea necesario
-];
-
-const Languaje: React.FC<LanguajeProps> = ({ initialLanguage = '' }) => { // Uso de la interfaz
-  const [selectedLanguage, setSelectedLanguage] = useState<string>(initialLanguage); // Estado para el idioma seleccionado
+const Languaje: React.FC<LanguajeProps> = ({ initialLanguage = getCurrentLanguage() }) => {
+  const [selectedLanguage, setSelectedLanguage] = useState<string>(initialLanguage);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { t } = useTranslation('language');
 
   // Función para manejar el cambio de idioma
-  const handleLanguageChange = (language: string) => {
-    setSelectedLanguage(language);
+  const handleLanguageChange = async (language: string) => {
+    setIsLoading(true);
+    try {
+      setSelectedLanguage(language);
+      await saveLanguage(language);
+    } catch (error) {
+    } finally {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    }
   };
 
-  hideTabBar();
+
   return (
     <IonPage>
-      <IonHeader   class='ion-no-border'>
+
+      <IonHeader class='ion-no-border'>
         <IonToolbar>
-          <IonButtons slot="start"  >
-            <IonBackButton defaultHref="/settings" text="Ajustes" />
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/settings" text={t('settings')} />
           </IonButtons>
-          <IonTitle>Idioma</IonTitle>
+          <IonTitle>{t('language')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen className='content-languaje'> 
-        <IonHeader collapse='condense' >
-          <IonToolbar >
-            <IonTitle size='large'>Idioma</IonTitle>
+        <IonHeader collapse='condense'>
+          <IonToolbar>
+            <IonTitle size='large'>{t('language')}</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonItem className='letter-languaje'>
-          <IonLabel> <IonIcon icon={language} size='large' /><p>Cambia el idioma de la aplicación</p>
-          <p>Solo cambia el idioma de la aplicación, no se cambiará el 
-            idioma de atencion al cliente o el idioma en que se comunicaran los agentes</p></IonLabel>
+          <IonLabel>
+            <IonIcon icon={language} size='large' />
+            <p>{t('changeLanguage')}</p>
+            <p>{t('languageNote')}</p>
+          </IonLabel>
         </IonItem>
         <IonList className='list-languaje'>
           {languageOptions.map((option) => (
@@ -119,8 +61,14 @@ const Languaje: React.FC<LanguajeProps> = ({ initialLanguage = '' }) => { // Uso
             </IonItem>
           ))}
         </IonList>
+        <IonLoading
+          isOpen={isLoading}
+          message={t('changingLanguage')}
+          duration={0}
+          spinner="circular"
+          cssClass="custom-loading"
+        />
       </IonContent>
-      
     </IonPage>
   );
 };

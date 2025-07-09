@@ -1,0 +1,7 @@
+{
+  "status": {
+    "pending": "Pendiente",
+    "inProgress": "En Proceso",
+    "completed": "Completado"
+  }
+} 

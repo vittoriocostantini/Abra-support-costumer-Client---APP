@@ -1,42 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton } from '@ionic/react';
-import { hideTabBar } from '../../../services/tabs/tab-bar-view/tabbar-view';
 import './archived-tickets.css';
-import { getArchivedTickets, unarchiveTicket } from '../../../services/ticket-options/ticket-archive';
-import TicketCard from '../../../components/ticket-card/ticket-card';
-import { loadMessages } from '../../../hooks/chat/storage-load-messages/storage-load-messages';
+import TicketCard from '../../../components/tickets/ticket-card/ticket-card';
 import { AnimatePresence, motion } from 'framer-motion';
-import useInterval from '../../../hooks/tickets/message-update-interval-badge/use-interval'; // Import the useInterval hook
-import { useMessageStatus } from '../../../hooks/chat/message-status/message-status'; // Import the hook
+import { useTranslation } from 'react-i18next';
+import { useTicketsStore } from '../../../stores/tickets-store/tickets-global-store';
+import { useMessageStore } from '../../../stores/message-store/message-store';
 
 const ArchivedTickets: React.FC = () => {
-    hideTabBar();
-    const [archivedTickets, setArchivedTickets] = useState(getArchivedTickets());
+    const { t } = useTranslation('archived');
+    const { archivedTickets, unarchiveTicket, deleteTicket } = useTicketsStore();
+    const [popLayout, setPopLayout] = useState(false);
 
     const handleUnarchive = (ticketId: string) => {
         unarchiveTicket(ticketId);
-        setArchivedTickets(prevTickets => prevTickets.filter(ticket => ticket.id !== ticketId));
     };
-
-    useEffect(() => {
-        const fetchTickets = () => {
-            setArchivedTickets(getArchivedTickets());
-        };
-        fetchTickets();
-    }, []);
-
-    // Use the useInterval hook to update the archivedTickets state
-    useInterval(setArchivedTickets, archivedTickets);
-
-    const [popLayout, setPopLayout] = useState(false);
 
     return (
         <IonPage>
             <IonHeader class="ion-no-border" className="archived-header" translucent>
                 <IonToolbar>
-                    <IonTitle>Archivados</IonTitle>
+                    <IonTitle>{t('archived')}</IonTitle>
                     <IonButtons slot="start">
-                        <IonBackButton defaultHref="/tickets" text="Chats" className='back-button'/>
+                        <IonBackButton text={t('chats')} className='back-button'/>
                     </IonButtons>
                 </IonToolbar>
             </IonHeader>
@@ -49,7 +35,6 @@ const ArchivedTickets: React.FC = () => {
                                 key={ticket.id}
                                 ticket={ticket}
                                 handleUnarchive={handleUnarchive}
-                                archivedTickets={archivedTickets}
                             />
                         ))}
                     </AnimatePresence>
@@ -59,10 +44,11 @@ const ArchivedTickets: React.FC = () => {
     );
 };
 
-const TicketItem: React.FC<{ ticket: any, handleUnarchive: (id: string) => void, archivedTickets: any[] }> = ({ ticket, handleUnarchive, archivedTickets }) => {
-    const messages = loadMessages(ticket.id);
-    useMessageStatus(messages, ticket.id);
-
+const TicketItem: React.FC<{ ticket: any, handleUnarchive: (id: string) => void }> = ({ ticket, handleUnarchive }) => {
+    const { deleteTicket } = useTicketsStore();
+    const { messages } = useMessageStore();
+    const ticketMessages = Array.isArray(messages[ticket.id]) ? messages[ticket.id] : [];
+    
     return (
         <motion.li
             layout
@@ -89,12 +75,14 @@ const TicketItem: React.FC<{ ticket: any, handleUnarchive: (id: string) => void,
                 date={ticket.date}
                 agentName={ticket.agentName}
                 icon={ticket.icon}
-                messages={messages}
+                messages={ticketMessages}
                 isArchived={true}
                 onArchive={handleUnarchive}
-                archivedTickets={archivedTickets}
+                archivedTickets={[]}
                 onUnarchive={handleUnarchive}
-                
+                onDelete={() => deleteTicket(ticket.id, true)}
+                description={ticket.description || ''}
+                notes={ticket.notes || ''}
             />
         </motion.li>
     );

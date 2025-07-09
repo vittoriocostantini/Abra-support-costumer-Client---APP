@@ -17,15 +17,36 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-button-tickets: #68b2fc !important; /* Color principal */
   --ion-color-button-settings: #68b2fc !important; /* Color principal */
 
+
+
+/* iconos de footer-tickets */
+--ion-color-button-case: #68b2fc !important; /* Color principal */
+--ion-color-button-agents: #68b2fc !important; /* Color principal */
+--ion-ticket-footer-active: #68b2fc !important; /* Color principal */
+--ion-color-button-settings: #68b2fc !important; /* Color principal */
+--ion-button-footer-tickets: #666666 !important;
+
+
     
+
+
+
+/* colores de message-list*/
+
+
+
   /* colores de interfaz */
   --ion-content: #f2f2f7 !important;
   --ion-header: #f2f2f7 !important;
   --ion-toolbar: #f2f2f7 !important;
   --ion-button-tickets: #e3e3e395 !important;
   --ion-button-tickets-active: #cdcbcb !important;
+
+  /* colores de message-bubble*/
   --ion-chat-bubble-sent: #cbffa3 !important;
   --ion-chat-bubble-received: #a0e2ff !important;
+
+  
   --ion-color-toast: #abeaff !important;
   --ion-color-block: #f96e6e !important;
   --ion-color-prefer: #9ddba0 !important;
@@ -69,6 +90,8 @@ http://ionicframework.com/docs/theming/ */
 /* variables de sign in */
 
 --background-color-input: #d8d8d8;
+
+
 }
 
 
@@ -100,5 +123,4 @@ ion-app {
   ion-toolbar{
     --background: var(--ion-toolbar) !important;
   }
-  
-  
+ 

@@ -1,0 +1,97 @@
+.app-item-linkedin ion-icon{
+  color: var(--app-item-linkedin) !important;
+}
+
+.app-item-facebook ion-icon{
+  color: var(--app-item-facebook) !important;
+}   
+
+.app-item-twitter ion-icon{
+  color: var(--app-item-twitter) !important;
+}       
+
+.app-item-instagram ion-icon{
+  color: var(--app-item-instagram) !important;
+}       
+
+.app-item-pinterest ion-icon{
+  color: var(--app-item-pinterest) !important;
+}       
+
+
+.app-item-snapchat ion-icon{
+  color: var(--app-item-snapchat) !important;
+}       
+
+.app-item-tiktok ion-icon{
+  color: var(--app-item-tiktok) !important;
+}       
+
+.app-item-youtube ion-icon{
+  color: var(--app-item-youtube) !important;
+}       
+
+.app-item-reddit ion-icon{
+  color: var(--app-item-reddit) !important;
+}       
+
+.app-item-whatsapp ion-icon{
+  color: var(--app-item-whatsapp) !important;
+}       
+
+.app-item-paypal ion-icon{
+  color: var(--app-item-paypal) !important;
+}       
+
+.app-item-amazon ion-icon{
+  color: var(--app-item-amazon) !important;
+}       
+
+
+.app-item-apple ion-icon{
+  color: var(--app-item-apple) !important;
+}       
+
+.app-item-google ion-icon{
+  color: var(--app-item-google) !important;
+}       
+
+
+.app-item-microsoft ion-icon{
+  color: var(--app-item-microsoft) !important;
+}       
+
+
+.app-item-github ion-icon{
+  color: var(--app-item-github) !important;
+}       
+
+
+.app-item-gitlab ion-icon{
+  color: var(--app-item-gitlab) !important;
+}       
+
+
+.app-item-bitbucket ion-icon{
+  color: var(--app-item-bitbucket) !important;
+}       
+
+
+.app-item-docker ion-icon{
+  color: var(--app-item-docker) !important;
+}       
+
+.app-item-appstore ion-icon{
+  color: var(--app-item-appstore) !important;
+}
+
+
+/* Añade esto a tu archivo CSS existente */
+.hide-backdrop::part(backdrop) {
+  display: none;
+}
+
+
+.modal-add {
+  --height: 45% !important;
+}

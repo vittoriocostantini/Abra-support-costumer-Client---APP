@@ -2,6 +2,9 @@
     --background: var(--ion-content) !important;
   }
   
+  .tickets-page  ion-page{
+    --background: var(--ion-content) !important;
+  }
  
   .archive-label {
     font-size: 12px;
@@ -40,3 +43,21 @@
     border-radius: 4px;
     margin-left: 10px;
   }
+
+.footer-tickets ion-toolbar {
+  --background: #ffffff !important;
+  height: 84px !important;
+}
+
+
+.footer-tickets ion-button {
+  padding: 0px 0 0 0 !important;
+}
+
+.footer-tickets-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+

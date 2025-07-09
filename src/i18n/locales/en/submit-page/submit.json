@@ -1,0 +1,11 @@
+{
+  "createCase": "Create your case",
+  "title": "Title",
+  "description": "Description",
+  "notes": "Notes",
+  "tips": "Tips",
+  "attachFiles": "You can attach images or files for case resolution",
+  "send": "Send",
+  "selectAppFirst": "Please select an application before sending.",
+  "sending": "Sending..."
+} 

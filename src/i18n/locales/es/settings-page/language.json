@@ -1,0 +1,7 @@
+  {
+    "settings": "Ajustes",
+    "language": "Lenguaje",
+    "changeLanguage": "Cambiar lenguaje",
+    "languageNote": "Solo cambia el lenguaje de la aplicación, no cambiará el lenguaje de atención al cliente o el lenguaje en que se comunicarán los agentes",
+    "changingLanguage": "Cambiando lenguaje..."
+  }

@@ -1,0 +1,23 @@
+.chat-input-message {
+    font-size: 14px;
+    outline: none;
+    background-color: #ffffff;
+    width: 60%;
+    min-height: 35px;
+    max-height: 120px;
+    border: none;
+    border-radius: 20px;
+    margin-top: 2px;
+    padding: 6px;
+    margin-bottom: 25px;
+    overflow-y: scroll;
+    margin-left: 35px;
+    transition: width 0.3s ease;
+}
+
+
+
+.chat-input-message.typing {
+    width: 80%;
+}
+

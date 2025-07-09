@@ -1,82 +1,72 @@
-import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonToolbar, IonPage, IonTitle, IonIcon, IonItem, IonLabel, IonRouterLink, IonBadge, useIonViewDidEnter } from '@ionic/react';
+import React, { useState } from 'react';
+import { IonContent, IonHeader, IonToolbar, IonPage, IonTitle, IonIcon, IonItem, IonLabel, IonRouterLink } from '@ionic/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { archiveOutline } from 'ionicons/icons';
+import FilterOption from '../../components/tickets/filter-option/filter-option';
+import TicketCard from '../../components/tickets/ticket-card/ticket-card';
+import { useTicketsStore } from '../../stores/tickets-store/tickets-global-store';
+import { useMessageStore } from '../../stores/message-store/message-store';
+import '../../theme/page-themes/ticket-page.css'; 
+import { useTranslation } from 'react-i18next';
+import FooterTickets from '../../components/footer-tab/footer-tab';
 
-import FilterOption from '../../components/filter-option/filter-option';
-import TicketCard from '../../components/ticket-card/ticket-card';
-
-import { showTabBar } from '../../services/tabs/tab-bar-view/tabbar-view';
-import { tickets } from '../../tickets-store/tickets-store';
-import { loadMessages } from '../../hooks/chat/storage-load-messages/storage-load-messages';
-import { getArchivedTickets } from '../../services/ticket-options/ticket-archive';
-import useInterval from '../../hooks/tickets/message-update-interval-badge/use-interval';
-
-import '../../theme/page-themes/ticket-page.css';
 
 const TicketsPage: React.FC = () => {
+  const {
+    tickets,
+    archivedTickets,
+    archiveTicket,
+    unarchiveTicket,
+    deleteTicket,
+  } = useTicketsStore();
   const [submittedTitle, setSubmittedTitle] = useState('');
-  const [updatedTickets, setUpdatedTickets] = useState(tickets);
-  const [archivedTickets, setArchivedTickets] = useState(getArchivedTickets());
   const [popLayout, setPopLayout] = useState(false);
   const [filterStatus, setFilterStatus] = useState<string | null>(null);
-
-  useIonViewDidEnter(() => {
-    showTabBar();
-    setUpdatedTickets(tickets);
-  });
-
-  useInterval(setUpdatedTickets, tickets);
-
-  const handleArchiveTicket = (ticketId: string) => {
-    setUpdatedTickets(prevTickets => prevTickets.filter(ticket => ticket.id !== ticketId));
-    setArchivedTickets(prevArchived => {
-      const ticketToUnarchive = prevArchived.find(ticket => ticket && ticket.id === ticketId);
-      if (ticketToUnarchive) {
-        return prevArchived.filter(ticket => ticket && ticket.id !== ticketId);
-      }
-      return [...prevArchived, tickets.find(ticket => ticket && ticket.id === ticketId)];
-    });
+  const { t } = useTranslation('tickets');
+  
+  const handleArchiveTicketLocal = (ticketId: string, isArchived: boolean) => {
+    if (isArchived) {
+      unarchiveTicket(ticketId);
+    } else {
+      archiveTicket(ticketId);
+    }
   };
 
-  const handleUnarchiveTicket = (ticketId: string) => {
-    const ticketToUnarchive = archivedTickets.find(ticket => ticket.id === ticketId);
-    if (ticketToUnarchive) {
-      setUpdatedTickets(prevTickets => [...prevTickets, ticketToUnarchive]);
-      setArchivedTickets(prevArchived => prevArchived.filter(ticket => ticket.id !== ticketId));
-    }
+  const handleDeleteTicketLocal = (ticketId: string, isArchived?: boolean) => {
+    deleteTicket(ticketId, isArchived);
   };
 
   const isTicketValid = (ticket: any) => ticket && ticket.id;
 
-  const filteredTickets = filterStatus ? updatedTickets.filter(ticket => ticket.status === filterStatus) : updatedTickets;
+  const filteredTickets = filterStatus ? tickets.filter(ticket => ticket.status === filterStatus) : tickets;
+
+  const allMessages = useMessageStore(state => state.messages);
 
   return (
     <IonPage>
       <IonHeader className='header-tickets' class='ion-no-border'>
         <IonToolbar className='toolbar-tickets'>
-          <IonTitle>Chats</IonTitle>
+          <IonTitle>{t('chats')}</IonTitle>
           <FilterOption onFilterSelect={setFilterStatus} />
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen className='content-tickets'>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size='large'>Chats</IonTitle>
+            <IonTitle size='large'>{t('chats')}</IonTitle>
           </IonToolbar>
         </IonHeader>
         <ul className='tickets-list'>
-          <IonRouterLink routerLink="/tickets/sub-pages/archived-tickets">
+          <IonRouterLink routerDirection="forward" routerLink="/view/archived/" className="ion-activatable">
             <IonItem button detail={false} className='archived-tickets'>
               <IonIcon size='small' icon={archiveOutline} />
-              <IonLabel className='archive-label'>Archivados</IonLabel>
-                  <IonBadge className="archived-badge">Mensaje nuevo</IonBadge>
+              <IonLabel className='archive-label'>{t('archived')}</IonLabel>
             </IonItem>
           </IonRouterLink>
           <AnimatePresence mode={popLayout ? "popLayout" : "sync"}>
             {filteredTickets.map((ticket, index) => {
               if (!isTicketValid(ticket)) return null;
-              const isArchived = archivedTickets.some(archivedTicket => archivedTicket && archivedTicket.id === ticket.id);
+              const ticketMessages = Array.isArray(allMessages[ticket.id]) ? allMessages[ticket.id] : [];
               return (
                 <motion.li
                   layout
@@ -102,18 +92,23 @@ const TicketsPage: React.FC = () => {
                     date={ticket.date || ''}
                     agentName={ticket.agentName || ''}
                     icon={ticket.icon}
-                    messages={loadMessages(ticket.id)}
-                    onArchive={handleArchiveTicket}
+                    description={ticket.description || ''}
+                    notes={ticket.notes || ''}
+                    messages={ticketMessages}
+                    onArchive={() => handleArchiveTicketLocal(ticket.id, false)}
                     archivedTickets={archivedTickets}
-                    isArchived={isArchived}
-                    onUnarchive={handleUnarchiveTicket}
+                    isArchived={archivedTickets.some(archivedTicket => archivedTicket && archivedTicket.id === ticket.id)}
+                    onUnarchive={() => handleArchiveTicketLocal(ticket.id, true)}
+                    onDelete={() => handleDeleteTicketLocal(ticket.id, false)}
                   />
                 </motion.li>
               );
             })}
           </AnimatePresence>
         </ul>
+    
       </IonContent>
+      <FooterTickets />
     </IonPage>
   );
 };

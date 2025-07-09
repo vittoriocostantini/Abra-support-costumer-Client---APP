@@ -1,0 +1,65 @@
+.virtuoso-messages {
+    width: 100%;
+    background: url('../../../../assets/chats/chats-background.png');
+    overflow: hidden;
+    flex: 1 1 auto;
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    flex: 1 1 auto;
+    overflow: auto;
+    position: relative;
+}
+
+.chat-letter {
+    background: #f5e3a6;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #000000;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.158);
+    width: 70%;
+    height: 50px;
+    top: 10px;
+    word-wrap: break-word;
+    align-self: center;
+    text-align: center;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.4s cubic-bezier(0.4,0,0.2,1), visibility 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+.chat-letter-fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.scroll-to-bottom-btn {
+    --border-radius: 20px 0px 0px 20px;
+    width: 70px;
+    position: absolute;
+    display: block;
+    right: 0;
+    top: 10em;
+    transition: background 0.2s;
+}
+
+.scroll-to-bottom-btn  {
+    --background: var(--ion-color-scroll-to-bottom-btn);
+    --background-activated: var(--ion-color-scroll-to-bottom-btn-active);
+}
+
+.scroll-to-bottom-btn ion-icon {
+    color: #000000;
+}

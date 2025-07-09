@@ -1,0 +1,31 @@
+.footer-tickets-container ion-button {
+    color: var(--ion-button-footer-tickets) !important; 
+}
+
+.footer-tickets-container ion-button.active {
+    color: var(--ion-color-button-settings) !important;
+}
+ 
+
+.footer-tickets-container {
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 100%;
+    height: 84px;
+    background: #ffffff !important;
+}
+
+.footer-tickets-container ion-icon {
+    position: relative;
+    font-size: 24px;
+    bottom: 14px;
+}
+
+.footer-tickets-container ion-label {
+    font-size: 10px;
+    position: absolute;
+    bottom: 0px;
+    margin: 0;
+}   
+
