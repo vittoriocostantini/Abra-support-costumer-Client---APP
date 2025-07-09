@@ -38,7 +38,7 @@ const MessageList = forwardRef<any, MessageListProps>(({ messages, onReply, agen
     useAutoScroll(virtuosoRef, memoizedMessages, atBottom);
 
     useEffect(() => {
-        const updateHeight = () => {
+        const updateHeight = () => {``
             if (containerRef.current) {
                 setContainerHeight(containerRef.current.offsetHeight);
             }
