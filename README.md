@@ -10,7 +10,23 @@
 
 Abra Support Customer Client App is a hybrid mobile application developed with Ionic, React, and TypeScript that provides a complete customer support platform **24/7 in real-time without bots**. The application allows users to create support tickets, communicate directly with human customer service agents, manage cases, and access personalized settings.
 
+
+## 📸 Screenshots
+
+<p align="center">
+  <img src="public/screenshots/abra/Simulator%20Screenshot%20-%20iPhone%2016e%20-%202025-07-08%20at%2018.31.09.png" alt="Login Screen" width="200"/>
+  <img src="public/screenshots/abra/Simulator%20Screenshot%20-%20iPhone%2016e%20-%202025-07-08%20at%2018.31.15.png" alt="Main Dashboard" width="200"/>
+  <img src="public/screenshots/abra/Simulator%20Screenshot%20-%20iPhone%2016e%20-%202025-07-08%20at%2018.31.29.png" alt="Chat Interface" width="200"/>
+  <img src="public/screenshots/abra/Simulator%20Screenshot%20-%20iPhone%2016e%20-%202025-07-08%20at%2018.31.41.png" alt="Ticket Management" width="200"/>
+  <img src="public/screenshots/abra/Simulator%20Screenshot%20-%20iPhone%2016e%20-%202025-07-08%20at%2018.31.44.png" alt="Settings Page" width="200"/>
+  <img src="public/screenshots/abra/Simulator%20Screenshot%20-%20iPhone%2016e%20-%202025-07-08%20at%2018.31.47.png" alt="Support Chat" width="200"/>
+  <img src="public/screenshots/abra/Simulator%20Screenshot%20-%20iPhone%2016e%20-%202025-07-08%20at%2018.31.50.png" alt="File Upload" width="200"/>
+  <img src="public/screenshots/abra/Simulator%20Screenshot%20-%20iPhone%2016e%20-%202025-07-08%20at%2018.32.31.png" alt="Agent Selection" width="200"/>
+</p>
+
+
 ## ✨ Key Features
+
 
 ### 🎯 Core Functionalities
 - **Ticket System**: Creation and management of support cases
